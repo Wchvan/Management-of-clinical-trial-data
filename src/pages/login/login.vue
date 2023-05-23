@@ -1,11 +1,5 @@
-<template>
-login
-</template>
+<template>login</template>
 
-<script setup lang='ts'>
+<script setup lang="ts"></script>
 
-</script>
-
-<style lang='scss' scoped>
-
-</style>
+<style lang="scss" scoped></style>
