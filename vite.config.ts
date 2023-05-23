@@ -29,6 +29,11 @@ export default defineConfig({
             autoInstall: true,
         }),
     ],
+    css: {
+        postcss: {
+            plugins: [require('tailwindcss'), require('autoprefixer')],
+        },
+    },
     server: {
         port: 8080, //启动端口
         proxy: {
