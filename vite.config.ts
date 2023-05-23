@@ -31,14 +31,9 @@ export default defineConfig({
     ],
     server: {
         port: 8080, //启动端口
-        // hmr: {
-        //     host: '127.0.0.1',
-        //     port: 8080,
-        // },
-        // 设置 https 代理
         proxy: {
             '/api': {
-                target: 'your https address',
+                target: 'http://127.0.0.1:4523/m1/2767636-0-default',
                 changeOrigin: true,
                 rewrite: (path: string) => path.replace(/^\/api/, ''),
             },
