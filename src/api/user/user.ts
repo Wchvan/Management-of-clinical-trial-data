@@ -7,7 +7,7 @@ const login = async (params: loginParm) => {
 };
 
 const logout = async () => {
-    const res = await post('/user/logout');
+    await post('/user/logout');
 };
 
 export class userApi {

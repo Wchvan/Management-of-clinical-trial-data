@@ -66,11 +66,11 @@
 <script setup lang="ts">
 import type { loginFormType } from './type';
 import { reactive, ref } from 'vue';
-import { ElMessage ,FormInstance, FormRules } from 'element-plus';
+import { ElMessage, FormInstance, FormRules } from 'element-plus';
 import { useRouter } from 'vue-router';
 import useUserStore from '@/store/user';
 
-const userStore = useUserStore()
+const userStore = useUserStore();
 const router = useRouter();
 
 /* 提交的表单 */
@@ -119,7 +119,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
                         showClose: true,
                         message: res.msg,
                         type: 'error',
-                    })
+                    });
                 }
             });
         } else {
