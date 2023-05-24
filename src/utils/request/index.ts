@@ -1,6 +1,6 @@
-import axiosInstance from './request';
+import axiosInstance from './intercepter';
 export interface ApiResult<T> {
-    code: boolean;
+    code: number;
     msg: string;
     data: T;
 }

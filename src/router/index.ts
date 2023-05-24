@@ -32,7 +32,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     const userStore = useUserStore();
-    const isAuthenticated = userStore.token;
+    const isAuthenticated = userStore.userName;
     if (!to.matched.some((record) => record.meta.avoidAuth)) {
         if (!isAuthenticated) {
             next('/login');

@@ -1,7 +1,35 @@
 @import "./vars.scss";
 @import "./mixins.scss";
 
+body{
+  width: 100%;
+  height: 100vh;
+  #app{
+    width: 100%;
+    height: 100%;
+  }
+}
 
+
+/* 居中相关 */
+.center {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.centerX {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.centerY {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
 /* 大小相关 */
 .wd100{
   width: 100%;
