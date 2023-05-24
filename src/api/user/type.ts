@@ -8,5 +8,5 @@ export type loginParm = {
 
 export type loginRes = apiRes<{
     username: string;
-    type: 'admin' | 'user';
+    role: 'admin' | 'user';
 }>;

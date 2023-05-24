@@ -1,31 +1,55 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
-import type { userType } from './type';
+import type { userRoleType } from './type';
+import { userApi } from '@/api/user/user';
+import type { loginParm, loginRes } from '@/api/user/type';
 
 const useUserStore = defineStore(
     'user',
     () => {
         const userName = ref<string>('');
-        const userClass = ref<userType>('');
+        const userRole = ref<userRoleType>('');
 
-        // 修改用户信息
-        function changeUserInfo(name: string, type: userType) {
-            userName.value = name;
-            userClass.value = type;
-        }
-
+        // 用户信息初始化
         function initUserInfo() {
             userName.value = '';
-            userClass.value = '';
+            userRole.value = '';
         }
 
-        return { userName, userClass, changeUserInfo };
+        // 修改用户信息
+        function changeUserInfo(name: string, role: userRoleType) {
+            userName.value = name;
+            userRole.value = role;
+        }
+
+        // 登录账户
+        async function login(params: loginParm) {
+            const res = (await userApi.login(params)) as loginRes;
+            if (res.code === 200) {
+                changeUserInfo(res.data.username, res.data.role);
+            }
+            return res;
+        }
+
+        async function logout() {
+            userApi.logout();
+            initUserInfo();
+        }
+
+        return {
+            userName,
+            userRole,
+            changeUserInfo,
+            initUserInfo,
+            login,
+            logout,
+        };
     },
     {
         persist: {
             storage: localStorage, //修改存储位置
             key: 'userInfo', //设置存储的key
-            paths: ['userName', 'userClass'], //指定要长久化的字段
+            paths: ['userName', 'userRole'], //指定要长久化的字段
         },
     },
 );

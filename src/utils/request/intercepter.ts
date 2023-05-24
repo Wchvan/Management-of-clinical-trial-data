@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import type { InternalAxiosRequestConfig, AxiosResponse } from 'axios';
+import { ElMessage } from 'element-plus';
 
 const axiosInstance: AxiosInstance = axios.create({
     baseURL: '/api',
@@ -21,7 +22,7 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
     (response: AxiosResponse) => {
         // 对响应数据做点什么
-        return response.data;
+        return response;
     },
     (error: any) => {
         // 处理响应错误

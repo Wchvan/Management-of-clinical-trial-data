@@ -7,27 +7,56 @@
                 </div>
             </template>
             <div>
-                <el-form status-icon id="login-form" :model="loginForm" ref="loginFormRef" :rules="rules" >
-                    <el-form-item prop="username" >
-                        <el-input size="large" placeholder="输入账号" class="h-11" v-model="loginForm.username">
+                <el-form
+                    id="login-form"
+                    ref="loginFormRef"
+                    status-icon
+                    :model="loginForm"
+                    :rules="rules"
+                >
+                    <el-form-item prop="username">
+                        <el-input
+                            v-model="loginForm.username"
+                            size="large"
+                            placeholder="输入账号"
+                            class="h-11"
+                        >
                             <template #prepend>
                                 <i-ep-user class="text-xl" />
                             </template>
                         </el-input>
                     </el-form-item>
-                    <el-form-item prop="password" >
-                        <el-input size="large" placeholder="输入密码" class="h-11" v-model="loginForm.password" type="password" show-password>
+                    <el-form-item prop="password">
+                        <el-input
+                            v-model="loginForm.password"
+                            size="large"
+                            placeholder="输入密码"
+                            class="h-11"
+                            type="password"
+                            show-password
+                        >
                             <template #prepend>
                                 <i-ep-lock class="text-xl" />
                             </template>
                         </el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-checkbox label="请记住我" v-model="loginForm.remember_me" class="ml-2"></el-checkbox>
+                        <el-checkbox
+                            v-model="loginForm.remember_me"
+                            label="请记住我"
+                            class="ml-2"
+                        ></el-checkbox>
                         <div class="flex-grow"></div>
                         <el-link>登录遇到问题？</el-link>
                     </el-form-item>
-                    <el-button type="primary" class="centerX w-1/2" size="large" round @click="submitForm(loginFormRef)">登录</el-button>
+                    <el-button
+                        type="primary"
+                        class="centerX w-1/2"
+                        size="large"
+                        round
+                        @click="submitForm(loginFormRef)"
+                        >登录</el-button
+                    >
                 </el-form>
             </div>
         </el-card>
@@ -37,11 +66,12 @@
 <script setup lang="ts">
 import type { loginFormType } from './type';
 import { reactive, ref } from 'vue';
-import type { FormInstance, FormRules } from 'element-plus';
-import { userApi } from '@/api/user/user';
+import { ElMessage ,FormInstance, FormRules } from 'element-plus';
 import { useRouter } from 'vue-router';
+import useUserStore from '@/store/user';
 
-const router = useRouter()
+const userStore = useUserStore()
+const router = useRouter();
 
 /* 提交的表单 */
 const loginForm = reactive<loginFormType>({
@@ -54,11 +84,10 @@ const loginFormRef = ref<FormInstance>();
 
 /* 表单校验规则 */
 const validateUser = (rule: any, value: string, callback: any) => {
-    console.log(value)
     if (value === '') {
         callback(new Error('请输入账号！'));
     } else {
-        callback()
+        callback();
     }
 };
 
@@ -68,7 +97,7 @@ const validatePass = (rule: any, value: string, callback: any) => {
     } else if (value.length < 6 || value.length > 12) {
         callback(new Error('密码长度为6到12位'));
     } else {
-        callback()
+        callback();
     }
 };
 
@@ -79,19 +108,26 @@ const rules = reactive<FormRules>({
 
 /* 提交表单函数 */
 const submitForm = (formEl: FormInstance | undefined) => {
-    if (!formEl) return
+    if (!formEl) return;
     formEl.validate((valid, error) => {
         if (valid) {
-            console.log('submit!')
-            userApi.login(loginForm).then(res => {
-                if (res === 200) router.push('/')
-            })
+            userStore.login(loginForm).then((res) => {
+                if (res.code === 200) {
+                    router.push('/');
+                } else {
+                    ElMessage({
+                        showClose: true,
+                        message: res.msg,
+                        type: 'error',
+                    })
+                }
+            });
         } else {
-            console.log('error submit!')
-            return false
+            console.log('error submit!');
+            return false;
         }
-    })
-}
+    });
+};
 </script>
 
 <style lang="scss" scoped>
