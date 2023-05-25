@@ -1,16 +1,26 @@
 <template>
     <el-container>
         <el-header class="h-fit">
-            <el-input v-model="searchVal" placeholder="请输入想查询的关键词" size="large" class=" mb-3">
-                <template #append >
-                    <el-button type="primary"  id="search" @click="handleSearch">
+            <el-input
+                v-model="searchVal"
+                placeholder="请输入想查询的关键词"
+                size="large"
+                class="mb-3"
+            >
+                <template #append>
+                    <el-button id="search" type="primary" @click="handleSearch">
                         <i-ep-search></i-ep-search>
                     </el-button>
                 </template>
             </el-input>
         </el-header>
         <el-main>
-            <el-table ref="tableRef" row-key="date" :data="tableData" style="width: 100%">
+            <el-table
+                ref="tableRef"
+                row-key="date"
+                :data="tableData"
+                style="width: 100%"
+            >
                 <el-table-column
                     fixed="left"
                     prop="date"
@@ -25,7 +35,7 @@
                         { text: '2016-05-04', value: '2016-05-04' },
                     ]"
                     :filter-method="filterHandler"
-                    />
+                />
                 <el-table-column prop="name" label="Name" width="120" />
                 <el-table-column prop="state" label="State" width="120" />
                 <el-table-column prop="city" label="City" width="120" />
@@ -41,138 +51,154 @@
                     ]"
                     :filter-method="filterTag"
                     filter-placement="bottom-end"
-                    >
+                >
                     <template #default="scope">
                         <el-tag
-                        :type="scope.row.tag === 'Home' ? '' : 'success'"
-                        disable-transitions
-                        >{{ scope.row.tag }}</el-tag
+                            :type="scope.row.tag === 'Home' ? '' : 'success'"
+                            disable-transitions
+                            >{{ scope.row.tag }}</el-tag
                         >
                     </template>
                 </el-table-column>
-                <el-table-column  fixed="right" width="150">
+                <el-table-column fixed="right" width="150">
                     <template #header>
-                        <el-button @click="addCase" type="success" >添加病例</el-button>
-                    </template>
-                    
-                <template #default >
-                    <div class=" pl-1">
-                        <el-button link type="primary" size="small" @click="handleClick"
-                        >Detail</el-button
+                        <el-button type="success" @click="addCase"
+                            >添加病例</el-button
                         >
-                        <el-button link type="primary" size="small">Edit</el-button>
-                    </div>
-                    
-                </template>
+                        >
+                    </template>
+
+                    <template #default>
+                        <div class="pl-1">
+                            <el-button
+                                link
+                                type="primary"
+                                size="small"
+                                @click="handleClick"
+                                >Detail</el-button
+                            >
+                            <el-button link type="primary" size="small"
+                                >Edit</el-button
+                            >
+                        </div>
+                    </template>
                 </el-table-column>
             </el-table>
         </el-main>
         <el-footer class="flex flex-row justify-center">
-            <el-button @click="resetDateFilter" type="primary" size="large">reset date filter</el-button>
-            <el-button @click="clearFilter" type="primary" size="large">reset all filters</el-button>
+            <el-button type="primary" size="large" @click="resetDateFilter"
+                >reset date filter</el-button
+            >
+            <el-button type="primary" size="large" @click="clearFilter"
+                >reset all filters</el-button
+            >
         </el-footer>
     </el-container>
-    <add-case-dialog :visible="dialogVisible" @hiddenDialog="hiddenDialog" v-if="dialogVisible"></add-case-dialog>
+    <add-case-dialog
+        v-if="dialogVisible"
+        :visible="dialogVisible"
+        @hiddenDialog="hiddenDialog"
+    ></add-case-dialog>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { TableColumnCtx, TableInstance } from 'element-plus'
-import addCaseDialog  from './addCaseDialog.vue'
+import type { TableColumnCtx, TableInstance } from 'element-plus';
+import addCaseDialog from './addCaseDialog.vue';
 
 // 搜索相关
-const searchVal = ref<string>('')
+const searchVal = ref<string>('');
 const handleSearch = () => {
-    console.log(searchVal.value)
-}
+    console.log(searchVal.value);
+};
 
 // 表格相关
 interface User {
-    date: string,
-    name: string,
-    state: string,
-    city: string,
-    address: string,
-    zip: string,
-    tag: string,
+    date: string;
+    name: string;
+    state: string;
+    city: string;
+    address: string;
+    zip: string;
+    tag: string;
 }
-const tableRef = ref<TableInstance>()
+const tableRef = ref<TableInstance>();
 const resetDateFilter = () => {
-  tableRef.value!.clearFilter(['date'])
-}
+    tableRef.value!.clearFilter(['date']);
+};
 // TODO: improvement typing when refactor table
 const clearFilter = () => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  tableRef.value!.clearFilter()
-}
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    tableRef.value!.clearFilter();
+};
 const formatter = (row: User, column: TableColumnCtx<User>) => {
-  return row.address
-}
+    return row.address;
+};
 const filterTag = (value: string, row: User) => {
-  return row.tag === value
-}
+    return row.tag === value;
+};
 const filterHandler = (
-  value: string,
-  row: User,
-  column: TableColumnCtx<User>
+    value: string,
+    row: User,
+    column: TableColumnCtx<User>,
 ) => {
-  const property = column['property']
-  return row[property as keyof User] === value
-}
+    const property = column['property'];
+    return row[property as keyof User] === value;
+};
 const handleClick = () => {
-  console.log('click')
-}
+    console.log('click');
+};
 const tableData = [
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    state: 'California',
-    city: 'Los Angeles',
-    address: 'No. 189, Grove St, Los Angeles',
-    zip: 'CA 90036',
-    tag: 'Home',
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    state: 'California',
-    city: 'Los Angeles',
-    address: 'No. 189, Grove St, Los Angeles',
-    zip: 'CA 90036',
-    tag: 'Office',
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    state: 'California',
-    city: 'Los Angeles',
-    address: 'No. 189, Grove St, Los Angeles',
-    zip: 'CA 90036',
-    tag: 'Home',
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    state: 'California',
-    city: 'Los Angeles',
-    address: 'No. 189, Grove St, Los Angeles',
-    zip: 'CA 90036',
-    tag: 'Office',
-  },
-]
+    {
+        date: '2016-05-03',
+        name: 'Tom',
+        state: 'California',
+        city: 'Los Angeles',
+        address: 'No. 189, Grove St, Los Angeles',
+        zip: 'CA 90036',
+        tag: 'Home',
+    },
+    {
+        date: '2016-05-02',
+        name: 'Tom',
+        state: 'California',
+        city: 'Los Angeles',
+        address: 'No. 189, Grove St, Los Angeles',
+        zip: 'CA 90036',
+        tag: 'Office',
+    },
+    {
+        date: '2016-05-04',
+        name: 'Tom',
+        state: 'California',
+        city: 'Los Angeles',
+        address: 'No. 189, Grove St, Los Angeles',
+        zip: 'CA 90036',
+        tag: 'Home',
+    },
+    {
+        date: '2016-05-01',
+        name: 'Tom',
+        state: 'California',
+        city: 'Los Angeles',
+        address: 'No. 189, Grove St, Los Angeles',
+        zip: 'CA 90036',
+        tag: 'Office',
+    },
+];
 
 // 添加病例对话框相关
-const dialogVisible = ref<boolean>(false)
+const dialogVisible = ref<boolean>(false);
 const addCase = () => {
-    dialogVisible.value = false
+    dialogVisible.value = false;
     setTimeout(() => {
-        dialogVisible.value = true
-    }, 0)
-}
+        dialogVisible.value = true;
+    }, 0);
+};
 const hiddenDialog = () => {
-    dialogVisible.value = false
-}
+    dialogVisible.value = false;
+};
 </script>
 
 <style lang="scss" scoped></style>

@@ -1,50 +1,72 @@
 <template>
-    
- <el-dialog v-model="dialogVisible"  destroy-on-close center :show-close="false"  class="w-1/2" top="5%">
+    <el-dialog
+        v-model="dialogVisible"
+        destroy-on-close
+        center
+        :show-close="false"
+        class="w-1/2"
+        top="5%"
+    >
         <template #header>
             <el-button-group class="w-full" size="large">
-                <el-button class="w-1/2" :type="activeFlag?'primary':''" @click="changeMethod">
+                <el-button
+                    class="w-1/2"
+                    :type="activeFlag ? 'primary' : ''"
+                    @click="changeMethod"
+                >
                     表单上传
                 </el-button>
-                <el-button class="w-1/2" :type="!activeFlag?'primary':''" @click="changeMethod">
+                <el-button
+                    class="w-1/2"
+                    :type="!activeFlag ? 'primary' : ''"
+                    @click="changeMethod"
+                >
                     文件上传
                 </el-button>
             </el-button-group>
         </template>
 
-        <upload-form v-if="activeFlag" @hiddenDialog="emits('hiddenDialog')"></upload-form>
+        <upload-form
+            v-if="activeFlag"
+            @hiddenDialog="emits('hiddenDialog')"
+        ></upload-form>
         <upload-file v-else @hiddenDialog="emits('hiddenDialog')"></upload-file>
     </el-dialog>
 </template>
 
-<script setup lang='ts'>
-import { ref, watch } from 'vue'
+<script setup lang="ts">
+import { ref, watch } from 'vue';
 import uploadFile from './components/uploadFile.vue';
 import uploadForm from './components/uploadForm.vue';
 
-const activeFlag = ref<boolean>(true)
-const props = withDefaults(defineProps<{
-    visible: boolean
-}>(), {
-    visible: false
-})
+const activeFlag = ref<boolean>(true);
+const props = withDefaults(
+    defineProps<{
+        visible: boolean;
+    }>(),
+    {
+        visible: false,
+    },
+);
 
-const dialogVisible = ref<boolean>(props.visible)
+const dialogVisible = ref<boolean>(props.visible);
 
-watch(()=>props.visible, (newVal) => {
-    dialogVisible.value = newVal 
-})
+watch(
+    () => props.visible,
+    (newVal) => {
+        dialogVisible.value = newVal;
+    },
+);
 
 const emits = defineEmits<{
-    (e: "hiddenDialog"): void
-}>()
+    (e: 'hiddenDialog'): void;
+}>();
 
 // 对话框头部相关
 const changeMethod = () => {
-    activeFlag.value = !activeFlag.value
-    console.log(activeFlag.value)
-}
-
+    activeFlag.value = !activeFlag.value;
+    console.log(activeFlag.value);
+};
 </script>
 
-<style lang='scss' scoped></style>
+<style lang="scss" scoped></style>
