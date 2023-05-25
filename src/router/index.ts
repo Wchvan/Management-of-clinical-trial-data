@@ -12,8 +12,8 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
             title: '登录',
             keepAlive: true,
-            avoidAuth: true,
-            avoidLayout: true,
+            avoidAuth: true, // 是否不需要要检验是否登录账号
+            avoidLayout: true, // 是否不需要用标准的layout
         },
         component: () => import('@/pages/login/login.vue'),
     },
@@ -27,13 +27,22 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/pages/home/home.vue'),
     },
     {
-        path: '/recruit',
-        name: 'Recruit',
+        path: '/cases',
+        name: 'Cases',
         meta: {
-            title: '病例录入',
+            title: '病例',
             keepAlive: true,
         },
-        component: () => import('@/pages/recruit/recruit.vue'),
+        component: () => import('@/pages/cases/cases.vue'),
+    },
+    {
+        path: '/revisit',
+        name: 'Revisit',
+        meta: {
+            title: '随访',
+            keepAlive: true,
+        },
+        component: () => import('@/pages/revisit/revisit.vue'),
     },
     {
         path: '/users',
@@ -41,8 +50,19 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
             title: '用户管理',
             keepAlive: true,
+            admin: true, // 是否只有admin才能访问
         },
         component: () => import('@/pages/users/users.vue'),
+    },
+    {
+        path: '/log',
+        name: 'Log',
+        meta: {
+            title: '系统日志',
+            keepAlive: true,
+            admin: true,
+        },
+        component: () => import('@/pages/log/log.vue'),
     },
 ];
 
@@ -62,7 +82,7 @@ router.beforeEach((to, from, next) => {
         } else {
             next();
         }
-    } else if (to.path === '/users') {
+    } else if (to.meta.admin === '/users') {
         if (userStore.userRole === 'admin') {
             next();
         } else {
