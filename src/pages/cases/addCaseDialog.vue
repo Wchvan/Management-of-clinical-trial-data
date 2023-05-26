@@ -51,7 +51,6 @@ const emits = defineEmits<{
     (e: 'hiddenDialog'): void;
 }>();
 
-
 // 判断是表单上传还是文件上传
 const activeFlag = ref<boolean>(true);
 

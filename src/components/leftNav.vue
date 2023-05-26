@@ -1,6 +1,6 @@
 <template>
     <el-menu
-        class="h-full "
+        class="h-full"
         :default-active="activeIndex"
         router
         background-color="#5bb6ad"
@@ -8,7 +8,11 @@
         text-color="#F5F5F5"
     >
         <el-image :src="logoUrl" class="w-40 h-40 m-4"></el-image>
-        <el-menu-item index="/home" class="py-10" :class="activeIndex==='/home'?['border-r-4', 'bg-BD']:''">
+        <el-menu-item
+            index="/home"
+            class="py-10"
+            :class="activeIndex === '/home' ? ['border-r-4', 'bg-BD'] : ''"
+        >
             <i-ep-HomeFilled class="text-2xl"></i-ep-HomeFilled>
             <template #title>
                 <div
@@ -20,7 +24,11 @@
                 </div>
             </template>
         </el-menu-item>
-        <el-menu-item index="/trials" class="py-10" :class="activeIndex==='/trials'?['border-r-4', 'bg-BD']:''">
+        <el-menu-item
+            index="/trials"
+            class="py-10"
+            :class="activeIndex === '/trials' ? ['border-r-4', 'bg-BD'] : ''"
+        >
             <i-ep-Expand class="text-2xl"></i-ep-Expand>
             <template #title>
                 <div
@@ -32,7 +40,11 @@
                 </div>
             </template>
         </el-menu-item>
-        <el-menu-item index="/cases" class="py-10" :class="activeIndex==='/cases'?['border-r-4', 'bg-BD']:''">
+        <el-menu-item
+            index="/cases"
+            class="py-10"
+            :class="activeIndex === '/cases' ? ['border-r-4', 'bg-BD'] : ''"
+        >
             <i-ep-List class="text-2xl"></i-ep-List>
             <template #title>
                 <div
@@ -44,7 +56,11 @@
                 </div>
             </template>
         </el-menu-item>
-        <el-menu-item index="/revisit" class="py-10" :class="activeIndex==='/revisit'?['border-r-4', 'bg-BD']:''">
+        <el-menu-item
+            index="/revisit"
+            class="py-10"
+            :class="activeIndex === '/revisit' ? ['border-r-4', 'bg-BD'] : ''"
+        >
             <i-ep-Edit class="text-2xl"></i-ep-Edit>
             <template #title>
                 <div
@@ -60,7 +76,7 @@
             v-if="userStore.userRole === 'admin'"
             index="/users"
             class="py-10"
-            :class="activeIndex==='/users'?['border-r-4', 'bg-BD']:''"
+            :class="activeIndex === '/users' ? ['border-r-4', 'bg-BD'] : ''"
         >
             <i-ep-user class="text-2xl"></i-ep-user>
             <template #title>
@@ -77,7 +93,7 @@
             v-if="userStore.userRole === 'admin'"
             index="/log"
             class="py-10"
-            :class="activeIndex==='/log'?['border-r-4', 'bg-BD']:''"
+            :class="activeIndex === '/log' ? ['border-r-4', 'bg-BD'] : ''"
         >
             <i-ep-Document class="text-2xl"></i-ep-Document>
             <template #title>
@@ -112,5 +128,4 @@ watch(
 );
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
