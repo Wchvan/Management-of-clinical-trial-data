@@ -27,6 +27,15 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/pages/home/home.vue'),
     },
     {
+        path: '/trials',
+        name: 'Trials',
+        meta: {
+            title: '实验',
+            keepAlive: true,
+        },
+        component: () => import('@/pages/trials/trials.vue'),
+    },
+    {
         path: '/cases',
         name: 'Cases',
         meta: {
@@ -60,7 +69,6 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
             title: '系统日志',
             keepAlive: true,
-            admin: true,
         },
         component: () => import('@/pages/log/log.vue'),
     },

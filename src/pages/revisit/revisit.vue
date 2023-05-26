@@ -29,7 +29,7 @@
             <el-card class="box-card">
                 <template #header>
                     <div class="flex flex-row justify-center">
-                        <span class="text-3xl font-bold">病人简历</span>
+                        <span class="text-2xl font-semibold">病人简历</span>
                     </div>
                 </template>
                 <el-container>

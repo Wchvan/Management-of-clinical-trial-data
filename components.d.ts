@@ -29,6 +29,7 @@ declare module '@vue/runtime-core' {
         ElHeader: typeof import('element-plus/es')['ElHeader'];
         ElImage: typeof import('element-plus/es')['ElImage'];
         ElInput: typeof import('element-plus/es')['ElInput'];
+        ElLink: typeof import('element-plus/es')['ElLink'];
         ElMain: typeof import('element-plus/es')['ElMain'];
         ElMenu: typeof import('element-plus/es')['ElMenu'];
         ElMenuItem: typeof import('element-plus/es')['ElMenuItem'];
@@ -40,12 +41,17 @@ declare module '@vue/runtime-core' {
         ElTable: typeof import('element-plus/es')['ElTable'];
         ElTableColumn: typeof import('element-plus/es')['ElTableColumn'];
         ElTag: typeof import('element-plus/es')['ElTag'];
+        ElTimeline: typeof import('element-plus/es')['ElTimeline'];
+        ElTimelineItem: typeof import('element-plus/es')['ElTimelineItem'];
         ElTimePicker: typeof import('element-plus/es')['ElTimePicker'];
         ElUpload: typeof import('element-plus/es')['ElUpload'];
         IEpDocument: typeof import('~icons/ep/document')['default'];
         IEpEdit: typeof import('~icons/ep/edit')['default'];
+        IEpExpand: typeof import('~icons/ep/expand')['default'];
+        IEpFinished: typeof import('~icons/ep/finished')['default'];
         IEpHomeFilled: typeof import('~icons/ep/home-filled')['default'];
         IEpList: typeof import('~icons/ep/list')['default'];
+        IEpLock: typeof import('~icons/ep/lock')['default'];
         IEpSearch: typeof import('~icons/ep/search')['default'];
         IEpUploadFilled: typeof import('~icons/ep/upload-filled')['default'];
         IEpUser: typeof import('~icons/ep/user')['default'];

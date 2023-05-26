@@ -10,7 +10,7 @@
             >
                 <top-nav></top-nav>
             </el-header>
-            <el-main>
+            <el-main >
                 <slot></slot>
             </el-main>
             <el-footer class="text-center h-fit">

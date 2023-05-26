@@ -39,7 +39,6 @@ import { ref, watch } from 'vue';
 import uploadFile from './components/uploadFile.vue';
 import uploadForm from './components/uploadForm.vue';
 
-const activeFlag = ref<boolean>(true);
 const props = withDefaults(
     defineProps<{
         visible: boolean;
@@ -48,19 +47,22 @@ const props = withDefaults(
         visible: false,
     },
 );
+const emits = defineEmits<{
+    (e: 'hiddenDialog'): void;
+}>();
 
+
+// 判断是表单上传还是文件上传
+const activeFlag = ref<boolean>(true);
+
+// 定义一个变量接收传来的属性---子组件不能改变父组件的值
 const dialogVisible = ref<boolean>(props.visible);
-
 watch(
     () => props.visible,
     (newVal) => {
         dialogVisible.value = newVal;
     },
 );
-
-const emits = defineEmits<{
-    (e: 'hiddenDialog'): void;
-}>();
 
 // 对话框头部相关
 const changeMethod = () => {
