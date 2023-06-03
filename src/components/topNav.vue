@@ -1,8 +1,19 @@
 <template>
-    <div class="h-full w-full flex flex-row justify-between  border-b-2 border-gray-200">
-        <div class="flex flex-row py-1 flex-1" style="cursor: pointer;" @click="$router.push('/')">
-            <el-image :src="logoSrc" class="w-12 h-12" ></el-image>
-            <div class=" self-center ml-2 text-xl font-semibold" style="color: #24960b;">临床试验数据隐私管理系统</div>
+    <div
+        class="h-full w-full flex flex-row justify-between border-b-2 border-gray-200"
+    >
+        <div
+            class="flex flex-row py-1 flex-1"
+            style="cursor: pointer"
+            @click="$router.push('/')"
+        >
+            <el-image :src="logoSrc" class="w-12 h-12"></el-image>
+            <div
+                class="self-center ml-2 text-xl font-semibold"
+                style="color: #24960b"
+            >
+                临床试验数据隐私管理系统
+            </div>
         </div>
         <div class="text-center py-2 flex-1 justify-center flex">
             <span class="leading-10 text-3xl font-bold">{{
@@ -11,58 +22,122 @@
         </div>
         <div class="text-center pt-1 flex-1 justify-end flex">
             <el-dropdown>
-                <el-avatar class="mr-8 text-2xl"
-                    style="background-color: #409eff; font-size: 1.5rem; width: 3rem; height: 3rem;">{{
-                        userStore.userName[0]
-                    }}</el-avatar>
+                <el-avatar
+                    class="mr-8 text-2xl"
+                    style="
+                        background-color: #409eff;
+                        font-size: 1.5rem;
+                        width: 3rem;
+                        height: 3rem;
+                    "
+                    >{{ userStore.userName[0] }}</el-avatar
+                >
                 <template #dropdown>
                     <el-dropdown-menu>
-                        <el-dropdown-item disabled class="text-xl justify-center" style="
-                            color: #121212;
-                            cursor: inherit;
-                            border-bottom: 1px solid #ccc;
-                            font-size: 1.25rem;
-                            padding-bottom: 0.5rem;
-                        ">
+                        <el-dropdown-item
+                            disabled
+                            class="text-xl justify-center"
+                            style="
+                                color: #121212;
+                                cursor: inherit;
+                                border-bottom: 1px solid #ccc;
+                                font-size: 1.25rem;
+                                padding-bottom: 0.5rem;
+                            "
+                        >
                             {{ userStore.userName }}
                         </el-dropdown-item>
-                        <el-dropdown-item style="padding-top: 0.75rem; padding-bottom: 0.75rem; font-size: 1rem;
-                        line-height: 1.5rem" v-if="userStore.userRole === 'ROLE_ADMIN'" @click="$router.push('/users')">管理界面</el-dropdown-item>
-                        <el-dropdown-item style="padding-top: 0.75rem; padding-bottom: 0.75rem; font-size: 1rem;
-                        line-height: 1.5rem" @click="centerDialogVisible = true">修改密码</el-dropdown-item>
-                        <el-dropdown-item style="padding-top: 0.75rem; padding-bottom: 0.75rem; font-size: 1rem;
-                        line-height: 1.5rem" @click="logout">退出登录</el-dropdown-item>
+                        <el-dropdown-item
+                            v-if="userStore.userRole === 'ROLE_ADMIN'"
+                            style="
+                                padding-top: 0.75rem;
+                                padding-bottom: 0.75rem;
+                                font-size: 1rem;
+                                line-height: 1.5rem;
+                            "
+                            @click="$router.push('/users')"
+                            >管理界面</el-dropdown-item
+                        >
+                        <el-dropdown-item
+                            style="
+                                padding-top: 0.75rem;
+                                padding-bottom: 0.75rem;
+                                font-size: 1rem;
+                                line-height: 1.5rem;
+                            "
+                            @click="centerDialogVisible = true"
+                            >修改密码</el-dropdown-item
+                        >
+                        <el-dropdown-item
+                            style="
+                                padding-top: 0.75rem;
+                                padding-bottom: 0.75rem;
+                                font-size: 1rem;
+                                line-height: 1.5rem;
+                            "
+                            @click="logout"
+                            >退出登录</el-dropdown-item
+                        >
                     </el-dropdown-menu>
                 </template>
             </el-dropdown>
         </div>
-        <el-dialog v-model="centerDialogVisible" width="30%" center destroy-on-close>
+        <el-dialog
+            v-model="centerDialogVisible"
+            width="30%"
+            center
+            destroy-on-close
+        >
             <template #header>
                 <div class="text-center">
                     <span className="text-2xl font-bold">修改密码</span>
                 </div>
             </template>
-            <el-form id="pass-form" ref="changePassFormRef" status-icon :model="changePassForm" :rules="rules">
+            <el-form
+                id="pass-form"
+                ref="changePassFormRef"
+                status-icon
+                :model="changePassForm"
+                :rules="rules"
+            >
                 <el-form-item prop="pass">
-                    <el-input v-model="changePassForm.pass" size="large" placeholder="输入密码" class="h-11" type="password">
+                    <el-input
+                        v-model="changePassForm.pass"
+                        size="large"
+                        placeholder="输入密码"
+                        class="h-11"
+                        type="password"
+                    >
                         <template #prepend>
-                            <span class=" w-14 text-center ">密码</span>
+                            <span class="w-14 text-center">密码</span>
                         </template>
                     </el-input>
                 </el-form-item>
                 <el-form-item prop="checkPass">
-                    <el-input v-model="changePassForm.checkPass" size="large" placeholder="再次输入密码" class="h-11"
-                        type="password" show-password>
+                    <el-input
+                        v-model="changePassForm.checkPass"
+                        size="large"
+                        placeholder="再次输入密码"
+                        class="h-11"
+                        type="password"
+                        show-password
+                    >
                         <template #prepend>
-                            <span class=" w-14 text-center ">确认密码</span>
+                            <span class="w-14 text-center">确认密码</span>
                         </template>
                     </el-input>
                 </el-form-item>
             </el-form>
             <template #footer>
                 <span class="dialog-footer">
-                    <el-button @click="handleCancel" size="large">取消</el-button>
-                    <el-button type="primary" @click="handleSubmit(changePassFormRef)" size="large">
+                    <el-button size="large" @click="handleCancel"
+                        >取消</el-button
+                    >
+                    <el-button
+                        type="primary"
+                        size="large"
+                        @click="handleSubmit(changePassFormRef)"
+                    >
                         确认
                     </el-button>
                 </span>
@@ -76,7 +151,7 @@ import useUserStore from '@/store/user';
 import { useRouter } from 'vue-router';
 import { reactive, ref } from 'vue';
 import { ElMessage, FormInstance, FormRules } from 'element-plus';
-import logoSrc from '@/assets/navlogo.png'
+import logoSrc from '@/assets/navlogo.png';
 
 const userStore = useUserStore();
 const router = useRouter();
@@ -90,13 +165,13 @@ const logout = () => {
 };
 
 /* 修改密码相关 */
-const centerDialogVisible = ref<boolean>(false)
-const changePassForm = ref<{ pass: string, checkPass: string }>({
+const centerDialogVisible = ref<boolean>(false);
+const changePassForm = ref<{ pass: string; checkPass: string }>({
     pass: '',
-    checkPass: ''
-})
+    checkPass: '',
+});
 const changePassFormRef = ref<FormInstance>();
-// 表单校验规则 
+// 表单校验规则
 const validatePass = (rule: any, value: string, callback: any) => {
     if (value === '') {
         callback(new Error('请确认密码!'));
@@ -123,43 +198,45 @@ const rules = reactive<FormRules>({
 });
 
 const handleCancel = () => {
-    centerDialogVisible.value = false
+    centerDialogVisible.value = false;
     changePassForm.value = {
         pass: '',
-        checkPass: ''
-    }
-}
+        checkPass: '',
+    };
+};
 
 const handleSubmit = (formEl: FormInstance | undefined) => {
     if (!formEl) return;
     formEl.validate((valid, error) => {
         if (valid) {
-            userStore.changePass({
-                username: userStore.userName,
-                password: changePassForm.value.pass
-            }).then((res) => {
-                console.log(res)
-                if (res.code === 200) {
-                    ElMessage({
-                        showClose: true,
-                        message: "修改密码成功",
-                        type: 'success',
-                        duration: 1000
-                    });
-                    changePassForm.value = {
-                        pass: '',
-                        checkPass: ''
+            userStore
+                .changePass({
+                    username: userStore.userName,
+                    password: changePassForm.value.pass,
+                })
+                .then((res) => {
+                    console.log(res);
+                    if (res.code === 200) {
+                        ElMessage({
+                            showClose: true,
+                            message: '修改密码成功',
+                            type: 'success',
+                            duration: 1000,
+                        });
+                        changePassForm.value = {
+                            pass: '',
+                            checkPass: '',
+                        };
+                        centerDialogVisible.value = false;
+                    } else {
+                        ElMessage({
+                            showClose: true,
+                            message: res.msg,
+                            type: 'error',
+                            duration: 1000,
+                        });
                     }
-                    centerDialogVisible.value = false
-                } else {
-                    ElMessage({
-                        showClose: true,
-                        message: res.msg,
-                        type: 'error',
-                        duration: 1000
-                    });
-                }
-            });
+                });
         } else {
             console.log('error submit!');
             return false;
