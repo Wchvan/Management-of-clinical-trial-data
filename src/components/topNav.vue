@@ -1,16 +1,16 @@
 <template>
     <div
-        class="h-full w-full flex flex-row justify-between border-b-2 border-gray-200"
+        class="h-full w-full flex flex-row justify-between bg-BD"
     >
         <div
             class="flex flex-row py-1 flex-1"
             style="cursor: pointer"
             @click="$router.push('/')"
         >
-            <el-image :src="logoSrc" class="w-12 h-12"></el-image>
+            <img :src="logoSrc" class="w-12 h-12">
             <div
-                class="self-center ml-2 text-xl font-semibold"
-                style="color: #24960b"
+                class="self-center ml-2 text-2xl font-semibold"
+                style="color: #121212"
             >
                 临床试验数据隐私管理系统
             </div>
@@ -55,7 +55,7 @@
                                 font-size: 1rem;
                                 line-height: 1.5rem;
                             "
-                            @click="$router.push('/users')"
+                            @click="$router.push('/trials')"
                             >管理界面</el-dropdown-item
                         >
                         <el-dropdown-item

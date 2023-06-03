@@ -11,11 +11,7 @@ const login = async (params: loginParm) => {
 };
 
 const changePass = async (params: changePassParm) => {
-    const res = (await post('/user/change-password', params, {
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        },
-    })) as changePassRes;
+    const res = (await post('/user/change-password', params)) as changePassRes;
     return res;
 };
 

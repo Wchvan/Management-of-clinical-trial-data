@@ -4,15 +4,16 @@
             <top-nav></top-nav>
         </el-header>
         <el-container>
-            <el-aside class="h-full" width="12rem">
+            <el-aside class="h-full " width="12rem">
                 <el-menu
                     :default-active="activeIndex"
                     router
                     class="h-full"
+                    background-color="#0095B6"
                     active-text-color="#8B0000"
                 >
                     <el-menu-item
-                        index="/trials"
+                        index="/admin-trials"
                         class="justify-center flex flex-row"
                         style="padding: 2.5rem 0"
                     >
@@ -58,7 +59,7 @@
                 </el-menu>
             </el-aside>
 
-            <el-main style="padding: 5px 10px">
+            <el-main style="padding: 5px 10px" class=" bg-gray-200">
                 <slot></slot>
             </el-main>
         </el-container>

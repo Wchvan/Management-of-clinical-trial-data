@@ -47,8 +47,8 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/pages/admin/log/log.vue'),
     },
     {
-        path: '/trials',
-        name: 'Trials',
+        path: '/admin-trials',
+        name: 'AdminTrials',
         meta: {
             title: '实验管理',
             keepAlive: true,
