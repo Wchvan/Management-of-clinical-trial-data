@@ -27,33 +27,6 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/pages/home/home.vue'),
     },
     {
-        path: '/trials',
-        name: 'Trials',
-        meta: {
-            title: '实验',
-            keepAlive: true,
-        },
-        component: () => import('@/pages/trials/trials.vue'),
-    },
-    {
-        path: '/cases',
-        name: 'Cases',
-        meta: {
-            title: '病例',
-            keepAlive: true,
-        },
-        component: () => import('@/pages/cases/cases.vue'),
-    },
-    {
-        path: '/revisit',
-        name: 'Revisit',
-        meta: {
-            title: '随访',
-            keepAlive: true,
-        },
-        component: () => import('@/pages/revisit/revisit.vue'),
-    },
-    {
         path: '/users',
         name: 'Users',
         meta: {
@@ -61,7 +34,7 @@ const routes: Array<RouteRecordRaw> = [
             keepAlive: true,
             admin: true, // 是否只有admin才能访问
         },
-        component: () => import('@/pages/users/users.vue'),
+        component: () => import('@/pages/admin/users/users.vue'),
     },
     {
         path: '/log',
@@ -69,8 +42,19 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
             title: '系统日志',
             keepAlive: true,
+            admin: true, // 是否只有admin才能访问
         },
-        component: () => import('@/pages/log/log.vue'),
+        component: () => import('@/pages/admin/log/log.vue'),
+    },
+    {
+        path: '/trials',
+        name: 'Trials',
+        meta: {
+            title: '实验管理',
+            keepAlive: true,
+            admin: true, // 是否只有admin才能访问
+        },
+        component: () => import('@/pages/admin/trials/trials.vue'),
     },
 ];
 
@@ -90,8 +74,8 @@ router.beforeEach((to, from, next) => {
         } else {
             next();
         }
-    } else if (to.meta.admin === '/users') {
-        if (userStore.userRole === 'admin') {
+    } else if (to.meta.admin) {
+        if (userStore.userRole === 'ROLE_ADMIN') {
             next();
         } else {
             alert('权限不够');

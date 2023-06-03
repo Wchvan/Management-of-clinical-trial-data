@@ -2,7 +2,12 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import type { userRoleType } from './type';
 import { userApi } from '@/api/user/user';
-import type { loginParm, loginRes } from '@/api/user/type';
+import type {
+    loginParm,
+    loginRes,
+    changePassParm,
+    changePassRes,
+} from '@/api/user/type';
 
 const useUserStore = defineStore(
     'user',
@@ -31,6 +36,13 @@ const useUserStore = defineStore(
             return res;
         }
 
+        // 修改密码相关
+        async function changePass(params: changePassParm) {
+            const res = (await userApi.changePass(params)) as changePassRes;
+            return res;
+        }
+
+        // 退出登录
         async function logout() {
             userApi.logout();
             initUserInfo();
@@ -42,6 +54,7 @@ const useUserStore = defineStore(
             changeUserInfo,
             initUserInfo,
             login,
+            changePass,
             logout,
         };
     },

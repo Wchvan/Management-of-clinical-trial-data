@@ -1,12 +1,8 @@
 <template>
-    <defaultLayout v-if="!$route.meta.avoidLayout">
-        <RouterView></RouterView>
-    </defaultLayout>
-    <RouterView v-else></RouterView>
+    <RouterView class="w-full h-full"></RouterView>
 </template>
 
 <script setup lang="ts">
-import defaultLayout from '@/layouts/defaultLayout.vue';
 </script>
 
 <style lang="scss">
