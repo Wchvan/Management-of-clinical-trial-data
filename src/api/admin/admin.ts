@@ -7,6 +7,7 @@ import {
     changeUserRes,
     getUserTrialsParm,
     getUserTrialsRes,
+    getLogRes,
 } from './type';
 
 /* 用户管理相关 */
@@ -31,9 +32,16 @@ const getUserTrials = async (params: getUserTrialsParm) => {
     return res;
 };
 
+/* 获取系统日志 */
+const getLog = async () => {
+    const res = (await get('/log/get')) as getLogRes;
+    return res;
+};
+
 export class adminApi {
     static getUsers = getUsers;
     static banUser = banUser;
     static changeUser = changeUser;
     static getUserTrials = getUserTrials;
+    static getLog = getLog;
 }

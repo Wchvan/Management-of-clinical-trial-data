@@ -59,7 +59,7 @@
                 </el-menu>
             </el-aside>
 
-            <el-main style="padding: 5px 10px" class="bg-gray-200">
+            <el-main style="padding: 5px 10px" class="bg-gray-50">
                 <slot></slot>
             </el-main>
         </el-container>

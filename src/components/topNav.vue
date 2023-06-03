@@ -53,7 +53,7 @@
                                 font-size: 1rem;
                                 line-height: 1.5rem;
                             "
-                            @click="$router.push('/trials')"
+                            @click="$router.push('/admin-trials')"
                             >管理界面</el-dropdown-item
                         >
                         <el-dropdown-item

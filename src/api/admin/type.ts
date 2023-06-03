@@ -39,3 +39,12 @@ export type getUserTrialsParm = {
 export type getUserTrialsRes = apiRes<{
     expIDs: string[];
 }>;
+
+/* 获取系统日志 */
+export type getLogRes = apiRes<
+    {
+        date: string;
+        type: string;
+        content: string;
+    }[]
+>;
