@@ -1,21 +1,44 @@
 <template>
-    <el-dialog v-model="centerDialogVisible" width="30%" center destroy-on-close>
+    <el-dialog
+        v-model="centerDialogVisible"
+        width="30%"
+        center
+        destroy-on-close
+    >
         <template #header>
             <div class="text-center">
                 <span className="text-2xl font-bold">修改密码</span>
             </div>
         </template>
-        <el-form id="pass-form" ref="changePassFormRef" status-icon :model="changePassForm" :rules="rules">
+        <el-form
+            id="pass-form"
+            ref="changePassFormRef"
+            status-icon
+            :model="changePassForm"
+            :rules="rules"
+        >
             <el-form-item prop="pass">
-                <el-input v-model="changePassForm.pass" size="large" placeholder="输入密码" class="h-11" type="password">
+                <el-input
+                    v-model="changePassForm.pass"
+                    size="large"
+                    placeholder="输入密码"
+                    class="h-11"
+                    type="password"
+                >
                     <template #prepend>
                         <span class="w-14 text-center">密码</span>
                     </template>
                 </el-input>
             </el-form-item>
             <el-form-item prop="checkPass">
-                <el-input v-model="changePassForm.checkPass" size="large" placeholder="再次输入密码" class="h-11" type="password"
-                    show-password>
+                <el-input
+                    v-model="changePassForm.checkPass"
+                    size="large"
+                    placeholder="再次输入密码"
+                    class="h-11"
+                    type="password"
+                    show-password
+                >
                     <template #prepend>
                         <span class="w-14 text-center">确认密码</span>
                     </template>
@@ -25,7 +48,11 @@
         <template #footer>
             <span class="dialog-footer">
                 <el-button size="large" @click="handleCancel">取消</el-button>
-                <el-button type="primary" size="large" @click="handleSubmit(changePassFormRef)">
+                <el-button
+                    type="primary"
+                    size="large"
+                    @click="handleSubmit(changePassFormRef)"
+                >
                     确认
                 </el-button>
             </span>
@@ -33,7 +60,7 @@
     </el-dialog>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import useUserStore from '@/store/user';
 import { reactive, ref, watch } from 'vue';
 import { ElMessage, FormInstance, FormRules } from 'element-plus';
@@ -42,14 +69,17 @@ import { usersType } from './type';
 const userStore = useUserStore();
 
 /* 对话框显示相关 */
-const centerDialogVisible = ref<boolean>(false)
+const centerDialogVisible = ref<boolean>(false);
 const props = defineProps<{
-    visible: boolean,
-    data: usersType
-}>()
-watch(() => props.visible, (newVal) => {
-    centerDialogVisible.value = newVal
-})
+    visible: boolean;
+    data: usersType;
+}>();
+watch(
+    () => props.visible,
+    (newVal) => {
+        centerDialogVisible.value = newVal;
+    },
+);
 
 /* 获取数据 */
 const userData = ref<usersType>({
@@ -58,10 +88,13 @@ const userData = ref<usersType>({
     phone: '',
     username: '',
     role: 'ROLE_USER',
-})
-watch(() => props.data, (newVal) => {
-    Object.assign(userData.value, newVal)
-})
+});
+watch(
+    () => props.data,
+    (newVal) => {
+        Object.assign(userData.value, newVal);
+    },
+);
 
 const changePassFormRef = ref<FormInstance>();
 const changePassForm = ref<{ pass: string; checkPass: string }>({
@@ -142,4 +175,4 @@ const handleSubmit = (formEl: FormInstance | undefined) => {
 };
 </script>
 
-<style lang='scss' scoped></style>
+<style lang="scss" scoped></style>

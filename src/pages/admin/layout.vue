@@ -4,7 +4,7 @@
             <top-nav></top-nav>
         </el-header>
         <el-container>
-            <el-aside class="h-full " width="12rem">
+            <el-aside class="h-full" width="12rem">
                 <el-menu
                     :default-active="activeIndex"
                     router
@@ -59,7 +59,7 @@
                 </el-menu>
             </el-aside>
 
-            <el-main style="padding: 5px 10px" class=" bg-gray-200">
+            <el-main style="padding: 5px 10px" class="bg-gray-200">
                 <slot></slot>
             </el-main>
         </el-container>

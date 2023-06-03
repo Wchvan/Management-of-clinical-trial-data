@@ -1,13 +1,11 @@
 <template>
-    <div
-        class="h-full w-full flex flex-row justify-between bg-BD"
-    >
+    <div class="h-full w-full flex flex-row justify-between bg-BD">
         <div
             class="flex flex-row py-1 flex-1"
             style="cursor: pointer"
             @click="$router.push('/')"
         >
-            <img :src="logoSrc" class="w-12 h-12">
+            <img :src="logoSrc" class="w-12 h-12" />
             <div
                 class="self-center ml-2 text-2xl font-semibold"
                 style="color: #121212"
