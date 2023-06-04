@@ -133,9 +133,9 @@ const handleSubmit = () => {
         if (userData.value[i as keyof usersType] === '') {
             ElMessage({
                 type: 'error',
-                message: '请填写所有信息'
+                message: '请填写所有信息',
             });
-            return
+            return;
         }
     }
     adminApi
