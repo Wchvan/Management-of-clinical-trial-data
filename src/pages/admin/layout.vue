@@ -31,7 +31,7 @@
                         </template>
                     </el-menu-item>
                     <el-menu-item
-                        index="/users"
+                        index="/admin-users"
                         class="justify-center flex flex-row"
                         style="padding: 2.5rem 0"
                     >
@@ -44,7 +44,7 @@
                         </div>
                     </el-menu-item>
                     <el-menu-item
-                        index="/log"
+                        index="/admin-log"
                         class="justify-center flex flex-row"
                         style="padding: 2.5rem 0"
                     >

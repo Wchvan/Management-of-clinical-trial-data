@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import useUserStore from '@/store/user';
+import useTrialsStore from '@/store/trials';
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -27,24 +28,14 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/pages/home/home.vue'),
     },
     {
-        path: '/users',
-        name: 'Users',
+        path: '/trials/:id/:phase',
+        name: 'TrialDetail',
         meta: {
-            title: '用户管理',
+            title: `实验分期详情`,
             keepAlive: true,
-            admin: true, // 是否只有admin才能访问
+            trialDetail: true,
         },
-        component: () => import('@/pages/admin/users/users.vue'),
-    },
-    {
-        path: '/log',
-        name: 'Log',
-        meta: {
-            title: '系统日志',
-            keepAlive: true,
-            admin: true, // 是否只有admin才能访问
-        },
-        component: () => import('@/pages/admin/log/log.vue'),
+        component: () => import('@/pages/trial/trial.vue'),
     },
     {
         path: '/admin-trials',
@@ -55,6 +46,26 @@ const routes: Array<RouteRecordRaw> = [
             admin: true, // 是否只有admin才能访问
         },
         component: () => import('@/pages/admin/trials/trials.vue'),
+    },
+    {
+        path: '/admin-users',
+        name: 'AdminUsers',
+        meta: {
+            title: '用户管理',
+            keepAlive: true,
+            admin: true, // 是否只有admin才能访问
+        },
+        component: () => import('@/pages/admin/trials/trials.vue'),
+    },
+    {
+        path: '/admin-log',
+        name: 'AdminLog',
+        meta: {
+            title: '系统日志',
+            keepAlive: true,
+            admin: true, // 是否只有admin才能访问
+        },
+        component: () => import('@/pages/admin/log/log.vue'),
     },
 ];
 
@@ -67,22 +78,23 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     const userStore = useUserStore();
+    const trialStore = useTrialsStore();
     const isAuthenticated = userStore.userName;
     if (!to.matched.some((record) => record.meta.avoidAuth)) {
         if (!isAuthenticated) {
             next('/login');
         } else {
-            next();
+            if (to.meta.admin) {
+                if (userStore.userRole === 'ROLE_ADMIN') {
+                    next();
+                } else {
+                    alert('权限不够');
+                    next(from.path);
+                }
+            } else {
+                next();
+            }
         }
-    } else if (to.meta.admin) {
-        if (userStore.userRole === 'ROLE_ADMIN') {
-            next();
-        } else {
-            alert('权限不够');
-            next(from.path);
-        }
-    } else {
-        next();
     }
 });
 

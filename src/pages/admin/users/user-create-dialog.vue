@@ -129,8 +129,17 @@ const handleCheckAllChange = (val: boolean) => {
 
 /* 新增相关 */
 const handleSubmit = () => {
+    for (let i in userData.value) {
+        if (userData.value[i as keyof usersType] === '') {
+            ElMessage({
+                type: 'error',
+                message: '请填写所有信息'
+            });
+            return
+        }
+    }
     adminApi
-        .changeUser({ ...userData.value, expIDs: expIDs.value })
+        .createUser({ ...userData.value, expIDs: expIDs.value })
         .then((res) => {
             if (res.code === 200) {
                 ElMessage({

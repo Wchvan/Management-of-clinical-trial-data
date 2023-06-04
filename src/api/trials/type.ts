@@ -14,3 +14,5 @@ export type getAllTrialsRes = apiRes<
         企业注册地址: string;
     }[]
 >;
+
+export type getUserTrialsRes = getAllTrialsRes;

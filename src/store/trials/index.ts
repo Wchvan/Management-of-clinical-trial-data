@@ -2,18 +2,28 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import type { trailsType } from './type';
 import { trialApi } from '@/api/trials/trials';
-import { getAllTrialsRes } from '@/api/trials/type';
+import { getAllTrialsRes, getUserTrialsRes } from '@/api/trials/type';
+import useUserStore from '../user';
 
 const useTrialsStore = defineStore(
     'trials',
     () => {
+        const userStore = useUserStore();
         const trials = ref<trailsType[]>([]);
 
         // 请求所有的实验数据
         const getAllTrials = async () => {
-            const res = (await trialApi.getAllTrials()) as getAllTrialsRes;
-            if (res.code === 200) {
-                trials.value = res.data;
+            if (userStore.userRole === 'ROLE_ADMIN') {
+                const res = (await trialApi.getAllTrials()) as getAllTrialsRes;
+                if (res.code === 200) {
+                    trials.value = res.data;
+                }
+            } else {
+                const res =
+                    (await trialApi.getUserTrials()) as getUserTrialsRes;
+                if (res.code === 200) {
+                    trials.value = res.data;
+                }
             }
         };
 

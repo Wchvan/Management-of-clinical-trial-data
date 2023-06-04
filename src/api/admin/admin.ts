@@ -8,11 +8,26 @@ import {
     getUserTrialsParm,
     getUserTrialsRes,
     getLogRes,
+    createTrialParm,
+    createUserParm,
+    createUserRes,
 } from './type';
+import { changePassRes } from '../user/type';
+
+/* 新增实验 */
+const createTrial = async (params: createTrialParm) => {
+    const res = (await post('/experiment/add')) as changePassRes;
+    return res;
+};
 
 /* 用户管理相关 */
 const getUsers = async () => {
     const res = (await get('/user/get-all-users')) as getUsersRes;
+    return res;
+};
+
+const createUser = async (params: createUserParm) => {
+    const res = (await post('/user/add-user')) as createUserRes;
     return res;
 };
 
@@ -39,7 +54,9 @@ const getLog = async () => {
 };
 
 export class adminApi {
+    static createTrial = createTrial;
     static getUsers = getUsers;
+    static createUser = createUser;
     static banUser = banUser;
     static changeUser = changeUser;
     static getUserTrials = getUserTrials;
