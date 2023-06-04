@@ -36,10 +36,7 @@
                     @change="changeFlag = true"
                 >
                     <el-option
-                        v-for="item in [
-                            'ROLE_USER',
-                            'ROLE_BANNED',
-                        ]"
+                        v-for="item in ['ROLE_USER', 'ROLE_BANNED']"
                         :key="item"
                         :label="item"
                         :value="item"
@@ -62,7 +59,10 @@
                     </div>
                 </el-header>
                 <el-main style="padding: 1rem 0">
-                    <el-checkbox-group v-model="expIDs" @change="changeFlag = true" >
+                    <el-checkbox-group
+                        v-model="expIDs"
+                        @change="changeFlag = true"
+                    >
                         <el-checkbox
                             v-for="item in trialsStore.trials"
                             :key="item._id"
@@ -94,8 +94,8 @@ import type { usersType, usersIndexMapType } from './type';
 
 const trialsStore = useTrialsStore();
 const emit = defineEmits<{
-  (e: 'update' ): void
-}>()
+    (e: 'update'): void;
+}>();
 
 /* 对话框显示相关 */
 const centerDialogVisible = ref<boolean>(false);
@@ -146,13 +146,13 @@ adminApi.getUserTrials({ userID: userData.value.id }).then((res) => {
 });
 
 const handleCheckAllChange = (val: boolean) => {
-    allExpIDs.value = []
+    allExpIDs.value = [];
     for (let i of trialsStore.trials) {
         allExpIDs.value?.push(i._id);
     }
     expIDs.value = val ? allExpIDs.value : [];
     isIndeterminate.value = false;
-    changeFlag.value = true
+    changeFlag.value = true;
 };
 
 /* 修改相关 */
@@ -169,7 +169,7 @@ const handleSubmit = () => {
                     type: 'success',
                     message: '修改成功',
                 });
-                emit('update')
+                emit('update');
                 centerDialogVisible.value = false;
             } else {
                 ElMessage({
