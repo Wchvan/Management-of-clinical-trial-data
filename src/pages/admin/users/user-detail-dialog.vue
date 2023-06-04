@@ -18,7 +18,7 @@
             >
                 <div class="w-44 mr-3">{{ dataIndexMap[key] }}:</div>
                 <span
-                    v-if="!inputFlag[index]"
+                    v-if="!inputFlag[index] && key !== 'role'"
                     @click="inputFlag[index] = true"
                     >{{ item }}</span
                 >
@@ -30,15 +30,13 @@
                     @change="changeFlag = true"
                 ></el-input>
                 <el-select
-                    v-if="key === 'role' && inputFlag[index]"
-                    v-model="userData[key]"
+                    v-if="key === 'role'"
+                    v-model="userData.role"
                     placeholder="Select"
-                    @blur="inputFlag[index] = false"
                     @change="changeFlag = true"
                 >
                     <el-option
                         v-for="item in [
-                            'ROLE_ADMIN',
                             'ROLE_USER',
                             'ROLE_BANNED',
                         ]"
@@ -64,7 +62,7 @@
                     </div>
                 </el-header>
                 <el-main style="padding: 1rem 0">
-                    <el-checkbox-group v-model="expIDs">
+                    <el-checkbox-group v-model="expIDs" @change="changeFlag = true" >
                         <el-checkbox
                             v-for="item in trialsStore.trials"
                             :key="item._id"
@@ -95,17 +93,21 @@ import { watch, ref, reactive } from 'vue';
 import type { usersType, usersIndexMapType } from './type';
 
 const trialsStore = useTrialsStore();
+const emit = defineEmits<{
+  (e: 'update' ): void
+}>()
 
 /* 对话框显示相关 */
 const centerDialogVisible = ref<boolean>(false);
 const props = defineProps<{
     visible: boolean;
-    data: usersType;
+    data: usersType | undefined;
 }>();
 watch(
     () => props.visible,
     (newVal) => {
         centerDialogVisible.value = newVal;
+        changeFlag.value = false;
     },
 );
 
@@ -139,17 +141,18 @@ const isIndeterminate = ref(true);
 const checkAll = ref<boolean>();
 const allExpIDs = ref<string[]>([]);
 
-for (let i of trialsStore.trials) {
-    allExpIDs.value?.push(i._id);
-}
-
 adminApi.getUserTrials({ userID: userData.value.id }).then((res) => {
     if (res.code === 200) expIDs.value = res.data.expIDs;
 });
 
 const handleCheckAllChange = (val: boolean) => {
+    allExpIDs.value = []
+    for (let i of trialsStore.trials) {
+        allExpIDs.value?.push(i._id);
+    }
     expIDs.value = val ? allExpIDs.value : [];
     isIndeterminate.value = false;
+    changeFlag.value = true
 };
 
 /* 修改相关 */
@@ -166,6 +169,7 @@ const handleSubmit = () => {
                     type: 'success',
                     message: '修改成功',
                 });
+                emit('update')
                 centerDialogVisible.value = false;
             } else {
                 ElMessage({

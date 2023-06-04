@@ -25,7 +25,6 @@
                 <el-select v-else v-model="userData[key]" placeholder="Select">
                     <el-option
                         v-for="item in [
-                            'ROLE_ADMIN',
                             'ROLE_USER',
                             'ROLE_BANNED',
                         ]"
@@ -82,6 +81,9 @@ import { watch, ref, reactive } from 'vue';
 import type { usersType, usersIndexMapType } from './type';
 
 const trialsStore = useTrialsStore();
+const emit = defineEmits<{
+  (e: 'update' ): void
+}>()
 
 /* 对话框显示相关 */
 const centerDialogVisible = ref<boolean>(false);
@@ -119,11 +121,12 @@ const isIndeterminate = ref(true);
 const checkAll = ref<boolean>();
 const allExpIDs = ref<string[]>([]);
 
-for (let i of trialsStore.trials) {
-    allExpIDs.value?.push(i._id);
-}
 
 const handleCheckAllChange = (val: boolean) => {
+    allExpIDs.value = []
+    for (let i of trialsStore.trials) {
+        allExpIDs.value?.push(i._id);
+    }
     expIDs.value = val ? allExpIDs.value : [];
     isIndeterminate.value = false;
 };
@@ -138,6 +141,7 @@ const handleSubmit = () => {
                     type: 'success',
                     message: '修改成功',
                 });
+                emit('update')
                 centerDialogVisible.value = false;
             } else {
                 ElMessage({

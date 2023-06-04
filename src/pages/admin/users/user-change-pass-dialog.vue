@@ -72,7 +72,7 @@ const userStore = useUserStore();
 const centerDialogVisible = ref<boolean>(false);
 const props = defineProps<{
     visible: boolean;
-    data: usersType;
+    data: usersType | undefined;
 }>();
 watch(
     () => props.visible,

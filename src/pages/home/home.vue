@@ -7,7 +7,7 @@
             class="h-full w-full mt-2 bg-gray-200"
             style="flex-direction: column"
         >
-            <div class="flex-1 w-full flex flex-row mb-5">
+            <div class="h-2/5 w-full flex flex-row mb-5">
                 <el-card
                     class="w-fit text-3xl font-bold underline flex-1 mr-10 h-full"
                 >
@@ -19,7 +19,7 @@
                     特色功能
                 </el-card>
             </div>
-            <div class="flex-1 w-full">
+            <div class="h-3/5 w-full">
                 <el-card
                     class="w-full text-3xl font-bold underline flex-1 mr-10 h-full"
                 >
