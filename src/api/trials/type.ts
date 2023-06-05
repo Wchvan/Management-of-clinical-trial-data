@@ -16,3 +16,25 @@ export type getAllTrialsRes = apiRes<
 >;
 
 export type getUserTrialsRes = getAllTrialsRes;
+
+export type getRevisitDayParm = {
+    month: string;
+};
+
+export type getRevisitDayRes = apiRes<string[]>;
+
+export type getRevisitSubjectsParm = {
+    date: string;
+};
+
+export type getRevisitSubjectsRes = apiRes<
+    {
+        address: string;
+        date: string;
+        subjectID: string;
+        time: string;
+        userID: string;
+        phone: string;
+        name: string;
+    }[]
+>;

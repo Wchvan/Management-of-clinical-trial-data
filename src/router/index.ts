@@ -35,7 +35,7 @@ const routes: Array<RouteRecordRaw> = [
             keepAlive: true,
             trialDetail: true,
         },
-        component: () => import('@/pages/trial/trial.vue'),
+        component: () => import('@/pages/trials/trials.vue'),
     },
     {
         path: '/admin-trials',
@@ -55,7 +55,7 @@ const routes: Array<RouteRecordRaw> = [
             keepAlive: true,
             admin: true, // 是否只有admin才能访问
         },
-        component: () => import('@/pages/admin/trials/trials.vue'),
+        component: () => import('@/pages/admin/users/users.vue'),
     },
     {
         path: '/admin-log',

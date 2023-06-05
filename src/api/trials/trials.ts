@@ -1,5 +1,12 @@
 import { post, get } from '@/utils/request/index';
-import { getAllTrialsRes, getUserTrialsRes } from './type';
+import {
+    getAllTrialsRes,
+    getUserTrialsRes,
+    getRevisitDayParm,
+    getRevisitDayRes,
+    getRevisitSubjectsParm,
+    getRevisitSubjectsRes,
+} from './type';
 
 /* 获取所有实验 */
 const getAllTrials = async () => {
@@ -13,7 +20,23 @@ const getUserTrials = async () => {
     return res;
 };
 
+/* 获取有随访的日期 */
+const getRevisitDay = async (params: getRevisitDayParm) => {
+    const res = (await get('/experiment/get-date')) as getRevisitDayRes;
+    return res;
+};
+
+/* 根据日期获取相关人员信息 */
+const getRevisitSubjects = async (parms: getRevisitSubjectsParm) => {
+    const res = (await get(
+        '/experiment/get-followup',
+    )) as getRevisitSubjectsRes;
+    return res;
+};
+
 export class trialApi {
     static getAllTrials = getAllTrials;
     static getUserTrials = getUserTrials;
+    static getRevisitDay = getRevisitDay;
+    static getRevisitSubjects = getRevisitSubjects;
 }
