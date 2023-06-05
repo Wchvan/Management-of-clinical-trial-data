@@ -52,7 +52,9 @@
             </el-aside>
 
             <el-main style="padding: 5px 10px" class="bg-gray-50">
-                <phase-subjects v-if="activeIndex==='search'"></phase-subjects>
+                <phase-subjects
+                    v-if="activeIndex === 'search'"
+                ></phase-subjects>
                 <phase-upload v-else></phase-upload>
             </el-main>
         </el-container>
@@ -69,9 +71,8 @@ const activeIndex = ref<string>('search');
 
 // 菜单选择回调
 const handleSelect = (index: string) => {
-    activeIndex.value = index
-}
+    activeIndex.value = index;
+};
 </script>
 
 <style lang="scss" scoped></style>
-

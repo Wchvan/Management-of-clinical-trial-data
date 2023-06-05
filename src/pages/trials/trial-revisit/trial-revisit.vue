@@ -43,7 +43,7 @@
                                     align-items: center;
                                 "
                             >
-                            <i-ep-Upload></i-ep-Upload>
+                                <i-ep-Upload></i-ep-Upload>
                                 <span>上传</span>
                             </div>
                         </template>
@@ -52,7 +52,9 @@
             </el-aside>
 
             <el-main style="padding: 5px 10px" class="bg-gray-50">
-                <revisit-calender v-if="activeIndex==='date'"></revisit-calender>
+                <revisit-calender
+                    v-if="activeIndex === 'date'"
+                ></revisit-calender>
                 <revisit-upload v-else></revisit-upload>
             </el-main>
         </el-container>
@@ -68,9 +70,8 @@ import { ref } from 'vue';
 const activeIndex = ref<string>('date');
 // 菜单选择回调
 const handleSelect = (index: string) => {
-    activeIndex.value = index
-}
+    activeIndex.value = index;
+};
 </script>
 
 <style lang="scss" scoped></style>
-
