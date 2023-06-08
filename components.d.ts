@@ -26,6 +26,7 @@ declare module '@vue/runtime-core' {
         ElFormItem: typeof import('element-plus/es')['ElFormItem'];
         ElHeader: typeof import('element-plus/es')['ElHeader'];
         ElInput: typeof import('element-plus/es')['ElInput'];
+        ElLink: typeof import('element-plus/es')['ElLink'];
         ElMain: typeof import('element-plus/es')['ElMain'];
         ElMenu: typeof import('element-plus/es')['ElMenu'];
         ElMenuItem: typeof import('element-plus/es')['ElMenuItem'];
@@ -41,6 +42,7 @@ declare module '@vue/runtime-core' {
         ElTimelineItem: typeof import('element-plus/es')['ElTimelineItem'];
         ElUpload: typeof import('element-plus/es')['ElUpload'];
         IEpCalendar: typeof import('~icons/ep/calendar')['default'];
+        IEpLock: typeof import('~icons/ep/lock')['default'];
         IEpNotebook: typeof import('~icons/ep/notebook')['default'];
         IEpSearch: typeof import('~icons/ep/search')['default'];
         IEpTickets: typeof import('~icons/ep/tickets')['default'];
