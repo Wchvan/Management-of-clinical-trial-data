@@ -32,7 +32,7 @@
         perMachine: false,
     },
     directories: {
-        output: 'release/${version}',
+        output: 'build',
     },
     files: ['dist-electron', 'dist'],
 }

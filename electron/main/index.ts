@@ -13,7 +13,7 @@ function createWindow() {
         webPreferences: {
             preload: path.join(__dirname, '../preload/preload.js'), // 隔离vite和Electron之间的状态
             nodeIntegration: true, // 使用页面中可以引入node和electron相关的API
-            contextIsolation: false, // 是否在独立 JavaScript 环境中运行 Electron API和指定的preload 脚本
+            contextIsolation: true, // 是否在独立 JavaScript 环境中运行 Electron API和指定的preload 脚本
         },
         icon: path.join(__dirname, '../../public/favicon.ico'),
     });
@@ -22,8 +22,10 @@ function createWindow() {
     mainWindow.loadURL(
         NODE_ENV === 'development'
             ? 'http://localhost:8080'
-            : `file://${path.join(__dirname, '../dist/index.html')}`,
+            : `file://${path.join(__dirname, '../../dist/index.html')}`,
     );
+
+    mainWindow.maximize();
 
     // 打开开发工具
     if (NODE_ENV === 'development') {

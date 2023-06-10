@@ -2,8 +2,13 @@ import axios, { AxiosInstance } from 'axios';
 import type { InternalAxiosRequestConfig, AxiosResponse } from 'axios';
 import { ElMessage } from 'element-plus';
 
+const baseURL =
+    process.env.NODE_ENV == 'development'
+        ? '/api'
+        : 'http://127.0.0.1:4523/m1/2767636-0-default/';
+
 const axiosInstance: AxiosInstance = axios.create({
-    baseURL: '/api',
+    baseURL: baseURL,
     timeout: 5000,
 });
 
