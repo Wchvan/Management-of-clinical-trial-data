@@ -54,9 +54,5 @@ declare module '@vue/runtime-core' {
         RouterLink: typeof import('vue-router')['RouterLink'];
         RouterView: typeof import('vue-router')['RouterView'];
         TopNav: typeof import('./src/components/topNav.vue')['default'];
-        TrialCreateDialog: typeof import('./src/components/trialTable/trial-create-dialog.vue')['default'];
-        TrialDetailDialog: typeof import('./src/components/trialTable/trial-detail-dialog.vue')['default'];
-        Trials: typeof import('./src/components/trialTable/trials.vue')['default'];
-        TrialsTable: typeof import('./src/components/trialTable/trialsTable.vue')['default'];
     }
 }

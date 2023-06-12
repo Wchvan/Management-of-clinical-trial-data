@@ -7,9 +7,12 @@ const baseURL =
         ? '/api'
         : 'http://127.0.0.1:4523/m1/2767636-0-default/';
 
+axios.defaults.withCredentials = true;
+
 const axiosInstance: AxiosInstance = axios.create({
     baseURL: baseURL,
     timeout: 5000,
+    withCredentials: true,
 });
 
 // 添加请求拦截器
