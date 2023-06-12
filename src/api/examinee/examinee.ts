@@ -26,7 +26,7 @@ const getExamineeDetail = async (params: getExamineeDetailParm) => {
 
 /* 修改受试者信息 */
 const changeExamineeInfo = async (params: changeExamineeInfoParm) => {
-    const res = (await post('/data/update')) as changeExamineeInfoRes;
+    const res = (await post('/data/update', params)) as changeExamineeInfoRes;
     return res;
 };
 

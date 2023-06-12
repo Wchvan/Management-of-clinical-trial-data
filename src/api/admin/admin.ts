@@ -19,7 +19,7 @@ const getUsers = async () => {
 };
 
 const createUser = async (params: createUserParm) => {
-    const res = (await post('/user/add-user')) as createUserRes;
+    const res = (await post('/user/add-user', params)) as createUserRes;
     return res;
 };
 

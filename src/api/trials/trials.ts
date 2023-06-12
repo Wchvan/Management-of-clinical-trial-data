@@ -24,13 +24,13 @@ const getTrialDetail = async (parms: getTrialDetailParm) => {
 
 /* 新增实验 */
 const createTrial = async (params: createTrialParm) => {
-    const res = (await post('/experiment/add')) as createTrialRes;
+    const res = (await post('/experiment/add', params)) as createTrialRes;
     return res;
 };
 
 /* 修改当前试验分期/试验状态 */
 const changeTrial = async (params: changeTrialParm) => {
-    const res = (await post('/experiment/modify')) as changeTrialRes;
+    const res = (await post('/experiment/modify', params)) as changeTrialRes;
     return res;
 };
 
