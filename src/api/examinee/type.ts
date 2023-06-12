@@ -20,56 +20,42 @@ export type getExamineeDetailParm = {
     subject_id: string;
 };
 
-export type getExamineeDetailRes = {
-    /**
-     * 地址
-     */
+export type getExamineeDetailRes = apiRes<{
     address: string;
-    /**
-     * 年龄
-     */
     age: string;
-    /**
-     * 过敏原，可变
-     */
     allergen: string;
-    /**
-     * 性别
-     */
     gender: string;
-    /**
-     * 家族遗传病史，可变
-     */
     genetic: string;
-    /**
-     * 利手，可变
-     */
     handedness: string;
-    /**
-     * 身份证号
-     */
     id_num: string;
-    /**
-     * 病史，可变
-     */
     med_history: string;
-    /**
-     * 姓名
-     */
     name: string;
-    /**
-     * 受试者编号
-     */
     subject_id: string;
-    /**
-     * 电话
-     */
     tel: string;
-    /**
-     * 治疗，可变
-     */
     treat: string;
+}>;
+
+/* 修改受试者信息 */
+export type changeExamineeInfoParm = {
+    subject_id: string;
+    ctr: string;
+    info: {
+        address: string;
+        age: string;
+        allergen: string;
+        gender: string;
+        genetic: string;
+        handedness: string;
+        id_num: string;
+        med_history: string;
+        name: string;
+        subject_id: string;
+        tel: string;
+        treat: string;
+    };
 };
+
+export type changeExamineeInfoRes = apiRes<null>;
 
 /* 获取随访日期 */
 export type getRevisitDayParm = {

@@ -51,21 +51,28 @@
                         label="操作"
                         align="center"
                     >
-                        <el-button type="primary" class="w-3/4" size="large"
-                            >查看详情</el-button
-                        >
+                        <template #default="scope">
+                            <el-button type="primary" class="w-3/4" size="large" @click="detailDialog(scope.$index)">查看详情</el-button>
+                        </template>
                     </el-table-column>
                 </el-table>
             </el-main>
         </el-card>
     </el-container>
+    <subject-detail-dialog
+        :visible="detailDialogVisble"
+        :parms = "detailParm"
+        @update="getSubjects()">
+    </subject-detail-dialog>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { examineeApi } from '@/api/examinee/examinee';
+import { getExamineeDetailParm } from '@/api/examinee/type'
 import { examineeDataType } from './type';
+import subjectDetailDialog  from './subject-detail-dialog.vue'
 
 const route = useRoute();
 
@@ -85,18 +92,36 @@ const examineeLabels = ref<Record<keyof examineeDataType, string>>({
     last_medicine: '上次用药时间',
 });
 
-examineeApi
-    .getAllExaminee({ ctr: trialId, clin_stage: trialStep })
-    .then((res) => {
-        if (res.code === 200) {
-            examineeData.value = res.data;
-        } else {
-            ElMessage({
-                type: 'error',
-                message: res.msg,
-            });
-        }
-    });
+const getSubjects = () => {
+    examineeApi
+        .getAllExaminee({ ctr: trialId, clin_stage: trialStep })
+        .then((res) => {
+            if (res.code === 200) {
+                examineeData.value = res.data;
+            } else {
+                ElMessage({
+                    type: 'error',
+                    message: res.msg,
+                });
+            }
+        });
+}
+
+getSubjects()
+
+/* 查看用户详情 */
+const detailDialogVisble = ref<boolean>(false);
+const detailParm = ref<getExamineeDetailParm>()
+const detailDialog = (index: number) => {
+    detailDialogVisble.value = false;
+    detailParm.value = {
+        subject_id: examineeData.value[index].subject_id,
+        ctr: trialId
+    }
+    setTimeout(() => {
+        detailDialogVisble.value = true;
+    }, 50);
+};
 </script>
 
 <style lang="scss" scoped></style>

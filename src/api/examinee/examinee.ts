@@ -2,6 +2,10 @@ import { post, get } from '@/utils/request/index';
 import {
     getAllExamineeParm,
     getAllExamineeRes,
+    getExamineeDetailParm,
+    getExamineeDetailRes,
+    changeExamineeInfoParm,
+    changeExamineeInfoRes,
     getRevisitDayParm,
     getRevisitDayRes,
     getRevisitSubjectsParm,
@@ -15,8 +19,14 @@ const getAllExaminee = async (params: getAllExamineeParm) => {
 };
 
 /* 获取某个受试者详细信息 */
-const getExamineeDetail = async () => {
-    const res = await get('/data/get');
+const getExamineeDetail = async (params: getExamineeDetailParm) => {
+    const res = (await get('/data/get')) as getExamineeDetailRes;
+    return res;
+};
+
+/* 修改受试者信息 */
+const changeExamineeInfo = async (params: changeExamineeInfoParm) => {
+    const res = (await post('/data/update')) as changeExamineeInfoRes;
     return res;
 };
 
@@ -38,4 +48,6 @@ export class examineeApi {
     static getAllExaminee = getAllExaminee;
     static getRevisitDay = getRevisitDay;
     static getRevisitSubjects = getRevisitSubjects;
+    static getExamineeDetail = getExamineeDetail;
+    static changeExamineeInfo = changeExamineeInfo;
 }
