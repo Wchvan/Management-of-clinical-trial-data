@@ -12,19 +12,20 @@
                 </div>
             </template>
             <div v-for="(item, index) in trialLabels" :key="index">
-                <div  class="text-lg py-2 flex flex-row">
+                <div class="text-lg py-2 flex flex-row">
                     <div class="w-44 mr-3">{{ item }}:</div>
                     <el-input
                         v-if="index !== 'clin_stage'"
                         v-model="trialData[index]"
                         style="font-size: 1.125rem"
                     ></el-input>
-                    <el-select 
+                    <el-select
                         v-else
-                        v-model="trialData[index]" 
-                        class="m-2" 
-                        placeholder="Select" 
-                        size="large">
+                        v-model="trialData[index]"
+                        class="m-2"
+                        placeholder="Select"
+                        size="large"
+                    >
                         <el-option
                             v-for="item in clinStageOptions"
                             :key="item"
@@ -49,7 +50,7 @@ import useTrialsStore from '@/store/trials';
 import { adminApi } from '@/api/admin/admin';
 import { ElMessage } from 'element-plus';
 import { watch, ref, reactive } from 'vue';
-import { trialDetailType } from './type'
+import { trialDetailType } from './type';
 
 const trialsStore = useTrialsStore();
 const emit = defineEmits<{
@@ -81,10 +82,10 @@ const trialLabels = ref<Record<keyof trialDetailType, string>>({
     reg_date: '登记时间',
     reg_location: '企业注册地址',
     sponsor: '申办者',
-})
+});
 
 /* 分期 */
-const clinStageOptions = ['phase1','phase2','phase3','phase4']
+const clinStageOptions = ['phase1', 'phase2', 'phase3', 'phase4'];
 
 /* 获取数据 */
 const trialData = ref<trialDetailType>({

@@ -1,7 +1,7 @@
 <template>
     <div class="wd100 ht100 login-bg">
         <div class="cover"></div>
-        <el-card class="w-1/4 h-fit  opacity-90 login-card">
+        <el-card class="w-1/4 h-fit opacity-90 login-card">
             <template #header>
                 <div class="text-center">
                     <span className="text-3xl font-bold">登录</span>
@@ -145,14 +145,14 @@ const submitForm = (formEl: FormInstance | undefined) => {
     background: url('@/assets/login-bg.png') no-repeat center;
     background-size: 100% 100%;
 }
-.login-card{
+.login-card {
     position: absolute;
     right: 10%;
     top: 50%;
     transform: translateY(-50%);
 }
 
-.cover{
+.cover {
     background: rgba($color: #121212, $alpha: 0.5);
     // z-index: -;
     position: absolute;

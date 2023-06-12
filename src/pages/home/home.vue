@@ -3,12 +3,12 @@
         <el-header style="box-shadow: 0px 2px #eee; padding: 0">
             <top-nav></top-nav>
         </el-header>
-        <el-container
-            class="h-full w-full  "
-            style="flex-direction: column"
-        >
+        <el-container class="h-full w-full" style="flex-direction: column">
             <div class="h-2/5 w-full flex flex-row mb-3 mt-1">
-                <el-image :src="adBg" style="width: 100%; height: 100%;"></el-image>
+                <el-image
+                    :src="adBg"
+                    style="width: 100%; height: 100%"
+                ></el-image>
             </div>
             <div class="h-3/5 w-full">
                 <el-table
@@ -37,9 +37,9 @@
                         <template #default="scope">
                             <el-button
                                 v-for="item in Number(
-                                    trialTableData[scope.$index].clin_stage.slice(
-                                        -1,
-                                    ),
+                                    trialTableData[
+                                        scope.$index
+                                    ].clin_stage.slice(-1),
                                 )"
                                 :key="item"
                                 :type="
@@ -64,9 +64,9 @@
             </div>
         </el-container>
     </el-container>
-    <trial-detail-dialog 
-        :visible="detailTrialVisible"  
-        :ctr = "detailCtr" 
+    <trial-detail-dialog
+        :visible="detailTrialVisible"
+        :ctr="detailCtr"
     ></trial-detail-dialog>
 </template>
 
@@ -76,7 +76,7 @@ import { ref } from 'vue';
 import { trailsType } from '@/store/trials/type';
 import useTrialsStore from '@/store/trials';
 import { useRouter } from 'vue-router';
-import adBg from '@/assets/ad-bg.png'
+import adBg from '@/assets/ad-bg.png';
 import trialDetailDialog from './trial-detail-dialog.vue';
 
 const router = useRouter();
@@ -90,7 +90,7 @@ trialsStore.getAllTrials().then((res) => {
 
 // 表头
 const tableLabels = ref<Record<keyof trailsType, string>>({
-    ctr:'登记号',
+    ctr: '登记号',
     title: '试验题目',
     clin_stage: '试验分期',
     clin_status: '试验状态',
@@ -99,23 +99,22 @@ const tableLabels = ref<Record<keyof trailsType, string>>({
 });
 
 // 查看实验详情
-const detailTrialVisible = ref<boolean>(false)
-const detailCtr = ref<string>('')
+const detailTrialVisible = ref<boolean>(false);
+const detailCtr = ref<string>('');
 const showTrialDetail = (row: trailsType, column: any) => {
     if (column.label !== '分期详情') {
-        detailCtr.value = row.ctr
+        detailCtr.value = row.ctr;
         detailTrialVisible.value = false;
         setTimeout(() => {
             detailTrialVisible.value = true;
         });
     }
-}
+};
 
 // 查看分期详情
 const trialDetail = (index: number, phase: number) => {
     router.push(`/trials/${trialTableData.value[index].ctr}/${phase}`);
 };
-
 </script>
 
 <style lang="scss" scoped></style>

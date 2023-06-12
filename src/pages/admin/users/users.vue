@@ -2,76 +2,76 @@
     <layout>
         <el-container class="w-full h-fit txl">
             <el-main>
-               <el-card>
-                <el-table
-                    ref="tableRef"
-                    row-key="date"
-                    :data="tableData"
-                    style="width: 100%"
-                    max-height="800"
-                    size="large"
-                    header-row-class-name="text-xl font-bold"
-                    row-class-name="text-lg font-semibold"
-                >
-                    <el-table-column
-                        prop="id"
-                        label="研究人员编号"
-                        column-key="date"
-                        align="center"
-                    />
-                    <el-table-column
-                        prop="name"
-                        label="研究人员名字"
-                        align="center"
-                    />
-                    <el-table-column
-                        prop="phone"
-                        label="电话号码"
-                        align="center"
-                    />
-                    <el-table-column
-                        prop="username"
-                        label="账号"
-                        align="center"
-                    />
-                    <el-table-column
-                        prop="role"
-                        label="是否禁用"
-                        align="center"
+                <el-card>
+                    <el-table
+                        ref="tableRef"
+                        row-key="date"
+                        :data="tableData"
+                        style="width: 100%"
+                        max-height="800"
+                        size="large"
+                        header-row-class-name="text-xl font-bold"
+                        row-class-name="text-lg font-semibold"
                     >
-                        <template #default="scope">
-                            <el-switch
-                                v-model="banArr[scope.$index]"
-                                @change="changeBanned(scope.$index)"
-                            ></el-switch>
-                        </template>
-                    </el-table-column>
-                    <el-table-column prop="role" align="center">
-                        <template #header>
-                            <el-button
-                                type="success"
-                                class="w-3/4"
-                                size="large"
-                                style="font-size: 1.125rem"
-                                @click="createDialog"
-                                >添加账号</el-button
-                            >
-                        </template>
-                        <template #default="scope">
-                            <el-button
-                                type="primary"
-                                @click="detailDialog(scope.$index)"
-                                >查看详情</el-button
-                            >
-                            <el-button
-                                type="warning"
-                                @click="changePassDialog(scope.$index)"
-                                >修改密码</el-button
-                            >
-                        </template>
-                    </el-table-column>
-                </el-table>
-               </el-card>
+                        <el-table-column
+                            prop="id"
+                            label="研究人员编号"
+                            column-key="date"
+                            align="center"
+                        />
+                        <el-table-column
+                            prop="name"
+                            label="研究人员名字"
+                            align="center"
+                        />
+                        <el-table-column
+                            prop="phone"
+                            label="电话号码"
+                            align="center"
+                        />
+                        <el-table-column
+                            prop="username"
+                            label="账号"
+                            align="center"
+                        />
+                        <el-table-column
+                            prop="role"
+                            label="是否禁用"
+                            align="center"
+                        >
+                            <template #default="scope">
+                                <el-switch
+                                    v-model="banArr[scope.$index]"
+                                    @change="changeBanned(scope.$index)"
+                                ></el-switch>
+                            </template>
+                        </el-table-column>
+                        <el-table-column prop="role" align="center">
+                            <template #header>
+                                <el-button
+                                    type="success"
+                                    class="w-3/4"
+                                    size="large"
+                                    style="font-size: 1.125rem"
+                                    @click="createDialog"
+                                    >添加账号</el-button
+                                >
+                            </template>
+                            <template #default="scope">
+                                <el-button
+                                    type="primary"
+                                    @click="detailDialog(scope.$index)"
+                                    >查看详情</el-button
+                                >
+                                <el-button
+                                    type="warning"
+                                    @click="changePassDialog(scope.$index)"
+                                    >修改密码</el-button
+                                >
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </el-card>
             </el-main>
         </el-container>
         <user-detail-dialog

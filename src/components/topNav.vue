@@ -5,7 +5,7 @@
             style="cursor: pointer"
             @click="$router.push('/')"
         >
-            <img :src="logoSrc" class=" w-20 h-12" />
+            <img :src="logoSrc" class="w-20 h-12" />
             <div
                 class="self-center ml-2 text-2xl font-semibold"
                 style="color: #121212"

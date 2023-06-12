@@ -1,5 +1,5 @@
 <template>
-    <RouterView class="w-full h-full" ></RouterView>
+    <RouterView class="w-full h-full"></RouterView>
 </template>
 
 <script setup lang="ts"></script>

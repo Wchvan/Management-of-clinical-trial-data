@@ -148,7 +148,7 @@ adminApi.getUserTrials({ userID: userData.value.id }).then((res) => {
 const handleCheckAllChange = (val: boolean) => {
     allExpIDs.value = [];
     for (let i of trialsStore.trials) {
-        allExpIDs.value?.push(i.ctr );
+        allExpIDs.value?.push(i.ctr);
     }
     expIDs.value = val ? allExpIDs.value : [];
     isIndeterminate.value = false;

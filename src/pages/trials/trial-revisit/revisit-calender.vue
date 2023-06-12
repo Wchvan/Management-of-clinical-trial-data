@@ -1,25 +1,25 @@
 <template>
     <el-card>
         <el-calendar v-model="dateVal">
-        <template #date-cell="{ data }">
-            <div
-                :class="[
-                    isSelect(data.day) ? 'bg-red-200' : '',
-                    data.isSelected ? 'bg-blue-400' : '',
-                ]"
-                class="w-full h-full"
-                @click="getSubjectInfo(data.day)"
-            >
-                <p
-                    style="display: inline-flex; align-items: center"
-                    :class="data.isSelected ? 'font-red' : ''"
+            <template #date-cell="{ data }">
+                <div
+                    :class="[
+                        isSelect(data.day) ? 'bg-red-200' : '',
+                        data.isSelected ? 'bg-blue-400' : '',
+                    ]"
+                    class="w-full h-full"
+                    @click="getSubjectInfo(data.day)"
                 >
-                    {{ data.day.split('-').slice(1).join('-') }}
-                    <i-ep-User v-if="isSelect(data.day)"></i-ep-User>
-                </p>
-            </div>
-        </template>
-    </el-calendar>
+                    <p
+                        style="display: inline-flex; align-items: center"
+                        :class="data.isSelected ? 'font-red' : ''"
+                    >
+                        {{ data.day.split('-').slice(1).join('-') }}
+                        <i-ep-User v-if="isSelect(data.day)"></i-ep-User>
+                    </p>
+                </div>
+            </template>
+        </el-calendar>
     </el-card>
     <revisit-subjects-dialog
         :visible="dialogVisible"

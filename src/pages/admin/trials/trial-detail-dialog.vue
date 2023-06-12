@@ -18,9 +18,7 @@
                 class="text-lg py-2 flex flex-row"
             >
                 <div class="w-44 mr-3">{{ item }}:</div>
-                <span
-                    >{{ trialFormData[key] }}</span
-                >
+                <span>{{ trialFormData[key] }}</span>
             </div>
         </el-card>
         <template #footer>
@@ -37,14 +35,14 @@
 import useTrialsStore from '@/store/trials';
 import { ElMessage } from 'element-plus';
 import { watch, ref, reactive } from 'vue';
-import { trialDetailType } from './type'
+import { trialDetailType } from './type';
 import { trialApi } from '@/api/trials/trials';
 
 /* 对话框显示相关 */
 const centerDialogVisible = ref<boolean>(false);
 const props = defineProps<{
     visible: boolean;
-    ctr: string
+    ctr: string;
 }>();
 watch(
     () => props.visible,
@@ -66,18 +64,18 @@ const trialFormData = ref<trialDetailType>({
     reg_date: '',
     reg_location: '',
     sponsor: '',
-})
+});
 
-trialApi.getTrialDetail({ctr:props.ctr}).then(res => {
+trialApi.getTrialDetail({ ctr: props.ctr }).then((res) => {
     if (res.code === 200) {
-        trialFormData.value = res.data
+        trialFormData.value = res.data;
     } else {
         ElMessage({
             type: 'error',
-            message: res.msg
-        })
+            message: res.msg,
+        });
     }
-})
+});
 
 /* 标签 */
 const trialLabels = ref<Record<keyof trialDetailType, string>>({
@@ -92,10 +90,10 @@ const trialLabels = ref<Record<keyof trialDetailType, string>>({
     reg_date: '登记时间',
     reg_location: '企业注册地址',
     sponsor: '申办者',
-})
+});
 
 const handleSubmit = () => {
-    centerDialogVisible.value = false
+    centerDialogVisible.value = false;
 };
 </script>
 
