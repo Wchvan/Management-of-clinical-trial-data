@@ -47,10 +47,10 @@
 
 <script setup lang="ts">
 import useTrialsStore from '@/store/trials';
-import { adminApi } from '@/api/admin/admin';
 import { ElMessage } from 'element-plus';
 import { watch, ref, reactive } from 'vue';
 import { trialDetailType } from './type';
+import { trialApi } from '@/api/trials/trials';
 
 const trialsStore = useTrialsStore();
 const emit = defineEmits<{
@@ -113,7 +113,7 @@ const handleSubmit = () => {
             return;
         }
     }
-    adminApi.createTrial({ ...trialData.value }).then((res) => {
+    trialApi.createTrial({ ...trialData.value }).then((res) => {
         if (res.code === 200) {
             ElMessage({
                 type: 'success',

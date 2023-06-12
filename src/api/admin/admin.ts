@@ -8,17 +8,9 @@ import {
     getUserTrialsParm,
     getUserTrialsRes,
     getLogRes,
-    createTrialParm,
     createUserParm,
     createUserRes,
 } from './type';
-import { changePassRes } from '../user/type';
-
-/* 新增实验 */
-const createTrial = async (params: createTrialParm) => {
-    const res = (await post('/experiment/add')) as changePassRes;
-    return res;
-};
 
 /* 用户管理相关 */
 const getUsers = async () => {
@@ -54,7 +46,6 @@ const getLog = async () => {
 };
 
 export class adminApi {
-    static createTrial = createTrial;
     static getUsers = getUsers;
     static createUser = createUser;
     static banUser = banUser;

@@ -1,22 +1,5 @@
 import { apiRes } from '../type';
 
-/* 实验相关 */
-export type createTrialParm = {
-    clin_stage: string;
-    clin_status: string;
-    contact: string;
-    ctr: string;
-    company: string;
-    indication: string;
-    med_name: string;
-    reg_date: string;
-    reg_location: string;
-    sponsor: string;
-    title: string;
-};
-
-export type changeTrialRes = apiRes<null>;
-
 /* 获取用户信息 */
 export type getUsersRes = apiRes<
     {
