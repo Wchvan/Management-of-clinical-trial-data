@@ -50,11 +50,11 @@
                     <el-checkbox-group v-model="expIDs">
                         <el-checkbox
                             v-for="item in trialsStore.trials"
-                            :key="item._id"
-                            :label="item._id"
+                            :key="item.ctr"
+                            :label="item.ctr"
                             style="display: block"
                         >
-                            <span class="text-base">{{ item.试验题目 }}</span>
+                            <span class="text-base">{{ item.title }}</span>
                         </el-checkbox>
                     </el-checkbox-group>
                 </el-main>
@@ -121,7 +121,7 @@ const allExpIDs = ref<string[]>([]);
 const handleCheckAllChange = (val: boolean) => {
     allExpIDs.value = [];
     for (let i of trialsStore.trials) {
-        allExpIDs.value?.push(i._id);
+        allExpIDs.value?.push(i.ctr);
     }
     expIDs.value = val ? allExpIDs.value : [];
     isIndeterminate.value = false;

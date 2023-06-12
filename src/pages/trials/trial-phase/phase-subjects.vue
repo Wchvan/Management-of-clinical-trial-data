@@ -1,6 +1,7 @@
 <template>
     <el-container class="w-full h-fit txl">
-        <el-header>
+        <el-card>
+            <el-header style="padding-bottom: 0; margin-top: 1rem;">
             <el-input
                 v-model="inputVal"
                 placeholder="Please input"
@@ -28,86 +29,72 @@
             <el-table
                 ref="tableRef"
                 row-key="date"
-                :data="trialTableData"
+                :data="examineeData"
                 style="width: 100%"
+                max-height="800"
                 size="large"
                 header-row-class-name="text-xl font-bold"
                 row-class-name="text-lg font-semibold"
             >
                 <el-table-column
-                    v-for="item in tableLabels"
-                    :key="item"
-                    :prop="item"
+                    v-for="(item,key) in examineeLabels"
+                    :key="key"
+                    :prop="key"
                     :label="item"
                     align="center"
-                    width="200"
+                    width="300"
                 />
                 <el-table-column
                     prop="role"
                     fixed="right"
-                    width="180"
+                    width="200"
+                    label="操作"
                     align="center"
                 >
-                    <template #header>
-                        <el-button
-                            type="success"
-                            class="w-3/4"
-                            size="large"
-                            style="font-size: 1.125rem"
-                            @click="createDialog"
-                            >添加实验</el-button
-                        >
-                    </template>
                     <el-button type="primary" class="w-3/4" size="large"
                         >查看详情</el-button
                     >
                 </el-table-column>
             </el-table>
         </el-main>
+        </el-card>
     </el-container>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { trailsType } from '@/store/trials/type';
-import useTrialsStore from '@/store/trials';
+import { useRoute } from 'vue-router';
+import { examineeApi } from '@/api/examinee/examinee';
+import { examineeDataType } from './type'
+
+const route = useRoute()
 
 const inputVal = ref<string>();
 const selectVal = ref<string>();
 
-const trialsStore = useTrialsStore();
+/* 做路由判断 */
+const [, , trialId, trialStep] = [...route.path.split('/')];
 
-const trialTableData = ref<trailsType[]>([]);
+/* 受试者基本信息 */
+const examineeData = ref<examineeDataType[]>([])
 
-const getAllTrials = () => {
-    trialsStore.getAllTrials().then(() => {
-        trialTableData.value = trialsStore.trials;
-    });
-};
-getAllTrials();
+const examineeLabels = ref<Record<keyof examineeDataType, string>> ({
+    subject_id: '受试者编号',
+    gender: '性别',
+    age: '年龄',
+    last_medicine: '上次用药时间',
+})
 
-// 表头
-const tableLabels = ref<Array<keyof trailsType>>([
-    '_id',
-    '试验题目',
-    '药物名称',
-    '试验状态',
-    '试验分期',
-    '申办者',
-    '登记日期',
-    '企业名称',
-    '企业联系人',
-    '企业注册地址',
-]);
-
-// 添加实验
-const createTrialVisible = ref<boolean>(false);
-const createDialog = () => {
-    createTrialVisible.value = false;
-    setTimeout(() => {
-        createTrialVisible.value = true;
-    });
-};
+examineeApi.getAllExaminee({ctr: trialId, clin_stage: trialStep}).then(res => {
+    if (res.code === 200) {
+        examineeData.value = res.data
+    } else {
+        ElMessage({
+            type: 'error',
+            message: res.msg
+        })
+    }
+})
 </script>
 
 <style lang="scss" scoped></style>

@@ -15,6 +15,9 @@ body{
   }
 }
 
+.cursor-point{
+  cursor: pointer;
+}
 
 /* 居中相关 */
 .center {
@@ -47,6 +50,11 @@ body{
 .bg-BD{
   background-color: #0095B6;
   // color: ;
+}
+
+.bg-all{
+  background: url('@/assets/all-bg.png') no-repeat center;
+  background-size: 100% 100%;
 }
 
 /* 文字相关 */

@@ -2,11 +2,13 @@
     <layout>
         <el-container class="w-full h-fit txl">
             <el-main>
+               <el-card>
                 <el-table
                     ref="tableRef"
                     row-key="date"
                     :data="tableData"
                     style="width: 100%"
+                    max-height="800"
                     size="large"
                     header-row-class-name="text-xl font-bold"
                     row-class-name="text-lg font-semibold"
@@ -69,6 +71,7 @@
                         </template>
                     </el-table-column>
                 </el-table>
+               </el-card>
             </el-main>
         </el-container>
         <user-detail-dialog

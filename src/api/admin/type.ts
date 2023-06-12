@@ -2,16 +2,17 @@ import { apiRes } from '../type';
 
 /* 实验相关 */
 export type createTrialParm = {
-    _id: string;
-    试验题目: string;
-    药物名称: string;
-    试验状态: string;
-    试验分期: string;
-    申办者: string;
-    登记日期: string;
-    企业名称: string;
-    企业联系人: string;
-    企业注册地址: string;
+    clin_stage: string;
+    clin_status: string;
+    contact: string;
+    ctr: string;
+    company: string;
+    indication: string;
+    med_name: string;
+    reg_date: string;
+    reg_location: string;
+    sponsor: string;
+    title: string;
 };
 
 export type changeTrialRes = apiRes<null>;
@@ -72,7 +73,7 @@ export type getUserTrialsRes = apiRes<{
 export type getLogRes = apiRes<
     {
         date: string;
-        type: string;
+        type: 'danger' | 'info' | 'warning';
         content: string;
     }[]
 >;

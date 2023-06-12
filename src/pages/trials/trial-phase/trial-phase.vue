@@ -1,5 +1,5 @@
 <template>
-    <el-container>
+    <el-container >
         <el-header style="padding: 0">
             <top-nav></top-nav>
         </el-header>
@@ -51,7 +51,7 @@
                 </el-menu>
             </el-aside>
 
-            <el-main style="padding: 5px 10px" class="bg-gray-50">
+            <el-main style="padding: 5px 10px" class="bg-all" >
                 <phase-subjects
                     v-if="activeIndex === 'search'"
                 ></phase-subjects>

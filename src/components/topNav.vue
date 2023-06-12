@@ -5,7 +5,7 @@
             style="cursor: pointer"
             @click="$router.push('/')"
         >
-            <img :src="logoSrc" class="w-12 h-12" />
+            <img :src="logoSrc" class=" w-20 h-12" />
             <div
                 class="self-center ml-2 text-2xl font-semibold"
                 style="color: #121212"
@@ -149,7 +149,7 @@ import useUserStore from '@/store/user';
 import { useRouter } from 'vue-router';
 import { reactive, ref } from 'vue';
 import { ElMessage, FormInstance, FormRules } from 'element-plus';
-import logoSrc from '@/assets/navlogo.png';
+import logoSrc from '@/assets/EClogo.png';
 
 const userStore = useUserStore();
 const router = useRouter();

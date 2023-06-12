@@ -18,9 +18,9 @@ const trialStore = useTrialsStore();
 const [, , trialId, trialStep] = [...route.path.split('/')];
 const routeFlag = ref<boolean>(false);
 for (let i of trialStore.trials) {
-    if (i._id === trialId) {
+    if (i.ctr === trialId) {
         if (
-            i.试验分期.slice(-1) >= trialStep &&
+            i.clin_stage.slice(-1) >= trialStep &&
             Number(trialStep) > 0 &&
             Number(trialStep) % 1 === 0
         ) {

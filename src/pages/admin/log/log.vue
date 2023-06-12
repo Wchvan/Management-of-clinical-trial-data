@@ -1,19 +1,27 @@
 <template>
     <layout>
+        <el-card>
+            <el-select 
+            v-model="logFilter" 
+            class="m-4" 
+            placeholder="Select"
+            @change="filter" 
+            size="large">
+            <el-option
+                v-for="item in logTypeOptions"
+                :key="item"
+                :value="item"
+            />
+        </el-select>
         <el-timeline>
             <el-timeline-item
-                v-for="item in logArr"
+                v-for="item in filterArr"
                 :key="item"
                 :timestamp="item.date"
                 placement="top"
                 :type="item.type"
             >
                 <el-card>
-                    <template #header>
-                        <div class="flex flex-row justify-center">
-                            <h2>{{ item.type }}</h2>
-                        </div>
-                    </template>
                     <div
                         class="bg-gray-300 border-2 border-gray-200 break-words"
                     >
@@ -22,6 +30,7 @@
                 </el-card>
             </el-timeline-item>
         </el-timeline>
+        </el-card>
     </layout>
 </template>
 
@@ -34,9 +43,25 @@ import { ElMessage } from 'element-plus';
 
 const logArr = ref<logType[]>([]);
 
+// 过滤相关 
+const logTypeOptions = ref<string[]>(['all', 'danger', 'info', 'warning'])
+const logFilter = ref<'all' | 'danger'| 'info'| 'warning'>('all')
+
+const filterArr = ref<logType[]>(logArr.value)
+const filter = (value:'all' | 'danger'| 'info'| 'warning') => {
+    if (value === 'all'){
+        filterArr.value = logArr.value
+    } else {
+        filterArr.value = logArr.value.filter(item => {
+            return item.type === logFilter.value
+        })
+    }
+}
+
 adminApi.getLog().then((res) => {
     if (res.code === 200) {
         logArr.value = res.data;
+        filterArr.value = logArr.value
     } else {
         ElMessage({
             type: 'error',

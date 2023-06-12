@@ -25,6 +25,7 @@ declare module '@vue/runtime-core' {
         ElForm: typeof import('element-plus/es')['ElForm'];
         ElFormItem: typeof import('element-plus/es')['ElFormItem'];
         ElHeader: typeof import('element-plus/es')['ElHeader'];
+        ElImage: typeof import('element-plus/es')['ElImage'];
         ElInput: typeof import('element-plus/es')['ElInput'];
         ElLink: typeof import('element-plus/es')['ElLink'];
         ElMain: typeof import('element-plus/es')['ElMain'];
@@ -32,6 +33,7 @@ declare module '@vue/runtime-core' {
         ElMenuItem: typeof import('element-plus/es')['ElMenuItem'];
         ElOption: typeof import('element-plus/es')['ElOption'];
         ElPagination: typeof import('element-plus/es')['ElPagination'];
+        ElPopover: typeof import('element-plus/es')['ElPopover'];
         ElSelect: typeof import('element-plus/es')['ElSelect'];
         ElStep: typeof import('element-plus/es')['ElStep'];
         ElSteps: typeof import('element-plus/es')['ElSteps'];
@@ -52,5 +54,9 @@ declare module '@vue/runtime-core' {
         RouterLink: typeof import('vue-router')['RouterLink'];
         RouterView: typeof import('vue-router')['RouterView'];
         TopNav: typeof import('./src/components/topNav.vue')['default'];
+        TrialCreateDialog: typeof import('./src/components/trialTable/trial-create-dialog.vue')['default'];
+        TrialDetailDialog: typeof import('./src/components/trialTable/trial-detail-dialog.vue')['default'];
+        Trials: typeof import('./src/components/trialTable/trials.vue')['default'];
+        TrialsTable: typeof import('./src/components/trialTable/trialsTable.vue')['default'];
     }
 }

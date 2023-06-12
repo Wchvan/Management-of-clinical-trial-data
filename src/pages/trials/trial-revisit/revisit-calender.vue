@@ -1,5 +1,6 @@
 <template>
-    <el-calendar v-model="dateVal">
+    <el-card>
+        <el-calendar v-model="dateVal">
         <template #date-cell="{ data }">
             <div
                 :class="[
@@ -19,6 +20,7 @@
             </div>
         </template>
     </el-calendar>
+    </el-card>
     <revisit-subjects-dialog
         :visible="dialogVisible"
         :data="subjectInfo"
@@ -26,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { trialApi } from '@/api/trials/trials';
+import { examineeApi } from '@/api/examinee/examinee';
 import type { subjectInfo } from './type';
 import { ElMessage } from 'element-plus';
 import { ref, watch } from 'vue';
@@ -38,7 +40,7 @@ const dateVal = ref<Date>(new Date());
 const selectedDay = ref<string[]>([]);
 const getSelectDay = (month: string) => {
     selectedDay.value = [];
-    trialApi.getRevisitDay({ month: month }).then((res) => {
+    examineeApi.getRevisitDay({ month: month }).then((res) => {
         if (res.code === 200) {
             for (let i of res.data) {
                 selectedDay.value.push(i);
@@ -71,7 +73,7 @@ const subjectInfo = ref<subjectInfo[]>([]);
 const dialogVisible = ref<boolean>(false);
 const getSubjectInfo = (date: string) => {
     if (isSelect(date)) {
-        trialApi.getRevisitSubjects({ date: date }).then((res) => {
+        examineeApi.getRevisitSubjects({ date: date }).then((res) => {
             if (res.code === 200) {
                 subjectInfo.value = res.data;
                 dialogVisible.value = false;

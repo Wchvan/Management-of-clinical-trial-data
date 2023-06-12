@@ -1,5 +1,5 @@
 export type logType = {
     date: string;
-    type: string;
+    type: 'danger' | 'info' | 'warning';
     content: string;
 };

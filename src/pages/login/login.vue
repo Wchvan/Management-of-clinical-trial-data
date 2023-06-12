@@ -1,6 +1,7 @@
 <template>
     <div class="wd100 ht100 login-bg">
-        <el-card class="w-1/4 h-fit center opacity-90">
+        <div class="cover"></div>
+        <el-card class="w-1/4 h-fit  opacity-90 login-card">
             <template #header>
                 <div class="text-center">
                     <span className="text-3xl font-bold">登录</span>
@@ -47,7 +48,16 @@
                             class="ml-2"
                         ></el-checkbox>
                         <div class="flex-grow"></div>
-                        <el-link>登录遇到问题？</el-link>
+                        <el-popover
+                            placement="top-start"
+                            :width="180"
+                            trigger="hover"
+                            content="可以联系管理员修改密码"
+                        >
+                            <template #reference>
+                                <el-link class="m-2">登录遇到问题？</el-link>
+                            </template>
+                        </el-popover>
                     </el-form-item>
                     <el-button
                         type="primary"
@@ -132,7 +142,22 @@ const submitForm = (formEl: FormInstance | undefined) => {
 
 <style lang="scss" scoped>
 .login-bg {
-    background: url('@/assets/login-bg.jpg') no-repeat center;
+    background: url('@/assets/login-bg.png') no-repeat center;
     background-size: 100% 100%;
+}
+.login-card{
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.cover{
+    background: rgba($color: #121212, $alpha: 0.5);
+    // z-index: -;
+    position: absolute;
+    right: 0;
+    width: 45%;
+    height: 100%;
 }
 </style>
