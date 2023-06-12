@@ -58,7 +58,7 @@
                         >
                     </div>
                 </el-header>
-                <el-main style="padding: 1rem 0" class=" h-36 overflow-auto">
+                <el-main style="padding: 1rem 0" class="h-36 overflow-auto">
                     <el-checkbox-group
                         v-model="expIDs"
                         @change="changeFlag = true"
