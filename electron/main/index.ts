@@ -8,10 +8,10 @@ function createWindow() {
     const mainWindow = new BrowserWindow({
         width: 1280,
         height: 720,
-        autoHideMenuBar: true, // 自动隐藏菜单栏
+        autoHideMenuBar: false, // 自动隐藏菜单栏
         frame: true, // 边框窗口
         webPreferences: {
-            preload: path.join(__dirname, '../preload/preload.js'), // 隔离vite和Electron之间的状态
+            preload: path.join(__dirname, '../preload/index.js'), // 隔离vite和Electron之间的状态
             nodeIntegration: true, // 使用页面中可以引入node和electron相关的API
             contextIsolation: true, // 是否在独立 JavaScript 环境中运行 Electron API和指定的preload 脚本
         },
