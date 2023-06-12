@@ -52,7 +52,13 @@
                         align="center"
                     >
                         <template #default="scope">
-                            <el-button type="primary" class="w-3/4" size="large" @click="detailDialog(scope.$index)">查看详情</el-button>
+                            <el-button
+                                type="primary"
+                                class="w-3/4"
+                                size="large"
+                                @click="detailDialog(scope.$index)"
+                                >查看详情</el-button
+                            >
                         </template>
                     </el-table-column>
                 </el-table>
@@ -61,8 +67,9 @@
     </el-container>
     <subject-detail-dialog
         :visible="detailDialogVisble"
-        :parms = "detailParm"
-        @update="getSubjects()">
+        :parms="detailParm"
+        @update="getSubjects()"
+    >
     </subject-detail-dialog>
 </template>
 
@@ -70,9 +77,9 @@
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { examineeApi } from '@/api/examinee/examinee';
-import { getExamineeDetailParm } from '@/api/examinee/type'
+import { getExamineeDetailParm } from '@/api/examinee/type';
 import { examineeDataType } from './type';
-import subjectDetailDialog  from './subject-detail-dialog.vue'
+import subjectDetailDialog from './subject-detail-dialog.vue';
 
 const route = useRoute();
 
@@ -105,19 +112,19 @@ const getSubjects = () => {
                 });
             }
         });
-}
+};
 
-getSubjects()
+getSubjects();
 
 /* 查看用户详情 */
 const detailDialogVisble = ref<boolean>(false);
-const detailParm = ref<getExamineeDetailParm>()
+const detailParm = ref<getExamineeDetailParm>();
 const detailDialog = (index: number) => {
     detailDialogVisble.value = false;
     detailParm.value = {
         subject_id: examineeData.value[index].subject_id,
-        ctr: trialId
-    }
+        ctr: trialId,
+    };
     setTimeout(() => {
         detailDialogVisble.value = true;
     }, 50);

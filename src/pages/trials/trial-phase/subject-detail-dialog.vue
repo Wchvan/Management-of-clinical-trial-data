@@ -18,12 +18,12 @@
             >
                 <div class="w-44 mr-3">{{ item }}:</div>
                 <span
-                    v-if="!inputFlag[index] "
+                    v-if="!inputFlag[index]"
                     @click="inputFlag[index] = true"
                     >{{ exmaineeData[key] }}</span
                 >
                 <el-input
-                    v-if="  inputFlag[index]"
+                    v-if="inputFlag[index]"
                     v-model="exmaineeData[key]"
                     style="font-size: 1.125rem"
                     @blur="inputFlag[index] = false"
@@ -45,8 +45,8 @@
 import { ElMessage } from 'element-plus';
 import { watch, ref, reactive } from 'vue';
 import { examineeApi } from '@/api/examinee/examinee';
-import { exmaineeDetailType } from './type'
-import { getExamineeDetailParm } from '@/api/examinee/type'
+import { exmaineeDetailType } from './type';
+import { getExamineeDetailParm } from '@/api/examinee/type';
 
 const emit = defineEmits<{
     (e: 'update'): void;
@@ -56,7 +56,7 @@ const emit = defineEmits<{
 const centerDialogVisible = ref<boolean>(false);
 const props = defineProps<{
     visible: boolean;
-    parms: getExamineeDetailParm
+    parms: getExamineeDetailParm;
 }>();
 watch(
     () => props.visible,
@@ -81,23 +81,23 @@ const exmaineeData = ref<exmaineeDetailType>({
     tel: '',
     treat: '',
 });
-const params = ref<getExamineeDetailParm>(props.parms)
+const params = ref<getExamineeDetailParm>(props.parms);
 watch(
     () => props.parms,
     (newVal) => {
         params.value = newVal;
     },
 );
-examineeApi.getExamineeDetail(params.value).then(res => {
+examineeApi.getExamineeDetail(params.value).then((res) => {
     if (res.code === 200) {
-        exmaineeData.value = res.data
+        exmaineeData.value = res.data;
     } else {
         ElMessage({
             type: 'error',
-            message: res.msg
-        })
+            message: res.msg,
+        });
     }
-})
+});
 
 /* 标签 */
 const examineeLabels = ref<Record<keyof exmaineeDetailType, string>>({
@@ -113,8 +113,7 @@ const examineeLabels = ref<Record<keyof exmaineeDetailType, string>>({
     handedness: '利手',
     med_history: '病史',
     treat: '治疗',
-})
-
+});
 
 /* 修改相关 */
 const inputFlag = ref<boolean[]>(
@@ -123,25 +122,27 @@ const inputFlag = ref<boolean[]>(
 const changeFlag = ref<boolean>(false);
 const handleSubmit = () => {
     if (changeFlag.value === true) {
-        examineeApi.changeExamineeInfo({
-            subject_id: params.value.subject_id,
-            ctr: params.value.ctr,
-            info: exmaineeData.value
-        }).then((res) => {
-            if (res.code === 200) {
-                ElMessage({
-                    type: 'success',
-                    message: '修改成功',
-                });
-                emit('update');
-                centerDialogVisible.value = false;
-            } else {
-                ElMessage({
-                    type: 'error',
-                    message: res.msg,
-                });
-            }
-        });
+        examineeApi
+            .changeExamineeInfo({
+                subject_id: params.value.subject_id,
+                ctr: params.value.ctr,
+                info: exmaineeData.value,
+            })
+            .then((res) => {
+                if (res.code === 200) {
+                    ElMessage({
+                        type: 'success',
+                        message: '修改成功',
+                    });
+                    emit('update');
+                    centerDialogVisible.value = false;
+                } else {
+                    ElMessage({
+                        type: 'error',
+                        message: res.msg,
+                    });
+                }
+            });
     } else {
         centerDialogVisible.value = false;
     }
