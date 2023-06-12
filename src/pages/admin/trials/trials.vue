@@ -21,37 +21,42 @@
                             align="center"
                             width="200"
                         >
-                        <template v-if="key === 'clin_stage' " #default="scope">
-                            <el-select
-                                v-model="trialTableData[scope.$index][key]"
-                                class="m-2"
-                                placeholder="Select"
-                                size="large"
-                                @change="changeTrial(scope.$index)"
+                            <template
+                                v-if="key === 'clin_stage'"
+                                #default="scope"
                             >
-                                <el-option
-                                    v-for="item in clinStageArr"
-                                    :key="item"
-                                    :value="item"
-                                />
-                            </el-select>
-                        </template>
-                        <template v-if="key === 'clin_status' " #default="scope">
-                            <el-select
-                                v-model="trialTableData[scope.$index][key]"
-                                class="m-2"
-                                placeholder="Select"
-                                size="large"
-                                @change="changeTrial(scope.$index)"
+                                <el-select
+                                    v-model="trialTableData[scope.$index][key]"
+                                    class="m-2"
+                                    placeholder="Select"
+                                    size="large"
+                                    @change="changeTrial(scope.$index)"
+                                >
+                                    <el-option
+                                        v-for="item in clinStageArr"
+                                        :key="item"
+                                        :value="item"
+                                    />
+                                </el-select>
+                            </template>
+                            <template
+                                v-if="key === 'clin_status'"
+                                #default="scope"
                             >
-                                <el-option
-                                    v-for="item in clinStatusArr"
-                                    :key="item"
-                                    :value="item"
-                                />
-                            </el-select>
-                        </template>
-
+                                <el-select
+                                    v-model="trialTableData[scope.$index][key]"
+                                    class="m-2"
+                                    placeholder="Select"
+                                    size="large"
+                                    @change="changeTrial(scope.$index)"
+                                >
+                                    <el-option
+                                        v-for="item in clinStatusArr"
+                                        :key="item"
+                                        :value="item"
+                                    />
+                                </el-select>
+                            </template>
                         </el-table-column>
                         <el-table-column
                             prop="role"
@@ -98,7 +103,7 @@
 import layout from '../layout.vue';
 import { ref } from 'vue';
 import { trailsType } from '@/store/trials/type';
-import { clinStatusType, clinStageType } from './type'
+import { clinStatusType, clinStageType } from './type';
 import useTrialsStore from '@/store/trials';
 import trialCreateDialog from './trial-create-dialog.vue';
 import trialDetailDialog from './trial-detail-dialog.vue';
@@ -126,38 +131,40 @@ const tableLabels = ref<Record<keyof trailsType, string>>({
 });
 
 // 实验状态信息
-const clinStatusArr = ref<string[]>([])
+const clinStatusArr = ref<string[]>([]);
 for (let i in clinStatusType) {
-    clinStatusArr.value.push(i)
+    clinStatusArr.value.push(i);
 }
 
 // 实验分期信息
-const clinStageArr = ref<string[]>([])
-    for (let i in clinStageType) {
-        clinStageArr.value.push(i)
+const clinStageArr = ref<string[]>([]);
+for (let i in clinStageType) {
+    clinStageArr.value.push(i);
 }
 
 // 修改实验分期信息或者实验状态
 const changeTrial = (index: number) => {
-    trialApi.changeTrial({
-        ctr: trialTableData.value[index].ctr,
-        clin_stage: trialTableData.value[index].clin_stage,
-        clin_status: trialTableData.value[index].clin_status,
-    }).then(res => {
-        if(res.code === 200) {
-            ElMessage({
-                type: 'success',
-                message: '修改成功'
-            })
-        } else {
-            ElMessage({
-                type: 'error',
-                message: res.msg
-            })
-        }
-        getAllTrials()
-    })
-} 
+    trialApi
+        .changeTrial({
+            ctr: trialTableData.value[index].ctr,
+            clin_stage: trialTableData.value[index].clin_stage,
+            clin_status: trialTableData.value[index].clin_status,
+        })
+        .then((res) => {
+            if (res.code === 200) {
+                ElMessage({
+                    type: 'success',
+                    message: '修改成功',
+                });
+            } else {
+                ElMessage({
+                    type: 'error',
+                    message: res.msg,
+                });
+            }
+            getAllTrials();
+        });
+};
 
 // 添加实验
 const createTrialVisible = ref<boolean>(false);
