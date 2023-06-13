@@ -226,6 +226,7 @@ const search = () => {
                 message: res.msg,
             });
         }
+        resetSearch()
     });
 };
 // 表格数据
