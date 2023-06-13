@@ -265,7 +265,7 @@ const changeBanned = (index: number) => {
                     duration: 1000,
                 });
             }
-            resetSearch()
+            resetSearch();
         });
 };
 // 查看用户详情

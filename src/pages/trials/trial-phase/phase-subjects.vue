@@ -175,7 +175,7 @@ const search = () => {
                     message: res.msg,
                 });
             }
-            resetSearch()
+            resetSearch();
         });
 };
 
