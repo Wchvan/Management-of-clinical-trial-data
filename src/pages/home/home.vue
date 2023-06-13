@@ -118,7 +118,7 @@ const showTrialDetail = (row: trailsType, column: any) => {
 
 // 查看分期详情
 const trialDetail = (index: number, phase: number) => {
-    router.push(`/trials/${trialTableData.value[index].ctr}/${phase}`);
+    router.push(`/trials/${trialTableData.value[index].ctr}/phase${phase}`);
 };
 </script>
 

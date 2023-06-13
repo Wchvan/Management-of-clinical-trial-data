@@ -20,9 +20,9 @@ const routeFlag = ref<boolean>(false);
 for (let i of trialStore.trials) {
     if (i.ctr === trialId) {
         if (
-            i.clin_stage.slice(-1) >= trialStep &&
-            Number(trialStep) > 0 &&
-            Number(trialStep) % 1 === 0
+            i.clin_stage.slice(-1) >= trialStep.slice(-1) &&
+            Number(trialStep.slice(-1)) > 0 &&
+            Number(trialStep.slice(-1)) % 1 === 0
         ) {
             routeFlag.value = true;
         }
