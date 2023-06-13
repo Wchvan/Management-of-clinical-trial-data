@@ -13,7 +13,12 @@
                 </el-steps>
             </el-header>
             <el-main>
-                <el-upload v-if="active === 1" drag action="/data/upload-xls" multiple>
+                <el-upload
+                    v-if="active === 1"
+                    drag
+                    action="/data/upload-xls"
+                    multiple
+                >
                     <i-ep-uploadFilled
                         class="text-8xl center mt-36"
                         style="color: skyblue"

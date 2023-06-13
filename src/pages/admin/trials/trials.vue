@@ -217,16 +217,16 @@ const search = () => {
         searchForm.value[i as selectOptionsType] =
             searchForm.value[i as selectOptionsType].trim();
     }
-    trialApi.searchTrial(searchForm.value).then(res => {
+    trialApi.searchTrial(searchForm.value).then((res) => {
         if (res.code === 200) {
-            trialTableData.value = res.data
+            trialTableData.value = res.data;
         } else {
             ElMessage({
                 type: 'error',
-                message: res.msg
-            })
+                message: res.msg,
+            });
         }
-    })
+    });
 };
 // 表格数据
 const trialTableData = ref<trailsType[]>([]);

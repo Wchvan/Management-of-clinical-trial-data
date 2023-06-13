@@ -204,16 +204,16 @@ const search = () => {
         searchForm.value[i as selectOptionsType] =
             searchForm.value[i as selectOptionsType].trim();
     }
-    adminApi.searchUser(searchForm.value).then(res => {
+    adminApi.searchUser(searchForm.value).then((res) => {
         if (res.code === 200) {
-            tableData.value = res.data
+            tableData.value = res.data;
         } else {
             ElMessage({
                 type: 'error',
-                message: res.msg
-            })
+                message: res.msg,
+            });
         }
-    })
+    });
 };
 
 // 表格相关

@@ -160,16 +160,22 @@ const search = () => {
         searchForm.value[i as selectOptionsType] =
             searchForm.value[i as selectOptionsType].trim();
     }
-    examineeApi.searchExaminee({ctr: trialId, clin_stage: trialStep, ...searchForm.value}).then(res => {
-        if (res.code === 200) {
-            examineeData.value = res.data
-        } else {
-            ElMessage({
-                type: 'error',
-                message: res.msg
-            })
-        }
-    })
+    examineeApi
+        .searchExaminee({
+            ctr: trialId,
+            clin_stage: trialStep,
+            ...searchForm.value,
+        })
+        .then((res) => {
+            if (res.code === 200) {
+                examineeData.value = res.data;
+            } else {
+                ElMessage({
+                    type: 'error',
+                    message: res.msg,
+                });
+            }
+        });
 };
 
 const optionLabels = ref<Record<selectOptionsType, string>>({
