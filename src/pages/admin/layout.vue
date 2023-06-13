@@ -15,8 +15,8 @@
                 >
                     <el-menu-item
                         index="/admin-trials"
-                        class="justify-center flex flex-row  border-y-white"
-                        style="padding: 2.5rem 0;border-bottom-width: 1px;"
+                        class="justify-center flex flex-row border-y-white"
+                        style="padding: 2.5rem 0; border-bottom-width: 1px"
                     >
                         <template #title>
                             <div
@@ -28,14 +28,23 @@
                             >
                                 <i-ep-Tickets></i-ep-Tickets>
                                 <span>实验管理</span>
-                                <span v-if="activeIndex==='/admin-trials'" style="position: relative; margin-left: 2rem; font-size: 1.5rem;"> > </span>
+                                <span
+                                    v-if="activeIndex === '/admin-trials'"
+                                    style="
+                                        position: relative;
+                                        margin-left: 2rem;
+                                        font-size: 1.5rem;
+                                    "
+                                >
+                                    >
+                                </span>
                             </div>
                         </template>
                     </el-menu-item>
                     <el-menu-item
                         index="/admin-users"
-                        class="justify-center flex flex-row  border-y-white"
-                        style="padding: 2.5rem 0;border-bottom-width: 1px;"
+                        class="justify-center flex flex-row border-y-white"
+                        style="padding: 2.5rem 0; border-bottom-width: 1px"
                     >
                         <div
                             class="text-xl text-center"
@@ -43,13 +52,22 @@
                         >
                             <i-ep-User></i-ep-User>
                             <span>用户管理</span>
-                            <span v-if="activeIndex==='/admin-users'" style="position: relative; margin-left: 2rem; font-size: 1.5rem;"> > </span>
+                            <span
+                                v-if="activeIndex === '/admin-users'"
+                                style="
+                                    position: relative;
+                                    margin-left: 2rem;
+                                    font-size: 1.5rem;
+                                "
+                            >
+                                >
+                            </span>
                         </div>
                     </el-menu-item>
                     <el-menu-item
                         index="/admin-log"
-                        class="justify-center flex flex-row  border-y-white"
-                        style="padding: 2.5rem 0;border-bottom-width: 1px;"
+                        class="justify-center flex flex-row border-y-white"
+                        style="padding: 2.5rem 0; border-bottom-width: 1px"
                     >
                         <div
                             class="text-xl text-center"
@@ -57,7 +75,16 @@
                         >
                             <i-ep-Notebook></i-ep-Notebook>
                             <span>系统日志</span>
-                            <span v-if="activeIndex==='/admin-log'" style="position: relative; margin-left: 2rem; font-size: 1.5rem;"> > </span>
+                            <span
+                                v-if="activeIndex === '/admin-log'"
+                                style="
+                                    position: relative;
+                                    margin-left: 2rem;
+                                    font-size: 1.5rem;
+                                "
+                            >
+                                >
+                            </span>
                         </div>
                     </el-menu-item>
                 </el-menu>

@@ -1,5 +1,7 @@
 <template>
-    <div class="h-full w-full flex flex-row justify-between bg-BD border-b-2 border-y-white">
+    <div
+        class="h-full w-full flex flex-row justify-between bg-BD border-b-2 border-y-white"
+    >
         <div
             class="flex flex-row py-1 flex-2"
             style="cursor: pointer"
@@ -8,14 +10,14 @@
             <img :src="logoSrc" class="w-20 h-12" />
             <div class="self-center">
                 <span
-                    class="self-center ml-2 text-4xl  font-fz"
+                    class="self-center ml-2 text-4xl font-fz"
                     style="color: #fff"
-                >数研药盾
+                    >数研药盾
                 </span>
                 <span
-                    class="self-center ml-2 text-2xl  font-xk"
+                    class="self-center ml-2 text-2xl font-xk"
                     style="color: #fff"
-                >|加密守护，开启医药研发新纪元
+                    >|加密守护，开启医药研发新纪元
                 </span>
             </div>
         </div>

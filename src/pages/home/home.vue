@@ -4,10 +4,15 @@
             <top-nav></top-nav>
         </el-header>
         <el-container class="h-full w-full" style="flex-direction: column">
-            <div class="h-2/5 w-full flex flex-row  mt-1">
+            <div class="h-2/5 w-full flex flex-row mt-1">
                 <el-image
                     :src="adBg"
-                    style="width: 100%; height: 100%; box-shadow: 0 5px rgba(0, 0,0, .5); z-index: 10;"
+                    style="
+                        width: 100%;
+                        height: 100%;
+                        box-shadow: 0 5px rgba(0, 0, 0, 0.5);
+                        z-index: 10;
+                    "
                 ></el-image>
             </div>
             <div class="h-3/5 w-full">

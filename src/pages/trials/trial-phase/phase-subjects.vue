@@ -2,33 +2,58 @@
     <el-container class="w-full h-fit txl">
         <el-card>
             <template #header>
-                <div v-for="item in searchNum" class="mt-2"  :key="item">
+                <div v-for="item in searchNum" :key="item" class="mt-2">
                     <el-input
-                        v-model="inputVal[item-1]"
+                        v-model="inputVal[item - 1]"
                         placeholder="Please input"
                         class="input-with-select mb-2"
                         size="large"
                     >
                         <template #prepend>
                             <el-select
+                                v-model="selectVal[item - 1]"
                                 style="width: 140px"
                                 size="large"
-                                v-model="selectVal[item-1]"
                             >
-                                <el-option v-for="item in selectOptions" :label="optionLabels[item]" :value="item" :key="item"/>
+                                <el-option
+                                    v-for="item in selectOptions"
+                                    :key="item"
+                                    :label="optionLabels[item]"
+                                    :value="item"
+                                />
                             </el-select>
                         </template>
                         <template #append>
                             <el-button-group>
-                                <el-button style="border-right: 1.5px solid #a8abb2;" @click="addSearch"><i-ep-Plus /></el-button>
-                                <el-button @click="delSearch(item-1)"><i-ep-Minus /></el-button>
+                                <el-button
+                                    style="border-right: 1.5px solid #a8abb2"
+                                    @click="addSearch"
+                                    ><i-ep-Plus
+                                /></el-button>
+                                <el-button @click="delSearch(item - 1)"
+                                    ><i-ep-Minus
+                                /></el-button>
                             </el-button-group>
                         </template>
-            </el-input>
+                    </el-input>
                 </div>
-                <div class=" flex flex-row justify-center">
-                    <el-button class="w-1/4 " round size="large" type="danger" @click="resetSearch">重置</el-button>
-                    <el-button class="w-1/4 " round size="large" type="primary" @click="search">搜索</el-button>
+                <div class="flex flex-row justify-center">
+                    <el-button
+                        class="w-1/4"
+                        round
+                        size="large"
+                        type="danger"
+                        @click="resetSearch"
+                        >重置</el-button
+                    >
+                    <el-button
+                        class="w-1/4"
+                        round
+                        size="large"
+                        type="primary"
+                        @click="search"
+                        >搜索</el-button
+                    >
                 </div>
             </template>
             <el-main>
@@ -92,53 +117,58 @@ const route = useRoute();
 /* 做路由判断 */
 const [, , trialId, trialStep] = [...route.path.split('/')];
 
-
 // 检索
-const searchNum = ref<number>(1)
-const inputVal = ref<string[]>([''])
-const selectVal = ref<selectOptionsType[]>(['subject_id'])
-const selectOptions = ref<selectOptionsType[]>(['subject_id', 'name', 'gender', 'age'])
+const searchNum = ref<number>(1);
+const inputVal = ref<string[]>(['']);
+const selectVal = ref<selectOptionsType[]>(['subject_id']);
+const selectOptions = ref<selectOptionsType[]>([
+    'subject_id',
+    'name',
+    'gender',
+    'age',
+]);
 const searchForm = ref<Record<selectOptionsType, string>>({
     subject_id: '',
     name: '',
     gender: '',
     age: '',
-})
+});
 
 const addSearch = () => {
-    searchNum.value++
-    selectVal.value.push('subject_id')
-    inputVal.value.push('')
-}
+    searchNum.value++;
+    selectVal.value.push('subject_id');
+    inputVal.value.push('');
+};
 
 const delSearch = (index: number) => {
-    searchNum.value--
-    selectVal.value.splice(index, 1)
-    inputVal.value.splice(index, 1)
-}
+    searchNum.value--;
+    selectVal.value.splice(index, 1);
+    inputVal.value.splice(index, 1);
+};
 
 const resetSearch = () => {
     for (let i in inputVal.value) {
-        inputVal.value[i] = ''
+        inputVal.value[i] = '';
     }
-}
+};
 
-const search = ()=>{
+const search = () => {
     for (let i in inputVal.value) {
-        searchForm.value[selectVal.value[i]] += (' ' + inputVal.value[i] )
+        searchForm.value[selectVal.value[i]] += ' ' + inputVal.value[i];
     }
     for (let i in searchForm.value) {
-        searchForm.value[i as selectOptionsType] = searchForm.value[i as selectOptionsType].trim()
+        searchForm.value[i as selectOptionsType] =
+            searchForm.value[i as selectOptionsType].trim();
     }
-    console.log(searchForm.value)
-}
+    console.log(searchForm.value);
+};
 
-const optionLabels = ref<Record<selectOptionsType,string>>({
+const optionLabels = ref<Record<selectOptionsType, string>>({
     subject_id: '受试者编号',
     name: '受试者姓名',
     gender: '性别',
     age: '年龄',
-})
+});
 
 /* 受试者基本信息 */
 const examineeData = ref<examineeDataType[]>([]);
