@@ -10,6 +10,8 @@ import {
     getRevisitDayRes,
     getRevisitSubjectsParm,
     getRevisitSubjectsRes,
+    searchExamineeParm,
+    searchExamineeRes,
 } from './type';
 
 /* 获取所有受试者数据 */
@@ -27,6 +29,12 @@ const getExamineeDetail = async (params: getExamineeDetailParm) => {
 /* 修改受试者信息 */
 const changeExamineeInfo = async (params: changeExamineeInfoParm) => {
     const res = (await post('/data/update', params)) as changeExamineeInfoRes;
+    return res;
+};
+
+/* 查询受试者 */
+const searchExaminee = async (params: searchExamineeParm) => {
+    const res = (await post('/data/search', params)) as searchExamineeRes;
     return res;
 };
 
@@ -49,5 +57,6 @@ export class examineeApi {
     static getRevisitDay = getRevisitDay;
     static getRevisitSubjects = getRevisitSubjects;
     static getExamineeDetail = getExamineeDetail;
+    static searchExaminee = searchExaminee;
     static changeExamineeInfo = changeExamineeInfo;
 }

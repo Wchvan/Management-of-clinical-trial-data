@@ -43,6 +43,24 @@ export type changeUserParm = {
 
 export type changeUserRes = apiRes<null>;
 
+/* 查询用户 */
+export type searchUserParm = {
+    name?: string;
+    phone?: string;
+    role?: string;
+    username?: string;
+};
+
+export type searchUserRes = apiRes<
+    {
+        id: string;
+        name: string;
+        username: string;
+        role: 'ROLE_ADMIN' | 'ROLE_USER' | 'ROLE_BANNED';
+        phone: string;
+    }[]
+>;
+
 /* 获取用户相关的实验信息 */
 export type getUserTrialsParm = {
     userID: string;

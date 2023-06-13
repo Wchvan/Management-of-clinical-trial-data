@@ -13,11 +13,19 @@
                 </el-steps>
             </el-header>
             <el-main>
-                <el-upload
-                    drag
-                    action="/experiment/upload-followup-xls"
-                    multiple
-                >
+                <el-upload v-if="active === 1" drag action="/experiment/upload-followup-xls" multiple>
+                    <i-ep-uploadFilled
+                        class="text-8xl center mt-36"
+                        style="color: skyblue"
+                    ></i-ep-uploadFilled>
+                    <div class="el-upload__text mb-36">
+                        Drop file here or <em>click to upload</em>
+                    </div>
+                    <template #tip>
+                        <div style="color: red">只支持excel文件</div>
+                    </template>
+                </el-upload>
+                <el-upload v-else drag action="/data/upload-exp-xls" multiple>
                     <i-ep-uploadFilled
                         class="text-8xl center mt-36"
                         style="color: skyblue"

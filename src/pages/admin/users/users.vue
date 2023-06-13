@@ -156,6 +156,7 @@ import { ElMessage, TableColumnCtx, TableInstance } from 'element-plus';
 import userDetailDialog from './user-detail-dialog.vue';
 import userChangePassDialog from './user-change-pass-dialog.vue';
 import userCreateDialog from './user-create-dialog.vue';
+import { error } from 'console';
 
 const trialStore = useTrialsStore();
 trialStore.getAllTrials();
@@ -203,7 +204,16 @@ const search = () => {
         searchForm.value[i as selectOptionsType] =
             searchForm.value[i as selectOptionsType].trim();
     }
-    console.log(searchForm.value);
+    adminApi.searchUser(searchForm.value).then(res => {
+        if (res.code === 200) {
+            tableData.value = res.data
+        } else {
+            ElMessage({
+                type: 'error',
+                message: res.msg
+            })
+        }
+    })
 };
 
 // 表格相关

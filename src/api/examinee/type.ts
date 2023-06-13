@@ -57,6 +57,25 @@ export type changeExamineeInfoParm = {
 
 export type changeExamineeInfoRes = apiRes<null>;
 
+/* 查询受试者信息 */
+export type searchExamineeParm = {
+    clin_stage: string;
+    ctr: string;
+    subject_id: string;
+    name: string;
+    gender: string;
+    age: string;
+};
+
+export type searchExamineeRes = apiRes<
+    {
+        age: number;
+        gender: string;
+        last_medicine: string;
+        subject_id: string;
+    }[]
+>;
+
 /* 获取随访日期 */
 export type getRevisitDayParm = {
     month: string;

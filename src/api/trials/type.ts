@@ -56,5 +56,26 @@ export type changeTrialParm = {
 };
 export type changeTrialRes = apiRes<null>;
 
+/* 查询实验 */
+export type searchTrialParm = {
+    clin_stage?: string;
+    clin_status?: string;
+    ctr?: string;
+    indication?: string;
+    med_name?: string;
+    title?: string;
+};
+
+export type searchTrialRes = apiRes<
+    {
+        clin_stage: string;
+        clin_status: string;
+        ctr: string;
+        indication: string;
+        med_name: string;
+        title: string;
+    }[]
+>;
+
 /* 获取用户的实验 */
 export type getUserTrialsRes = getAllTrialsRes;

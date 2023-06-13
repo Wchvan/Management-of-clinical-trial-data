@@ -10,6 +10,8 @@ import {
     getLogRes,
     createUserParm,
     createUserRes,
+    searchUserParm,
+    searchUserRes,
 } from './type';
 
 /* 用户管理相关 */
@@ -33,7 +35,13 @@ const changeUser = async (params: changeUserParm) => {
     return res;
 };
 
-/* 获取和用户相关的实验数据 TODO*/
+// 关键词检索用户数据
+const searchUser = async (params: searchUserParm) => {
+    const res = (await post('/user/search', params)) as searchUserRes;
+    return res;
+};
+
+/* 获取和用户相关的实验数据 */
 const getUserTrials = async (params: getUserTrialsParm) => {
     const res = (await get('/user/get-user-exp', params)) as getUserTrialsRes;
     return res;
@@ -50,6 +58,7 @@ export class adminApi {
     static createUser = createUser;
     static banUser = banUser;
     static changeUser = changeUser;
+    static searchUser = searchUser;
     static getUserTrials = getUserTrials;
     static getLog = getLog;
 }
