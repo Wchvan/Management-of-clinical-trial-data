@@ -108,6 +108,7 @@ watch(
     (newVal) => {
         centerDialogVisible.value = newVal;
         changeFlag.value = false;
+        getUserTrials()
     },
 );
 
@@ -141,9 +142,11 @@ const isIndeterminate = ref(true);
 const checkAll = ref<boolean>();
 const allExpIDs = ref<string[]>([]);
 
-adminApi.getUserTrials({ userID: userData.value.id }).then((res) => {
-    if (res.code === 200) expIDs.value = res.data.expIDs;
-});
+const getUserTrials = ()=>{
+    adminApi.getUserTrials({ userID: userData.value.id }).then((res) => {
+        if (res.code === 200) expIDs.value = res.data.expIDs;
+    });
+}
 
 const handleCheckAllChange = (val: boolean) => {
     allExpIDs.value = [];
@@ -162,7 +165,6 @@ const inputFlag = ref<boolean[]>(
 const changeFlag = ref<boolean>(false);
 const handleSubmit = () => {
     if (changeFlag.value === true) {
-        const params = {};
         adminApi.changeUser({ ...userData.value, expIDs: [] }).then((res) => {
             if (res.code === 200) {
                 ElMessage({

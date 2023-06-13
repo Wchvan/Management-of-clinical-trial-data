@@ -1,10 +1,5 @@
 <template>
-    <el-dialog
-        v-model="centerDialogVisible"
-        width="40%"
-        center
-        destroy-on-close
-    >
+    <el-dialog v-model="centerDialogVisible" width="40%" center destroy-on-close>
         <el-card class="box-card">
             <template #header>
                 <div class="text-center text-2xl font-semibold">
@@ -12,19 +7,13 @@
                 </div>
             </template>
             <div v-for="(item, index) in labelMap" :key="index" class="text-lg">
-                {{ item + ':   ' }}{{ data[current - 1][index] }}
+                {{ item + ': ' }}{{ data[current - 1][index] }}
             </div>
         </el-card>
         <template #footer>
             <div class="flex flex-row justify-center">
-                <el-pagination
-                    v-model:current-page="current"
-                    layout="prev, pager, next"
-                    :total="data.length"
-                    :default-page-size="1"
-                    style="width: fit-content"
-                />
-                />
+                <el-pagination v-model:current-page="current" layout="prev, pager, next" :total="data.length"
+                    :default-page-size="1" style="width: fit-content" />
             </div>
         </template>
     </el-dialog>

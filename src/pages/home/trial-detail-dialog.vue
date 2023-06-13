@@ -36,6 +36,7 @@ import { ElMessage } from 'element-plus';
 import { watch, ref } from 'vue';
 import { trialDetailType } from './type';
 import { trialApi } from '@/api/trials/trials';
+import { get } from 'http';
 
 /* 对话框显示相关 */
 const centerDialogVisible = ref<boolean>(false);
@@ -47,6 +48,7 @@ watch(
     () => props.visible,
     (newVal) => {
         centerDialogVisible.value = newVal;
+        getTrialDetail()
     },
 );
 
@@ -65,16 +67,18 @@ const trialFormData = ref<trialDetailType>({
     sponsor: '',
 });
 
-trialApi.getTrialDetail({ ctr: props.ctr }).then((res) => {
-    if (res.code === 200) {
-        trialFormData.value = res.data;
-    } else {
-        ElMessage({
-            type: 'error',
-            message: res.msg,
-        });
-    }
-});
+const getTrialDetail = () => {
+    trialApi.getTrialDetail({ ctr: props.ctr }).then((res) => {
+        if (res.code === 200) {
+            trialFormData.value = res.data;
+        } else {
+            ElMessage({
+                type: 'error',
+                message: res.msg,
+            });
+        }
+    });
+}
 
 /* 标签 */
 const trialLabels = ref<Record<keyof trialDetailType, string>>({

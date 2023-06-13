@@ -63,6 +63,7 @@ watch(
     (newVal) => {
         centerDialogVisible.value = newVal;
         changeFlag.value = false;
+        getExamineeDetail();
     },
 );
 
@@ -86,7 +87,6 @@ watch(
     () => props.parms,
     (newVal) => {
         params.value = newVal;
-        getExamineeDetail();
     },
 );
 

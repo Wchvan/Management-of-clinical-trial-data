@@ -48,6 +48,7 @@ watch(
     () => props.visible,
     (newVal) => {
         centerDialogVisible.value = newVal;
+        getTrialDetail()
     },
 );
 
@@ -66,16 +67,18 @@ const trialFormData = ref<trialDetailType>({
     sponsor: '',
 });
 
-trialApi.getTrialDetail({ ctr: props.ctr }).then((res) => {
-    if (res.code === 200) {
-        trialFormData.value = res.data;
-    } else {
-        ElMessage({
-            type: 'error',
-            message: res.msg,
-        });
-    }
-});
+const getTrialDetail = () => {
+    trialApi.getTrialDetail({ ctr: props.ctr }).then((res) => {
+        if (res.code === 200) {
+            trialFormData.value = res.data;
+        } else {
+            ElMessage({
+                type: 'error',
+                message: res.msg,
+            });
+        }
+    });
+}
 
 /* 标签 */
 const trialLabels = ref<Record<keyof trialDetailType, string>>({

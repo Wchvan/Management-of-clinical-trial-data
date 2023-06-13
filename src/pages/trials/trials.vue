@@ -1,5 +1,5 @@
 <template>
-    <trial-revisit v-if="$route.path.match(/\/4$/)"></trial-revisit>
+    <trial-revisit v-if="trialStep.slice(-1) === '4'"></trial-revisit>
     <trial-phase v-else></trial-phase>
 </template>
 
