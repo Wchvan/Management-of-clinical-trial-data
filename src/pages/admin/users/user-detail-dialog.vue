@@ -108,7 +108,7 @@ watch(
     (newVal) => {
         centerDialogVisible.value = newVal;
         changeFlag.value = false;
-        getUserTrials()
+        getUserTrials();
     },
 );
 
@@ -142,11 +142,11 @@ const isIndeterminate = ref(true);
 const checkAll = ref<boolean>();
 const allExpIDs = ref<string[]>([]);
 
-const getUserTrials = ()=>{
+const getUserTrials = () => {
     adminApi.getUserTrials({ userID: userData.value.id }).then((res) => {
         if (res.code === 200) expIDs.value = res.data.expIDs;
     });
-}
+};
 
 const handleCheckAllChange = (val: boolean) => {
     allExpIDs.value = [];

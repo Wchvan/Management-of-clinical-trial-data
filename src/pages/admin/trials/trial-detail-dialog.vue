@@ -48,7 +48,7 @@ watch(
     () => props.visible,
     (newVal) => {
         centerDialogVisible.value = newVal;
-        getTrialDetail()
+        getTrialDetail();
     },
 );
 
@@ -78,7 +78,7 @@ const getTrialDetail = () => {
             });
         }
     });
-}
+};
 
 /* 标签 */
 const trialLabels = ref<Record<keyof trialDetailType, string>>({
