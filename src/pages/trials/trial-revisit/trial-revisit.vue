@@ -14,8 +14,8 @@
                 >
                     <el-menu-item
                         index="date"
-                        class="justify-center flex flex-row"
-                        style="padding: 2.5rem 0"
+                        class="justify-center flex flex-row  border-y-white"
+                        style="padding: 2.5rem 0;border-bottom-width: 1px;"
                     >
                         <template #title>
                             <div
@@ -32,8 +32,8 @@
                     </el-menu-item>
                     <el-menu-item
                         index="upload"
-                        class="justify-center flex flex-row"
-                        style="padding: 2.5rem 0"
+                        class="justify-center flex flex-row  border-y-white"
+                        style="padding: 2.5rem 0;border-bottom-width: 1px;"
                     >
                         <template #title>
                             <div

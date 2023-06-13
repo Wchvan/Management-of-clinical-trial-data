@@ -6,4 +6,6 @@ export type usersType = {
     role: 'ROLE_ADMIN' | 'ROLE_USER' | 'ROLE_BANNED';
 };
 
+export type selectOptionsType = 'username' | 'role' | 'name' | 'phone';
+
 export type usersIndexMapType = { [key in keyof usersType]: string };

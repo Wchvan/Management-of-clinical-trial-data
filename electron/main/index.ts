@@ -8,7 +8,7 @@ function createWindow() {
     const mainWindow = new BrowserWindow({
         width: 1280,
         height: 720,
-        autoHideMenuBar: false, // 自动隐藏菜单栏
+        autoHideMenuBar: true, // 自动隐藏菜单栏
         frame: true, // 边框窗口
         webPreferences: {
             preload: path.join(__dirname, '../preload/index.js'), // 隔离vite和Electron之间的状态

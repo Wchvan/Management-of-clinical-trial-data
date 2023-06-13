@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
         ElAside: typeof import('element-plus/es')['ElAside'];
         ElAvatar: typeof import('element-plus/es')['ElAvatar'];
         ElButton: typeof import('element-plus/es')['ElButton'];
+        ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup'];
         ElCalendar: typeof import('element-plus/es')['ElCalendar'];
         ElCard: typeof import('element-plus/es')['ElCard'];
         ElCheckbox: typeof import('element-plus/es')['ElCheckbox'];
@@ -45,7 +46,9 @@ declare module '@vue/runtime-core' {
         ElUpload: typeof import('element-plus/es')['ElUpload'];
         IEpCalendar: typeof import('~icons/ep/calendar')['default'];
         IEpLock: typeof import('~icons/ep/lock')['default'];
+        IEpMinus: typeof import('~icons/ep/minus')['default'];
         IEpNotebook: typeof import('~icons/ep/notebook')['default'];
+        IEpPlus: typeof import('~icons/ep/plus')['default'];
         IEpSearch: typeof import('~icons/ep/search')['default'];
         IEpTickets: typeof import('~icons/ep/tickets')['default'];
         IEpUpload: typeof import('~icons/ep/upload')['default'];

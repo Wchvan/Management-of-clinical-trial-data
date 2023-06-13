@@ -1,12 +1,12 @@
 'use strict';
-const { app: e, BrowserWindow: a } = require('electron'),
+const { app: e, BrowserWindow: r } = require('electron'),
     o = require('path'),
     i = process.env.NODE_ENV;
 function t() {
-    const n = new a({
+    const n = new r({
         width: 1280,
         height: 720,
-        autoHideMenuBar: !1,
+        autoHideMenuBar: !0,
         frame: !0,
         webPreferences: {
             preload: o.join(__dirname, '../preload/index.js'),
@@ -26,7 +26,7 @@ function t() {
 e.whenReady().then(() => {
     t(),
         e.on('activate', () => {
-            a.getAllWindows().length === 0 && t();
+            r.getAllWindows().length === 0 && t();
         });
 });
 e.on('window-all-closed', () => {

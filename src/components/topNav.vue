@@ -1,20 +1,26 @@
 <template>
-    <div class="h-full w-full flex flex-row justify-between bg-BD">
+    <div class="h-full w-full flex flex-row justify-between bg-BD border-b-2 border-y-white">
         <div
-            class="flex flex-row py-1 flex-1"
+            class="flex flex-row py-1 flex-2"
             style="cursor: pointer"
             @click="$router.push('/')"
         >
             <img :src="logoSrc" class="w-20 h-12" />
-            <div
-                class="self-center ml-2 text-2xl font-semibold"
-                style="color: #121212"
-            >
-                临床试验数据隐私管理系统
+            <div class="self-center">
+                <span
+                    class="self-center ml-2 text-4xl  font-fz"
+                    style="color: #fff"
+                >数研药盾
+                </span>
+                <span
+                    class="self-center ml-2 text-2xl  font-xk"
+                    style="color: #fff"
+                >|加密守护，开启医药研发新纪元
+                </span>
             </div>
         </div>
         <div class="text-center py-2 flex-1 justify-center flex">
-            <span class="leading-10 text-3xl font-bold">{{
+            <span class="leading-10 text-4xl font-bold" style="color: #fff">{{
                 $route.meta.title
             }}</span>
         </div>

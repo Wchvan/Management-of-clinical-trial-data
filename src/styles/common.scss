@@ -61,3 +61,25 @@ body{
 .font-red{
   color: $red-color;
 }
+
+@font-face {
+  font-family: "FZ";
+  src: url('@/assets/font/fz.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "XK";
+  src: url('@/assets/font/XK.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-fz{
+  font-family: "FZ";
+}
+
+.font-xk{
+  font-family: "XK";
+}

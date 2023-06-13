@@ -12,6 +12,14 @@ export type trialDetailType = {
     title: string;
 };
 
+export type selectOptionsType =
+    | 'clin_status'
+    | 'med_name'
+    | 'title'
+    | 'clin_stage'
+    | 'ctr'
+    | 'indication';
+
 export enum clinStatusType {
     ActiveNotRecruiting = 'Active, not recruiting',
     ApprovedForMarketing = 'Approved for marketing',
