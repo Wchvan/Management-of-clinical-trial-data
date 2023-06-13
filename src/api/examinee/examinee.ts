@@ -16,13 +16,13 @@ import {
 
 /* 获取所有受试者数据 */
 const getAllExaminee = async (params: getAllExamineeParm) => {
-    const res = (await get('/data/get-all')) as getAllExamineeRes;
+    const res = (await get('/data/get-all', params)) as getAllExamineeRes;
     return res;
 };
 
 /* 获取某个受试者详细信息 */
 const getExamineeDetail = async (params: getExamineeDetailParm) => {
-    const res = (await get('/data/get')) as getExamineeDetailRes;
+    const res = (await get('/data/get', params)) as getExamineeDetailRes;
     return res;
 };
 
@@ -40,14 +40,15 @@ const searchExaminee = async (params: searchExamineeParm) => {
 
 /* 获取有随访的日期 */
 const getRevisitDay = async (params: getRevisitDayParm) => {
-    const res = (await get('/experiment/get-date')) as getRevisitDayRes;
+    const res = (await get('/experiment/get-date', params)) as getRevisitDayRes;
     return res;
 };
 
 /* 根据日期获取相关人员信息 */
-const getRevisitSubjects = async (parms: getRevisitSubjectsParm) => {
+const getRevisitSubjects = async (params: getRevisitSubjectsParm) => {
     const res = (await get(
         '/experiment/get-followup',
+        params,
     )) as getRevisitSubjectsRes;
     return res;
 };

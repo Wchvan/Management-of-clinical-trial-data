@@ -19,8 +19,8 @@ const getAllTrials = async () => {
 };
 
 /* 根据登记号获取实验详情 */
-const getTrialDetail = async (parms: getTrialDetailParm) => {
-    const res = (await get('/experiment/get')) as getTrialDetailRes;
+const getTrialDetail = async (params: getTrialDetailParm) => {
+    const res = (await get('/experiment/get', params)) as getTrialDetailRes;
     return res;
 };
 
