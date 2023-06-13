@@ -13,7 +13,6 @@ export type getUsersRes = apiRes<
 
 /* 创建用户 */
 export type createUserParm = {
-    id: string;
     name: string;
     username: string;
     role: 'ROLE_ADMIN' | 'ROLE_USER' | 'ROLE_BANNED';

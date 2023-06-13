@@ -75,7 +75,7 @@ import useTrialsStore from '@/store/trials';
 import { adminApi } from '@/api/admin/admin';
 import { ElMessage } from 'element-plus';
 import { watch, ref, reactive } from 'vue';
-import type { usersType, usersIndexMapType } from './type';
+import type { usersType, createUserType } from './type';
 
 const trialsStore = useTrialsStore();
 const emit = defineEmits<{
@@ -95,8 +95,7 @@ watch(
 );
 
 /* 获取数据 */
-const userData = ref<usersType>({
-    id: '',
+const userData = ref<createUserType>({
     name: '',
     phone: '',
     username: '',
@@ -104,8 +103,7 @@ const userData = ref<usersType>({
 });
 
 /* 将得到的数据映射成字段 */
-const dataIndexMap = ref<usersIndexMapType>({
-    id: '实验者编号',
+const dataIndexMap = ref<Record<keyof createUserType, string>>({
     name: '实验者姓名',
     phone: '电话号码',
     role: '实验者账号状况',
@@ -130,7 +128,7 @@ const handleCheckAllChange = (val: boolean) => {
 /* 新增相关 */
 const handleSubmit = () => {
     for (let i in userData.value) {
-        if (userData.value[i as keyof usersType] === '') {
+        if (userData.value[i as keyof createUserType] === '') {
             ElMessage({
                 type: 'error',
                 message: '请填写所有信息',
