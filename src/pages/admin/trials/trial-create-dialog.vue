@@ -13,9 +13,14 @@
             </template>
             <div v-for="(item, index) in trialLabels" :key="index">
                 <div class="text-lg py-2 flex flex-row">
-                    <div class="w-44 mr-1" style="align-items: center;display: inherit;">{{ item }}:</div>
+                    <div
+                        class="w-44 mr-1"
+                        style="align-items: center; display: inherit"
+                    >
+                        {{ item }}:
+                    </div>
                     <el-input
-                        v-if="index !== 'clin_stage' && index !==  'clin_status'"
+                        v-if="index !== 'clin_stage' && index !== 'clin_status'"
                         v-model="trialData[index]"
                         style="font-size: 1.125rem"
                     ></el-input>
@@ -59,7 +64,7 @@
 <script setup lang="ts">
 import { ElMessage } from 'element-plus';
 import { watch, ref } from 'vue';
-import { trialDetailType,clinStatusType,clinStageType } from './type';
+import { trialDetailType, clinStatusType, clinStageType } from './type';
 import { trialApi } from '@/api/trials/trials';
 
 const emit = defineEmits<{
@@ -103,7 +108,6 @@ const clinStatusOptions = ref<string[]>([]);
 for (let i in clinStatusType) {
     clinStatusOptions.value.push(i);
 }
-
 
 /* 获取数据 */
 const trialData = ref<trialDetailType>({

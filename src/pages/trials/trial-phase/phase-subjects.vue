@@ -177,11 +177,11 @@ const search = () => {
             }
             resetSearch();
             searchForm.value = {
-    subject_id: '',
-    name: '',
-    gender: '',
-    age: '',
-}
+                subject_id: '',
+                name: '',
+                gender: '',
+                age: '',
+            };
         });
 };
 

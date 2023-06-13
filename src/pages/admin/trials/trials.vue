@@ -234,7 +234,7 @@ const search = () => {
             title: '',
             ctr: '',
             indication: '',
-        }
+        };
     });
 };
 // 表格数据
