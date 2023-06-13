@@ -32,9 +32,14 @@
                         <div style="color: red">只支持excel文件</div>
                     </template>
                 </el-upload>
-                <el-upload v-else drag action="/api/data/upload-exp-xls" multiple 
+                <el-upload
+                    v-else
+                    drag
+                    action="/api/data/upload-exp-xls"
+                    multiple
                     :on-success="handleSuccess"
-                    :on-error="handleError">
+                    :on-error="handleError"
+                >
                     <i-ep-uploadFilled
                         class="text-8xl center mt-36"
                         style="color: skyblue"
@@ -88,25 +93,25 @@ const next = () => {
 };
 
 const handleSuccess = (res: any) => {
-    if(res.code === 200) {
+    if (res.code === 200) {
         ElMessage({
             type: 'success',
-            message: '上传成功'
-        })
-    }else {
+            message: '上传成功',
+        });
+    } else {
         ElMessage({
             type: 'error',
-            message: res.msg
-        })
+            message: res.msg,
+        });
     }
-}
+};
 
 const handleError = () => {
     ElMessage({
         type: 'error',
-        message: '上传出现问题'
-    })
-}
+        message: '上传出现问题',
+    });
+};
 </script>
 
 <style lang="scss" scoped></style>
