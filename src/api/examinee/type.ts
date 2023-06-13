@@ -18,6 +18,7 @@ export type getAllExamineeRes = apiRes<
 export type getExamineeDetailParm = {
     ctr: string;
     subject_id: string;
+    clin_stage: string;
 };
 
 export type getExamineeDetailRes = apiRes<{

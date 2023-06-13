@@ -86,18 +86,23 @@ watch(
     () => props.parms,
     (newVal) => {
         params.value = newVal;
+        getExamineeDetail()
     },
 );
-examineeApi.getExamineeDetail(params.value).then((res) => {
-    if (res.code === 200) {
-        exmaineeData.value = res.data;
-    } else {
-        ElMessage({
-            type: 'error',
-            message: res.msg,
-        });
-    }
-});
+
+const getExamineeDetail = () => {
+    examineeApi.getExamineeDetail(params.value).then((res) => {
+        if (res.code === 200) {
+            exmaineeData.value = res.data;
+        } else {
+            ElMessage({
+                type: 'error',
+                message: res.msg,
+            });
+        }
+    });
+}
+getExamineeDetail()
 
 /* 标签 */
 const examineeLabels = ref<Record<keyof exmaineeDetailType, string>>({

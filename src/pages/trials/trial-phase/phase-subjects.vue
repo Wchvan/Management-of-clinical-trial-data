@@ -220,6 +220,7 @@ const detailDialog = (index: number) => {
     detailParm.value = {
         subject_id: examineeData.value[index].subject_id,
         ctr: trialId,
+        clin_stage: trialStep
     };
     setTimeout(() => {
         detailDialogVisble.value = true;
