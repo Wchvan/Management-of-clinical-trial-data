@@ -32,9 +32,8 @@
 </template>
 
 <script setup lang="ts">
-import useTrialsStore from '@/store/trials';
 import { ElMessage } from 'element-plus';
-import { watch, ref, reactive } from 'vue';
+import { watch, ref } from 'vue';
 import { trialDetailType } from './type';
 import { trialApi } from '@/api/trials/trials';
 

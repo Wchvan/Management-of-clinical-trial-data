@@ -227,6 +227,14 @@ const search = () => {
             });
         }
         resetSearch();
+        searchForm.value = {
+            clin_status: '',
+            clin_stage: '',
+            med_name: '',
+            title: '',
+            ctr: '',
+            indication: '',
+        }
     });
 };
 // 表格数据

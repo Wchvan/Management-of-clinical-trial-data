@@ -13,21 +13,32 @@
             </template>
             <div v-for="(item, index) in trialLabels" :key="index">
                 <div class="text-lg py-2 flex flex-row">
-                    <div class="w-44 mr-3">{{ item }}:</div>
+                    <div class="w-44 mr-1" style="align-items: center;display: inherit;">{{ item }}:</div>
                     <el-input
-                        v-if="index !== 'clin_stage'"
+                        v-if="index !== 'clin_stage' && index !==  'clin_status'"
                         v-model="trialData[index]"
                         style="font-size: 1.125rem"
                     ></el-input>
                     <el-select
-                        v-else
+                        v-else-if="index === 'clin_stage'"
                         v-model="trialData[index]"
-                        class="m-2"
                         placeholder="Select"
                         size="large"
                     >
                         <el-option
                             v-for="item in clinStageOptions"
+                            :key="item"
+                            :value="item"
+                        />
+                    </el-select>
+                    <el-select
+                        v-else-if="index === 'clin_status'"
+                        v-model="trialData[index]"
+                        placeholder="Select"
+                        size="large"
+                    >
+                        <el-option
+                            v-for="item in clinStatusOptions"
                             :key="item"
                             :value="item"
                         />
@@ -46,13 +57,11 @@
 </template>
 
 <script setup lang="ts">
-import useTrialsStore from '@/store/trials';
 import { ElMessage } from 'element-plus';
-import { watch, ref, reactive } from 'vue';
-import { trialDetailType } from './type';
+import { watch, ref } from 'vue';
+import { trialDetailType,clinStatusType,clinStageType } from './type';
 import { trialApi } from '@/api/trials/trials';
 
-const trialsStore = useTrialsStore();
 const emit = defineEmits<{
     (e: 'update'): void;
 }>();
@@ -84,15 +93,24 @@ const trialLabels = ref<Record<keyof trialDetailType, string>>({
     sponsor: '申办者',
 });
 
-/* 分期 */
-const clinStageOptions = ['phase1', 'phase2', 'phase3', 'phase4'];
+// 实验分期信息
+const clinStageOptions = ref<string[]>([]);
+for (let i in clinStageType) {
+    clinStageOptions.value.push(i);
+}
+// 实验状态信息
+const clinStatusOptions = ref<string[]>([]);
+for (let i in clinStatusType) {
+    clinStatusOptions.value.push(i);
+}
+
 
 /* 获取数据 */
 const trialData = ref<trialDetailType>({
     ctr: '',
     title: '',
     clin_stage: 'phase1',
-    clin_status: '',
+    clin_status: 'Active, not recruiting',
     contact: '',
     company: '',
     indication: '',

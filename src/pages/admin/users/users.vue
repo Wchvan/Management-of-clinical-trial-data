@@ -213,6 +213,13 @@ const search = () => {
                 message: res.msg,
             });
         }
+        resetSearch()
+        searchForm.value ={
+    username: '',
+    role: '',
+    phone: '',
+    name: '',
+}
     });
 };
 
