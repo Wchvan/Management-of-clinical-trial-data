@@ -86,7 +86,7 @@ watch(
     () => props.parms,
     (newVal) => {
         params.value = newVal;
-        getExamineeDetail()
+        getExamineeDetail();
     },
 );
 
@@ -101,8 +101,8 @@ const getExamineeDetail = () => {
             });
         }
     });
-}
-getExamineeDetail()
+};
+getExamineeDetail();
 
 /* 标签 */
 const examineeLabels = ref<Record<keyof exmaineeDetailType, string>>({
