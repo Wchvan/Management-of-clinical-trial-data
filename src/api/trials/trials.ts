@@ -10,6 +10,8 @@ import {
     getUserTrialsRes,
     searchTrialParm,
     searchTrialRes,
+    deleteTrialParm,
+    deleteTrialRes,
 } from './type';
 
 /* 获取所有实验 */
@@ -42,6 +44,12 @@ const searchTrial = async (params: searchTrialParm) => {
     return res;
 };
 
+/* 删除试验 */
+const deleteTrial = async (params: deleteTrialParm) => {
+    const res = (await post('/experiment/delete', params)) as deleteTrialRes;
+    return res;
+};
+
 /* 获取登录用户的相关实验信息 */
 const getUserTrials = async () => {
     const res = (await get('/user/get-exp')) as getUserTrialsRes;
@@ -54,5 +62,6 @@ export class trialApi {
     static createTrial = createTrial;
     static changeTrial = changeTrial;
     static searchTrial = searchTrial;
+    static deleteTrial = deleteTrial;
     static getUserTrials = getUserTrials;
 }

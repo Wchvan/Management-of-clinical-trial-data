@@ -33,6 +33,7 @@ import type { subjectInfo } from './type';
 import { ElMessage } from 'element-plus';
 import { ref, watch } from 'vue';
 import revisitSubjectsDialog from './revisit-subjects-dialog.vue';
+import { getDay, getMonth } from '@/utils/day/day'
 
 const dateVal = ref<Date>(new Date());
 
@@ -53,10 +54,10 @@ const getSelectDay = (month: string) => {
         }
     });
 };
-getSelectDay(dateVal.value.getMonth().toString());
+getSelectDay(getMonth(dateVal.value));
 watch(dateVal, (newVal, oldVal) => {
     if (newVal.getMonth() !== oldVal.getMonth()) {
-        getSelectDay(newVal.getMonth().toString());
+        getSelectDay(getMonth(newVal));
     }
 });
 
@@ -72,6 +73,7 @@ const isSelect = (day: string): boolean => {
 const subjectInfo = ref<subjectInfo[]>([]);
 const dialogVisible = ref<boolean>(false);
 const getSubjectInfo = (date: string) => {
+    console.log(date)
     if (isSelect(date)) {
         examineeApi.getRevisitSubjects({ date: date }).then((res) => {
             if (res.code === 200) {

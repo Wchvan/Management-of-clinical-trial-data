@@ -90,7 +90,7 @@ import useTrialsStore from '@/store/trials';
 import { adminApi } from '@/api/admin/admin';
 import { ElMessage } from 'element-plus';
 import { watch, ref, reactive } from 'vue';
-import type { usersType, usersIndexMapType } from './type';
+import type { usersType } from './type';
 
 const trialsStore = useTrialsStore();
 const emit = defineEmits<{
@@ -128,7 +128,7 @@ watch(
 );
 
 /* 将得到的数据映射成字段 */
-const dataIndexMap = ref<usersIndexMapType>({
+const dataIndexMap = ref<Record<keyof usersType, string>>({
     id: '实验者编号',
     name: '实验者姓名',
     phone: '电话号码',

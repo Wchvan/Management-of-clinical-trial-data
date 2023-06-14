@@ -73,23 +73,39 @@
                         :prop="key"
                         :label="item"
                         align="center"
-                        width="300"
+                        width="280"
                     />
                     <el-table-column
                         prop="role"
                         fixed="right"
-                        width="200"
+                        width="250"
                         label="操作"
                         align="center"
                     >
                         <template #default="scope">
                             <el-button
                                 type="primary"
-                                class="w-3/4"
-                                size="large"
+                                    class="mt-2"
+                                    style="
+                                        margin-left: 0;
+                                        margin-right: 0.5rem;
+                                        width: 80px;
+                                    "
                                 @click="detailDialog(scope.$index)"
                                 >查看详情</el-button
                             >
+                            
+                            <el-button
+                                    type="danger"
+                                    class="mt-2"
+                                    style="
+                                        margin-left: 0;
+                                        margin-right: 0.5rem;
+                                        width: 80px;
+                                    "
+                                    @click="deleteDialog(scope.$index)"
+                                    >删除受试者</el-button
+                                >
                         </template>
                     </el-table-column>
                 </el-table>
@@ -102,6 +118,24 @@
         @update="getSubjects()"
     >
     </subject-detail-dialog>
+    <el-dialog
+        v-model="deleteDialogVisible"
+        width="30%"
+        center
+        >
+        <el-card class="box-card">
+        <template #header>
+            <div class="text-center text-2xl font-semibold">
+                <span style="color: red;">提示</span>
+            </div>
+        </template>
+        <div   class="text-center text-xl font-semibold">请确认是否删除“{{ deleteId }}”</div>
+    </el-card>
+    <template #footer>
+            <el-button @click="deleteDialogVisible = false">取 消</el-button>
+            <el-button type="danger" @click="deleteTrial">确 定</el-button>
+    </template>
+    </el-dialog>
 </template>
 
 <script setup lang="ts">
@@ -233,6 +267,34 @@ const detailDialog = (index: number) => {
         detailDialogVisble.value = true;
     }, 50);
 };
+
+// 删除受试者
+const deleteDialogVisible = ref<boolean>(false);
+const deleteId = ref<string>('');
+const deleteDialog = (index: number) => {
+    deleteId.value = examineeData.value[index].subject_id;
+    deleteDialogVisible.value = false;
+    setTimeout(() => {
+        deleteDialogVisible.value = true;
+    });
+}
+const deleteTrial = () => {
+    examineeApi.deleteExaminee({ctr:trialId, clin_stage: trialStep, subject_id: deleteId.value}).then(res=>{
+        if (res.code === 200) {
+            ElMessage({
+                type: 'success',
+                message: '删除成功'
+            })
+            getSubjects()
+        } else {
+            ElMessage({
+                type: 'error',
+                message: res.msg
+            })
+        }
+        deleteDialogVisible.value = false;
+    })
+}
 </script>
 
 <style lang="scss" scoped></style>

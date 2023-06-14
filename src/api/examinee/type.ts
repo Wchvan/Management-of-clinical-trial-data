@@ -77,6 +77,30 @@ export type searchExamineeRes = apiRes<
     }[]
 >;
 
+/* 上传受试者信息 */
+export type postExamineeParm = FormData;
+
+export type postExamineeRes = apiRes<null>;
+
+/* 删除受试者信息 */
+export type deleteExamineeParm = {
+    clin_stage: string;
+    ctr: string;
+    subject_id: string;
+};
+
+export type deleteExamineeRes = apiRes<null>;
+
+/* 上传实验信息 */
+export type postTrialDataParm = FormData;
+
+export type postTrialDataRes = apiRes<null>;
+
+/* 上传随访者信息 */
+export type postRevisitParm = FormData;
+
+export type postRevisitRes = apiRes<null>;
+
 /* 获取随访日期 */
 export type getRevisitDayParm = {
     month: string;

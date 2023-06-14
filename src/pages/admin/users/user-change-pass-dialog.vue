@@ -2,6 +2,7 @@
     <el-dialog
         v-model="centerDialogVisible"
         width="30%"
+        top="20%"
         center
         destroy-on-close
     >

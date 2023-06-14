@@ -77,5 +77,12 @@ export type searchTrialRes = apiRes<
     }[]
 >;
 
+/* 删除实验 */
+export type deleteTrialParm = {
+    ctr: string;
+};
+
+export type deleteTrialRes = apiRes<null>;
+
 /* 获取用户的实验 */
 export type getUserTrialsRes = getAllTrialsRes;

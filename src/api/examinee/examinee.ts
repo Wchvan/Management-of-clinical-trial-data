@@ -12,6 +12,14 @@ import {
     getRevisitSubjectsRes,
     searchExamineeParm,
     searchExamineeRes,
+    postExamineeParm,
+    postExamineeRes,
+    postRevisitParm,
+    postRevisitRes,
+    postTrialDataParm,
+    postTrialDataRes,
+    deleteExamineeParm,
+    deleteExamineeRes,
 } from './type';
 
 /* 获取所有受试者数据 */
@@ -38,6 +46,32 @@ const searchExaminee = async (params: searchExamineeParm) => {
     return res;
 };
 
+/* Excel上传受试者信息 */
+const postExaminee = async (params: postExamineeParm) => {
+    const res = (await post('/data/upload-xls', params, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    })) as postExamineeRes;
+    return res;
+};
+
+/* 删除受试者信息 */
+const deleteExaminee = async (params: deleteExamineeParm) => {
+    const res = (await post('/data/delete', params)) as deleteExamineeRes;
+    return res;
+};
+
+/* Excel上传实验信息信息 */
+const postTrialData = async (params: postTrialDataParm) => {
+    const res = (await post('/data/upload-exp-xls', params, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    })) as postTrialDataRes;
+    return res;
+};
+
 /* 获取有随访的日期 */
 const getRevisitDay = async (params: getRevisitDayParm) => {
     const res = (await get('/experiment/get-date', params)) as getRevisitDayRes;
@@ -53,11 +87,25 @@ const getRevisitSubjects = async (params: getRevisitSubjectsParm) => {
     return res;
 };
 
+/* Excel上传随访者者信息 */
+const postRevisit = async (params: postRevisitParm) => {
+    const res = (await post('/experiment/upload-followup-xls', params, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    })) as postRevisitRes;
+    return res;
+};
+
 export class examineeApi {
     static getAllExaminee = getAllExaminee;
     static getRevisitDay = getRevisitDay;
     static getRevisitSubjects = getRevisitSubjects;
     static getExamineeDetail = getExamineeDetail;
+    static postExmainee = postExaminee;
+    static postTrialData = postTrialData;
+    static deleteExaminee = deleteExaminee;
     static searchExaminee = searchExaminee;
+    static postRevisit = postRevisit;
     static changeExamineeInfo = changeExamineeInfo;
 }

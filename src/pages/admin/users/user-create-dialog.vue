@@ -46,7 +46,7 @@
                         >
                     </div>
                 </el-header>
-                <el-main style="padding: 1rem 0">
+                <el-main style="padding: 1rem 0" class="h-36 overflow-auto">
                     <el-checkbox-group v-model="expIDs">
                         <el-checkbox
                             v-for="item in trialsStore.trials"
