@@ -170,23 +170,23 @@
             :visible="detailTrialVisible"
             :ctr="detailCtr"
         ></trial-detail-dialog>
-        <el-dialog
-            v-model="deleteDialogVisible"
-            width="30%"
-            center
-            >
+        <el-dialog v-model="deleteDialogVisible" width="30%" center>
             <el-card class="box-card">
-            <template #header>
-                <div class="text-center text-2xl font-semibold">
-                    <span style="color: red;">提示</span>
+                <template #header>
+                    <div class="text-center text-2xl font-semibold">
+                        <span style="color: red">提示</span>
+                    </div>
+                </template>
+                <div class="text-center text-xl font-semibold">
+                    请确认是否删除“{{ deleteTitle }}”
                 </div>
-            </template>
-            <div   class="text-center text-xl font-semibold">请确认是否删除“{{ deleteTitle }}”</div>
-        </el-card>
-        <template #footer>
-                <el-button @click="deleteDialogVisible = false">取 消</el-button>
+            </el-card>
+            <template #footer>
+                <el-button @click="deleteDialogVisible = false"
+                    >取 消</el-button
+                >
                 <el-button type="danger" @click="deleteTrial">确 定</el-button>
-        </template>
+            </template>
         </el-dialog>
     </layout>
 </template>
@@ -354,24 +354,24 @@ const deleteDialog = (index: number) => {
     deleteCtr.value = trialTableData.value[index].ctr;
     deleteTitle.value = trialTableData.value[index].title;
     deleteDialogVisible.value = true;
-}
+};
 const deleteTrial = () => {
-    trialApi.deleteTrial({ctr:deleteCtr.value}).then(res=>{
+    trialApi.deleteTrial({ ctr: deleteCtr.value }).then((res) => {
         if (res.code === 200) {
             ElMessage({
                 type: 'success',
-                message: '删除成功'
-            })
-            getAllTrials()
+                message: '删除成功',
+            });
+            getAllTrials();
         } else {
             ElMessage({
                 type: 'error',
-                message: res.msg
-            })
+                message: res.msg,
+            });
         }
         deleteDialogVisible.value = false;
-    })
-}
+    });
+};
 </script>
 
 <style lang="scss" scoped></style>

@@ -18,13 +18,13 @@
                     drag
                     action="#"
                     accept=".xlsx, .xls"
-                    :on-exceed="exceedFile" 
+                    :on-exceed="exceedFile"
                     :on-error="handleError"
-			        :on-success="handleSuccess" 
-                    :http-request="uploadExcel" 
-                    :before-upload="beforeUPload" 
+                    :on-success="handleSuccess"
+                    :http-request="uploadExcel"
+                    :before-upload="beforeUPload"
                     :show-file-list="true"
-			        :limit="1"
+                    :limit="1"
                 >
                     <i-ep-uploadFilled
                         class="text-8xl center mt-36"
@@ -42,13 +42,13 @@
                     drag
                     action="#"
                     accept=".xlsx, .xls"
-                    :on-exceed="exceedFile" 
+                    :on-exceed="exceedFile"
                     :on-error="handleError"
-			        :on-success="handleSuccess" 
-                    :http-request="uploadExcel" 
-                    :before-upload="beforeUPload" 
+                    :on-success="handleSuccess"
+                    :http-request="uploadExcel"
+                    :before-upload="beforeUPload"
                     :show-file-list="true"
-			        :limit="1"
+                    :limit="1"
                 >
                     <i-ep-uploadFilled
                         class="text-8xl center mt-36"
@@ -90,7 +90,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import {ElMessageBox} from 'element-plus';
+import { ElMessageBox } from 'element-plus';
 import { examineeApi } from '@/api/examinee/examinee';
 // 当前步骤
 const active = ref<number>(1);
@@ -124,58 +124,58 @@ const handleError = () => {
     });
 }; */
 const beforeUPload = (file: any) => {
-	const isExcel =
-		file.type === 'application/vnd.ms-excel' ||
-		file.type ===
-		'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
-	const isLt2M = file.size / 1024 / 1024 < 20;
-	if (!isExcel)
-		ElMessageBox({
-			title: '温馨提示',
-			message: '上传文件只能是 xls / xlsx 格式！',
-			type: 'warning',
-		});
-	if (!isLt2M)
-		ElMessageBox({
-			title: '温馨提示',
-			message: '上传文件大小不能超过 20MB!',
-			type: 'warning',
-		});
-	return isExcel && isLt2M;
+    const isExcel =
+        file.type === 'application/vnd.ms-excel' ||
+        file.type ===
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+    const isLt2M = file.size / 1024 / 1024 < 20;
+    if (!isExcel)
+        ElMessageBox({
+            title: '温馨提示',
+            message: '上传文件只能是 xls / xlsx 格式！',
+            type: 'warning',
+        });
+    if (!isLt2M)
+        ElMessageBox({
+            title: '温馨提示',
+            message: '上传文件大小不能超过 20MB!',
+            type: 'warning',
+        });
+    return isExcel && isLt2M;
 };
 // 文件数超出提示
 const exceedFile = () => {
-	ElMessage.warning('最多只能上传一个文件！');
+    ElMessage.warning('最多只能上传一个文件！');
 };
 // 上传错误提示
 const handleError = () => {
-	ElMessage.error('导入数据失败，请您重新上传！');
+    ElMessage.error('导入数据失败，请您重新上传！');
 };
- 
+
 //上传成功提示
 const handleSuccess = () => {
-	ElMessage.success('导入数据成功！');
+    ElMessage.success('导入数据成功！');
 };
 // 文件上传
 const uploadExcel = async (param: any) => {
-	let fileFormData = new FormData();
-	fileFormData.append('file', param.file);
-	//导入公用人事考勤数据
-	if (active.value === 1) {
-        const res = await examineeApi.postExmainee(fileFormData)
+    let fileFormData = new FormData();
+    fileFormData.append('file', param.file);
+    //导入公用人事考勤数据
+    if (active.value === 1) {
+        const res = await examineeApi.postExmainee(fileFormData);
         if (res.code !== 200) {
             ElMessage({
                 type: 'error',
-                message: res.msg
-            })
+                message: res.msg,
+            });
         }
     } else {
-        const res = await examineeApi.postTrialData(fileFormData)
+        const res = await examineeApi.postTrialData(fileFormData);
         if (res.code !== 200) {
             ElMessage({
                 type: 'error',
-                message: res.msg
-            })
+                message: res.msg,
+            });
         }
     }
 };

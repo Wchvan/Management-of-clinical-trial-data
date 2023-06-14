@@ -252,26 +252,26 @@ const handleSubmit = (formEl: FormInstance | undefined) => {
 </script>
 
 <style lang="scss" scoped>
-.navTitle{
+.navTitle {
     color: #cce7f8;
-  font-size: 2.5rem;
-  font-family: 'Pacifico', cursive;
-  text-transform: uppercase;
-  animation: shining 0.1s alternate infinite;
+    font-size: 2.5rem;
+    font-family: 'Pacifico', cursive;
+    text-transform: uppercase;
+    animation: shining 0.1s alternate infinite;
 }
 
 @keyframes shining {
-  from {
-    text-shadow: 0 0 2px rgba(182, 211, 207, 0.9),
-      0 0 30px rgba(182, 211, 207, 0.3), 0 0 12px rgba(15, 115, 223, 0.5),
-      0 0 21px rgba(15, 115, 223, 0.9), 0 0 34px rgba(15, 115, 223, 0.8),
-      0 0 54px rgba(15, 115, 223, 0.9);
-  }
-  to {
-    text-shadow: 0 0 6px rgba(182, 211, 207, 1),
-      0 0 30px rgba(182, 211, 207, 0.4), 0 0 12px rgba(15, 115, 223, 0.6),
-      0 0 22px rgba(15, 115, 223, 0.8), 0 0 38px rgba(15, 115, 223, 0.9),
-      0 0 60px rgba(15, 115, 223, 1);
-  }
+    from {
+        text-shadow: 0 0 2px rgba(182, 211, 207, 0.9),
+            0 0 30px rgba(182, 211, 207, 0.3), 0 0 12px rgba(15, 115, 223, 0.5),
+            0 0 21px rgba(15, 115, 223, 0.9), 0 0 34px rgba(15, 115, 223, 0.8),
+            0 0 54px rgba(15, 115, 223, 0.9);
+    }
+    to {
+        text-shadow: 0 0 6px rgba(182, 211, 207, 1),
+            0 0 30px rgba(182, 211, 207, 0.4), 0 0 12px rgba(15, 115, 223, 0.6),
+            0 0 22px rgba(15, 115, 223, 0.8), 0 0 38px rgba(15, 115, 223, 0.9),
+            0 0 60px rgba(15, 115, 223, 1);
+    }
 }
 </style>
