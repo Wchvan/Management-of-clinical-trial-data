@@ -48,12 +48,12 @@ watch(
 
 // 对key值进行映射
 const labelMap = ref<subjectInfo>({
-    subjectID: '受试者id',
-    phone: '电话号码',
+    subject_id: '受试者ID',
+    tel: '电话号码',
     address: '地址',
     date: '日期',
     time: '时间',
-    userID: '负责人id',
+    user_id: '负责人ID',
     name: '负责人名称',
 });
 
