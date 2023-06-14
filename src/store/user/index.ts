@@ -7,6 +7,7 @@ import type {
     loginRes,
     changePassParm,
     changePassRes,
+    checkUserRes,
 } from '@/api/user/type';
 
 const useUserStore = defineStore(
@@ -48,6 +49,15 @@ const useUserStore = defineStore(
             initUserInfo();
         }
 
+        // 检测登录状况
+        async function checkUser() {
+            const res = (await userApi.checkUser()) as checkUserRes;
+            if (res.code !== 200) {
+                logout();
+            }
+            return res;
+        }
+
         return {
             userName,
             userRole,
@@ -56,6 +66,7 @@ const useUserStore = defineStore(
             login,
             changePass,
             logout,
+            checkUser,
         };
     },
     {

@@ -19,3 +19,6 @@ export type changePassParm = {
 };
 
 export type changePassRes = apiRes<null>;
+
+/* 查询用户登录相关 */
+export type checkUserRes = apiRes<null>;

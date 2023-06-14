@@ -1,11 +1,5 @@
-import {
-    createRouter,
-    createWebHashHistory,
-    createWebHistory,
-    RouteRecordRaw,
-} from 'vue-router';
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import useUserStore from '@/store/user';
-import useTrialsStore from '@/store/trials';
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -83,7 +77,6 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     const userStore = useUserStore();
-    const trialStore = useTrialsStore();
     const isAuthenticated = userStore.userName;
     if (!to.matched.some((record) => record.meta.avoidAuth)) {
         if (!isAuthenticated) {
