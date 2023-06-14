@@ -111,6 +111,7 @@ export type getRevisitDayRes = apiRes<string[]>;
 /* 根据日期获取随访者具体参数 */
 export type getRevisitSubjectsParm = {
     date: string;
+    ctr: string;
 };
 
 export type getRevisitSubjectsRes = apiRes<

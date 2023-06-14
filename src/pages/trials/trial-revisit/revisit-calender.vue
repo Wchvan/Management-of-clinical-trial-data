@@ -34,6 +34,11 @@ import { ElMessage } from 'element-plus';
 import { ref, watch } from 'vue';
 import revisitSubjectsDialog from './revisit-subjects-dialog.vue';
 import { getDay, getMonth } from '@/utils/day/day';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+/* 获取路由信息 */
+const [, , trialId, trialStep] = [...route.path.split('/')];
 
 const dateVal = ref<Date>(new Date());
 
@@ -75,7 +80,7 @@ const dialogVisible = ref<boolean>(false);
 const getSubjectInfo = (date: string) => {
     console.log(date);
     if (isSelect(date)) {
-        examineeApi.getRevisitSubjects({ date: date }).then((res) => {
+        examineeApi.getRevisitSubjects({ date: date, ctr: trialId }).then((res) => {
             if (res.code === 200) {
                 subjectInfo.value = res.data;
                 dialogVisible.value = false;

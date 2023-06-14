@@ -95,10 +95,10 @@ import { ref } from 'vue';
 import { ElMessageBox } from 'element-plus';
 import { examineeApi } from '@/api/examinee/examinee';
 import { useRoute } from 'vue-router';
-import { fi } from 'element-plus/es/locale';
 const route = useRoute();
-/* 做路由判断 */
+/* 获取路由信息 */
 const [, , trialId, trialStep] = [...route.path.split('/')];
+
 
 // 当前步骤
 const active = ref<number>(1);
