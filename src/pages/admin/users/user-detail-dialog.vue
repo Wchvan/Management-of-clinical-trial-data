@@ -36,7 +36,7 @@
                     @change="changeFlag = true"
                 >
                     <el-option
-                        v-for="item in ['ROLE_USER', 'ROLE_BANNED']"
+                        v-for="item in ['USER', 'BANNED']"
                         :key="item"
                         :label="item"
                         :value="item"
@@ -118,7 +118,7 @@ const userData = ref<usersType>({
     name: '',
     phone: '',
     username: '',
-    role: 'ROLE_USER',
+    role: 'USER',
 });
 watch(
     () => props.data,

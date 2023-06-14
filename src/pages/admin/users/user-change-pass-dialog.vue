@@ -88,7 +88,7 @@ const userData = ref<usersType>({
     name: '',
     phone: '',
     username: '',
-    role: 'ROLE_USER',
+    role: 'USER',
 });
 watch(
     () => props.data,

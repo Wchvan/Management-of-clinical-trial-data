@@ -24,7 +24,7 @@
                 ></el-input>
                 <el-select v-else v-model="userData[key]" placeholder="Select">
                     <el-option
-                        v-for="item in ['ROLE_USER', 'ROLE_BANNED']"
+                        v-for="item in ['USER', 'BANNED']"
                         :key="item"
                         :label="item"
                         :value="item"
@@ -99,7 +99,7 @@ const userData = ref<createUserType>({
     name: '',
     phone: '',
     username: '',
-    role: 'ROLE_USER',
+    role: 'USER',
 });
 
 /* 将得到的数据映射成字段 */

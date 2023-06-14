@@ -3,14 +3,14 @@ export type usersType = {
     name: string;
     username: string;
     phone: string;
-    role: 'ROLE_ADMIN' | 'ROLE_USER' | 'ROLE_BANNED';
+    role: 'ADMIN' | 'USER' | 'BANNED';
 };
 
 export type createUserType = {
     name: string;
     username: string;
     phone: string;
-    role: 'ROLE_ADMIN' | 'ROLE_USER' | 'ROLE_BANNED';
+    role: 'ADMIN' | 'USER' | 'BANNED';
 };
 
 export type selectOptionsType = 'username' | 'role' | 'name' | 'phone';

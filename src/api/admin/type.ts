@@ -6,7 +6,7 @@ export type getUsersRes = apiRes<
         id: string;
         name: string;
         username: string;
-        role: 'ROLE_ADMIN' | 'ROLE_USER' | 'ROLE_BANNED';
+        role: 'ADMIN' | 'USER' | 'BANNED';
         phone: string;
     }[]
 >;
@@ -15,7 +15,7 @@ export type getUsersRes = apiRes<
 export type createUserParm = {
     name: string;
     username: string;
-    role: 'ROLE_ADMIN' | 'ROLE_USER' | 'ROLE_BANNED';
+    role: 'ADMIN' | 'USER' | 'BANNED';
     phone: string;
     expIDs: string[];
 };
@@ -35,7 +35,7 @@ export type changeUserParm = {
     id: string;
     name: string;
     username: string;
-    role: 'ROLE_ADMIN' | 'ROLE_USER' | 'ROLE_BANNED';
+    role: 'ADMIN' | 'USER' | 'BANNED';
     phone: string;
     expIDs: string[];
 };
@@ -55,7 +55,7 @@ export type searchUserRes = apiRes<
         id: string;
         name: string;
         username: string;
-        role: 'ROLE_ADMIN' | 'ROLE_USER' | 'ROLE_BANNED';
+        role: 'ADMIN' | 'USER' | 'BANNED';
         phone: string;
     }[]
 >;

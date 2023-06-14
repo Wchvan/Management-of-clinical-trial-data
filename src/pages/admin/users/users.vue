@@ -241,7 +241,7 @@ const getUsers = () => {
         tableData.value = res.data;
         banArr.value = [];
         for (let i in tableData.value) {
-            if (tableData.value[i].role === 'ROLE_BANNED') {
+            if (tableData.value[i].role === 'BANNED') {
                 banArr.value.push(true);
             } else {
                 banArr.value.push(false);
