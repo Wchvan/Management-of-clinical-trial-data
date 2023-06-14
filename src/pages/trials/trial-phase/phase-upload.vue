@@ -93,7 +93,7 @@ import { ref } from 'vue';
 import { ElMessageBox } from 'element-plus';
 import { examineeApi } from '@/api/examinee/examinee';
 import { useRoute } from 'vue-router';
-const route = useRoute()
+const route = useRoute();
 /* 做路由判断 */
 const [, , trialId, trialStep] = [...route.path.split('/')];
 // 当前步骤
@@ -169,7 +169,7 @@ const uploadExcel = async (param: any) => {
         const res = await examineeApi.postExmainee({
             ctr: trialId,
             clin_stage: trialStep,
-            file: fileFormData
+            file: fileFormData,
         });
         if (res.code !== 200) {
             ElMessage({
@@ -181,7 +181,7 @@ const uploadExcel = async (param: any) => {
         const res = await examineeApi.postTrialData({
             ctr: trialId,
             clin_stage: trialStep,
-            file: fileFormData
+            file: fileFormData,
         });
         if (res.code !== 200) {
             ElMessage({
