@@ -105,11 +105,7 @@ export type postTrialDataParm = {
 export type postTrialDataRes = apiRes<null>;
 
 /* 上传随访者信息 */
-export type postRevisitParm = {
-    ctr: string;
-    clin_stage: string;
-    file: FormData;
-};
+export type postRevisitParm = FormData;
 
 export type postRevisitRes = apiRes<null>;
 

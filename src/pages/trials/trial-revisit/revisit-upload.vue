@@ -172,11 +172,7 @@ const uploadExcel = async (param: any) => {
     fileFormData.append('file', param.file);
     //导入公用人事考勤数据
     if (active.value === 1) {
-        const res = await examineeApi.postRevisit({
-            ctr: trialId,
-            clin_stage: trialStep,
-            file: fileFormData,
-        });
+        const res = await examineeApi.postRevisit(fileFormData);
         if (res.code !== 200) {
             ElMessage({
                 type: 'error',
