@@ -163,7 +163,7 @@ const handleSuccess = () => {
 // 文件上传
 const uploadExcel = async (param: any) => {
     let fileFormData = new FormData();
-    fileFormData.append('file', param.file);
+    fileFormData.append('file', param.raw);
     //导入公用人事考勤数据
     if (active.value === 1) {
         const res = await examineeApi.postExmainee({

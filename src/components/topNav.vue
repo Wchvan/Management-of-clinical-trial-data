@@ -255,7 +255,6 @@ const handleSubmit = (formEl: FormInstance | undefined) => {
 .navTitle {
     color: #cce7f8;
     font-size: 2.5rem;
-    font-family: 'Pacifico', cursive;
     text-transform: uppercase;
     animation: shining 0.1s alternate infinite;
 }
