@@ -103,7 +103,7 @@ const tableLabels = ref<Record<keyof trailsType, string>>({
     med_name: '药物名称',
 });
 
-// 查看实验详情
+// 查看试验详情
 const detailTrialVisible = ref<boolean>(false);
 const detailCtr = ref<string>('');
 const showTrialDetail = (row: trailsType, column: any) => {

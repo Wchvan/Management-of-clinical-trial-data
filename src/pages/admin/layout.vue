@@ -27,7 +27,7 @@
                                 "
                             >
                                 <i-ep-Tickets></i-ep-Tickets>
-                                <span>实验管理</span>
+                                <span>试验管理</span>
                                 <span
                                     v-if="activeIndex === '/admin-trials'"
                                     style="

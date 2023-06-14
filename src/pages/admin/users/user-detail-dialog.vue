@@ -49,7 +49,7 @@
                     style="height: fit-content; padding: 0%"
                 >
                     <div class="flex flex-row justify-between">
-                        <div>相关实验列表:</div>
+                        <div>相关试验列表:</div>
                         <el-checkbox
                             v-model="checkAll"
                             :indeterminate="isIndeterminate"
@@ -129,14 +129,14 @@ watch(
 
 /* 将得到的数据映射成字段 */
 const dataIndexMap = ref<Record<keyof usersType, string>>({
-    id: '实验者编号',
-    name: '实验者姓名',
+    id: '试验者编号',
+    name: '试验者姓名',
     phone: '电话号码',
-    role: '实验者账号状况',
-    username: '实验者账号',
+    role: '试验者账号状况',
+    username: '试验者账号',
 });
 
-/* 获取关联实验 */
+/* 获取关联试验 */
 const expIDs = ref<string[]>([]);
 const isIndeterminate = ref(true);
 const checkAll = ref<boolean>();

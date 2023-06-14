@@ -9,7 +9,7 @@
         <el-card class="box-card">
             <template #header>
                 <div class="text-center text-2xl font-semibold">
-                    <span>实验详情</span>
+                    <span>试验详情</span>
                 </div>
             </template>
             <div
@@ -82,8 +82,8 @@ const getTrialDetail = () => {
 
 /* 标签 */
 const trialLabels = ref<Record<keyof trialDetailType, string>>({
-    ctr: '实验编号',
-    title: '实验题目',
+    ctr: '试验编号',
+    title: '试验题目',
     clin_stage: '试验分期',
     clin_status: '试验状态',
     contact: '企业联系人',

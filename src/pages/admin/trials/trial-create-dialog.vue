@@ -8,7 +8,7 @@
         <el-card class="box-card">
             <template #header>
                 <div class="text-center text-2xl font-semibold">
-                    <span>新增实验</span>
+                    <span>新增试验</span>
                 </div>
             </template>
             <div v-for="(item, index) in trialLabels" :key="index">
@@ -85,8 +85,8 @@ watch(
 
 /* 标签 */
 const trialLabels = ref<Record<keyof trialDetailType, string>>({
-    ctr: '实验编号',
-    title: '实验题目',
+    ctr: '试验编号',
+    title: '试验题目',
     clin_stage: '试验分期',
     clin_status: '试验状态',
     contact: '企业联系人',
@@ -98,12 +98,12 @@ const trialLabels = ref<Record<keyof trialDetailType, string>>({
     sponsor: '申办者',
 });
 
-// 实验分期信息
+// 试验分期信息
 const clinStageOptions = ref<string[]>([]);
 for (let i in clinStageType) {
     clinStageOptions.value.push(i);
 }
-// 实验状态信息
+// 试验状态信息
 const clinStatusOptions = ref<string[]>([]);
 for (let i in clinStatusType) {
     clinStatusOptions.value.push(i);

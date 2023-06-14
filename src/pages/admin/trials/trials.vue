@@ -290,19 +290,19 @@ const tableLabels = ref<Record<keyof trailsType, string>>({
     med_name: '药物名称',
 });
 
-// 实验状态信息
+// 试验状态信息
 const clinStatusArr = ref<string[]>([]);
 for (let i in clinStatusType) {
     clinStatusArr.value.push(i);
 }
 
-// 实验分期信息
+// 试验分期信息
 const clinStageArr = ref<string[]>([]);
 for (let i in clinStageType) {
     clinStageArr.value.push(i);
 }
 
-// 修改实验分期信息或者实验状态
+// 修改试验分期信息或者试验状态
 const changeTrial = (index: number) => {
     trialApi
         .changeTrial({
@@ -326,7 +326,7 @@ const changeTrial = (index: number) => {
         });
 };
 
-// 添加实验
+// 添加试验
 const createTrialVisible = ref<boolean>(false);
 const createDialog = () => {
     createTrialVisible.value = false;
@@ -335,7 +335,7 @@ const createDialog = () => {
     });
 };
 
-// 实验详情
+// 试验详情
 const detailCtr = ref<string>('');
 const detailTrialVisible = ref<boolean>(false);
 const detailDialog = (index: number) => {
