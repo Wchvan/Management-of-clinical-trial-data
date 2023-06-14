@@ -94,6 +94,10 @@
 import { ref } from 'vue';
 import { ElMessageBox } from 'element-plus';
 import { examineeApi } from '@/api/examinee/examinee';
+import { useRoute } from 'vue-router';
+const route = useRoute()
+/* 做路由判断 */
+const [, , trialId, trialStep] = [...route.path.split('/')];
 
 // 当前步骤
 const active = ref<number>(1);
@@ -168,7 +172,11 @@ const uploadExcel = async (param: any) => {
     fileFormData.append('file', param.file);
     //导入公用人事考勤数据
     if (active.value === 1) {
-        const res = await examineeApi.postRevisit(fileFormData);
+        const res = await examineeApi.postRevisit({
+            ctr: trialId,
+            clin_stage: trialStep,
+            file: fileFormData
+        });
         if (res.code !== 200) {
             ElMessage({
                 type: 'error',
@@ -176,7 +184,11 @@ const uploadExcel = async (param: any) => {
             });
         }
     } else {
-        const res = await examineeApi.postTrialData(fileFormData);
+        const res = await examineeApi.postTrialData({
+            ctr: trialId,
+            clin_stage: trialStep,
+            file: fileFormData
+        });
         if (res.code !== 200) {
             ElMessage({
                 type: 'error',

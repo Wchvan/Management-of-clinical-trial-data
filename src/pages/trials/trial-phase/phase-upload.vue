@@ -8,8 +8,8 @@
                     style="margin-top: 20px"
                     :active="active"
                 >
-                    <el-step title="上传随访安排" />
-                    <el-step title="上传随访数据" />
+                    <el-step title="上传受试者信息" />
+                    <el-step title="上传试验数据" />
                 </el-steps>
             </el-header>
             <el-main>
@@ -92,6 +92,10 @@
 import { ref } from 'vue';
 import { ElMessageBox } from 'element-plus';
 import { examineeApi } from '@/api/examinee/examinee';
+import { useRoute } from 'vue-router';
+const route = useRoute()
+/* 做路由判断 */
+const [, , trialId, trialStep] = [...route.path.split('/')];
 // 当前步骤
 const active = ref<number>(1);
 
@@ -162,7 +166,11 @@ const uploadExcel = async (param: any) => {
     fileFormData.append('file', param.file);
     //导入公用人事考勤数据
     if (active.value === 1) {
-        const res = await examineeApi.postExmainee(fileFormData);
+        const res = await examineeApi.postExmainee({
+            ctr: trialId,
+            clin_stage: trialStep,
+            file: fileFormData
+        });
         if (res.code !== 200) {
             ElMessage({
                 type: 'error',
@@ -170,7 +178,11 @@ const uploadExcel = async (param: any) => {
             });
         }
     } else {
-        const res = await examineeApi.postTrialData(fileFormData);
+        const res = await examineeApi.postTrialData({
+            ctr: trialId,
+            clin_stage: trialStep,
+            file: fileFormData
+        });
         if (res.code !== 200) {
             ElMessage({
                 type: 'error',

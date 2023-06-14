@@ -30,7 +30,7 @@ const routes: Array<RouteRecordRaw> = [
         path: '/trials/:id/:phase',
         name: 'TrialDetail',
         meta: {
-            title: `实验分期详情`,
+            title: `试验分期详情`,
             keepAlive: true,
             trialDetail: true,
         },
@@ -40,7 +40,7 @@ const routes: Array<RouteRecordRaw> = [
         path: '/admin-trials',
         name: 'AdminTrials',
         meta: {
-            title: '实验管理',
+            title: '试验管理',
             keepAlive: true,
             admin: true, // 是否只有admin才能访问
         },
