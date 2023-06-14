@@ -99,7 +99,6 @@ const route = useRoute();
 /* 获取路由信息 */
 const [, , trialId, trialStep] = [...route.path.split('/')];
 
-
 // 当前步骤
 const active = ref<number>(1);
 

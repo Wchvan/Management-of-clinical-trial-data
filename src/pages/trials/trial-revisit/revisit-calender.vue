@@ -80,20 +80,22 @@ const dialogVisible = ref<boolean>(false);
 const getSubjectInfo = (date: string) => {
     console.log(date);
     if (isSelect(date)) {
-        examineeApi.getRevisitSubjects({ date: date, ctr: trialId }).then((res) => {
-            if (res.code === 200) {
-                subjectInfo.value = res.data;
-                dialogVisible.value = false;
-                setTimeout(() => {
-                    dialogVisible.value = true;
-                });
-            } else {
-                ElMessage({
-                    type: 'error',
-                    message: res.msg,
-                });
-            }
-        });
+        examineeApi
+            .getRevisitSubjects({ date: date, ctr: trialId })
+            .then((res) => {
+                if (res.code === 200) {
+                    subjectInfo.value = res.data;
+                    dialogVisible.value = false;
+                    setTimeout(() => {
+                        dialogVisible.value = true;
+                    });
+                } else {
+                    ElMessage({
+                        type: 'error',
+                        message: res.msg,
+                    });
+                }
+            });
     }
 };
 </script>
