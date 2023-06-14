@@ -95,6 +95,7 @@ import { ref } from 'vue';
 import { ElMessageBox } from 'element-plus';
 import { examineeApi } from '@/api/examinee/examinee';
 import { useRoute } from 'vue-router';
+import { fi } from 'element-plus/es/locale';
 const route = useRoute();
 /* 做路由判断 */
 const [, , trialId, trialStep] = [...route.path.split('/')];
@@ -180,11 +181,9 @@ const uploadExcel = async (param: any) => {
             });
         }
     } else {
-        const res = await examineeApi.postTrialData({
-            ctr: trialId,
-            clin_stage: trialStep,
-            file: fileFormData,
-        });
+        fileFormData.append('ctr', trialId);
+        fileFormData.append('clin_stage', trialStep);
+        const res = await examineeApi.postTrialData(fileFormData);
         if (res.code !== 200) {
             ElMessage({
                 type: 'error',

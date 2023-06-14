@@ -164,13 +164,11 @@ const handleSuccess = () => {
 const uploadExcel = async (param: any) => {
     let fileFormData = new FormData();
     fileFormData.append('file', param.file);
+    fileFormData.append('ctr', trialId);
+    fileFormData.append('clin_stage', trialStep);
     //导入公用人事考勤数据
     if (active.value === 1) {
-        const res = await examineeApi.postExmainee({
-            ctr: trialId,
-            clin_stage: trialStep,
-            file: fileFormData,
-        });
+        const res = await examineeApi.postExmainee(fileFormData);
         if (res.code !== 200) {
             ElMessage({
                 type: 'error',
@@ -178,11 +176,7 @@ const uploadExcel = async (param: any) => {
             });
         }
     } else {
-        const res = await examineeApi.postTrialData({
-            ctr: trialId,
-            clin_stage: trialStep,
-            file: fileFormData,
-        });
+        const res = await examineeApi.postTrialData(fileFormData);
         if (res.code !== 200) {
             ElMessage({
                 type: 'error',

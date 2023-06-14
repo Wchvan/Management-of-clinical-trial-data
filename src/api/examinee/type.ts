@@ -78,11 +78,7 @@ export type searchExamineeRes = apiRes<
 >;
 
 /* 上传受试者信息 */
-export type postExamineeParm = {
-    ctr: string;
-    clin_stage: string;
-    file: FormData;
-};
+export type postExamineeParm = FormData;
 
 export type postExamineeRes = apiRes<null>;
 
@@ -96,11 +92,7 @@ export type deleteExamineeParm = {
 export type deleteExamineeRes = apiRes<null>;
 
 /* 上传实验信息 */
-export type postTrialDataParm = {
-    ctr: string;
-    clin_stage: string;
-    file: FormData;
-};
+export type postTrialDataParm = FormData;
 
 export type postTrialDataRes = apiRes<null>;
 
