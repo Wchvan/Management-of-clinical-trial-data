@@ -3,14 +3,12 @@ import type { InternalAxiosRequestConfig, AxiosResponse } from 'axios';
 import { ElMessage } from 'element-plus';
 
 const baseURL =
-    process.env.NODE_ENV == 'development'
-        ? '/api'
-        : 'http://127.0.0.1:4523/m1/2767636-0-default/';
+    process.env.NODE_ENV == 'development' ? '/api' : 'https://api.revocat.tech';
 
 axios.defaults.withCredentials = true;
 
 const axiosInstance: AxiosInstance = axios.create({
-    baseURL: baseURL,
+    baseURL: 'https://api.revocat.tech',
     timeout: 5000,
     withCredentials: true,
 });
@@ -19,6 +17,7 @@ const axiosInstance: AxiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
         // 在发送请求之前做些什么
+        config.headers['Access-Control-Allow-Credentials'] = 'true';
         return config;
     },
     (error: any) => {

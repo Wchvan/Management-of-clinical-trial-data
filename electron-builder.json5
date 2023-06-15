@@ -1,7 +1,7 @@
 {
-    appId: 'MOCTD',
+    appId: 'EnClin',
     asar: true,
-    productName: 'MOCTD',
+    productName: 'EnClin',
     copyright: 'Copyright © 2023 electron',
     mac: {
         icon: './public/favicon.ico',
