@@ -8,7 +8,7 @@ const baseURL =
 axios.defaults.withCredentials = true;
 
 const axiosInstance: AxiosInstance = axios.create({
-    baseURL: 'https://192.168.31.59:7444',
+    baseURL: 'https://api.revocat.tech',
     timeout: 20000,
     withCredentials: true,
 });

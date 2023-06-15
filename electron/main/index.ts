@@ -6,9 +6,10 @@ app.commandLine.appendSwitch(
     'disable-features',
     'BlockInsecurePrivateNetworkRequests',
     'disable-web-security',
+    'ignore-certificate-errors',
 );
-// 忽略证书相关错误 在ready前使用
-app.commandLine.appendSwitch('ignore-certificate-errors');
+// // 忽略证书相关错误 在ready前使用
+// app.commandLine.appendSwitch('ignore-certificate-errors');
 
 function createWindow() {
     // 创建浏览器窗口
@@ -73,3 +74,15 @@ app.whenReady().then(() => {
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit();
 });
+
+app.on(
+    'certificate-error',
+    (event, webContents, url, error, certificate, callback) => {
+        // console.log("certificate-error", event, url, error, certificate)
+        // 取消默认的证书错误提示
+        event.preventDefault();
+
+        // 手动验证证书有效性
+        callback(true);
+    },
+);

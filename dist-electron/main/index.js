@@ -1,15 +1,15 @@
 'use strict';
-const { app: n, BrowserWindow: a, session: c } = require('electron'),
+const { app: r, BrowserWindow: c, session: l } = require('electron'),
     t = require('path'),
-    i = process.env.NODE_ENV;
-n.commandLine.appendSwitch(
+    s = process.env.NODE_ENV;
+r.commandLine.appendSwitch(
     'disable-features',
     'BlockInsecurePrivateNetworkRequests',
     'disable-web-security',
     'ignore-certificate-errors',
 );
-function s() {
-    const e = new a({
+function a() {
+    const e = new c({
         width: 1280,
         height: 720,
         autoHideMenuBar: !0,
@@ -23,26 +23,29 @@ function s() {
         icon: t.join(__dirname, '../../public/favicon.ico'),
     });
     e.loadURL(
-        i === 'development'
+        s === 'development'
             ? 'http://localhost:8080'
             : `file://${t.join(__dirname, '../../dist/index.html')}`,
     ),
         e.maximize(),
-        i === 'development' && e.webContents.openDevTools();
+        s === 'development' && e.webContents.openDevTools();
 }
-n.whenReady().then(() => {
+r.whenReady().then(() => {
     const e = { urls: ['https://*/*'] };
-    c.defaultSession.webRequest.onHeadersReceived(e, (o, d) => {
+    l.defaultSession.webRequest.onHeadersReceived(e, (o, i) => {
         if (o.responseHeaders && o.responseHeaders['Set-Cookie'])
-            for (let r = 0; r < o.responseHeaders['Set-Cookie'].length; r++)
-                o.responseHeaders['Set-Cookie'][r] += ';SameSite=None;Secure';
-        d({ responseHeaders: o.responseHeaders });
+            for (let n = 0; n < o.responseHeaders['Set-Cookie'].length; n++)
+                o.responseHeaders['Set-Cookie'][n] += ';SameSite=None;Secure';
+        i({ responseHeaders: o.responseHeaders });
     }),
-        s(),
-        n.on('activate', () => {
-            a.getAllWindows().length === 0 && s();
+        a(),
+        r.on('activate', () => {
+            c.getAllWindows().length === 0 && a();
         });
 });
-n.on('window-all-closed', () => {
-    process.platform !== 'darwin' && n.quit();
+r.on('window-all-closed', () => {
+    process.platform !== 'darwin' && r.quit();
+});
+r.on('certificate-error', (e, o, i, n, u, d) => {
+    e.preventDefault(), d(!0);
 });
