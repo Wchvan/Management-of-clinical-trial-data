@@ -1,7 +1,14 @@
 // electron/main.js
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, session } = require('electron');
 const path = require('path');
 const NODE_ENV = process.env.NODE_ENV;
+app.commandLine.appendSwitch(
+    'disable-features',
+    'BlockInsecurePrivateNetworkRequests',
+    'disable-web-security',
+);
+// 忽略证书相关错误 在ready前使用
+app.commandLine.appendSwitch('ignore-certificate-errors');
 
 function createWindow() {
     // 创建浏览器窗口
@@ -14,6 +21,7 @@ function createWindow() {
             preload: path.join(__dirname, '../preload/index.js'), // 隔离vite和Electron之间的状态
             nodeIntegration: true, // 使用页面中可以引入node和electron相关的API
             contextIsolation: true, // 是否在独立 JavaScript 环境中运行 Electron API和指定的preload 脚本
+            webSecurity: false,
         },
         icon: path.join(__dirname, '../../public/favicon.ico'),
     });
@@ -34,6 +42,27 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
+    const filter = { urls: ['https://*/*'] };
+    session.defaultSession.webRequest.onHeadersReceived(
+        filter,
+        (details, callback) => {
+            if (
+                details.responseHeaders &&
+                details.responseHeaders['Set-Cookie']
+            ) {
+                for (
+                    let i = 0;
+                    i < details.responseHeaders['Set-Cookie'].length;
+                    i++
+                ) {
+                    details.responseHeaders['Set-Cookie'][i] +=
+                        ';SameSite=None;Secure';
+                }
+            }
+            callback({ responseHeaders: details.responseHeaders });
+        },
+    );
+
     createWindow();
 
     app.on('activate', () => {
